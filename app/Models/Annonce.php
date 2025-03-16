@@ -15,5 +15,9 @@ class Annonce extends Model
         'status',
         'seller_id',
     ];
+    public function seller()
+    {
+        return $this->belongsTo(Seller::class);
+    }
 
 }
