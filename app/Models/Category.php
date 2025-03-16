@@ -10,4 +10,8 @@ class Category extends Model
         'name',
         'description',
     ];
+    public function annonces()
+    {
+        return $this->hasMany(Annonce::class);
+    }
 }

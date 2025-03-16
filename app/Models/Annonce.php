@@ -23,4 +23,8 @@ class Annonce extends Model
     {
         return $this->hasMany(Images_annonce::class);
     }
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }
