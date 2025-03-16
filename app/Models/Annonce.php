@@ -19,5 +19,8 @@ class Annonce extends Model
     {
         return $this->belongsTo(Seller::class);
     }
-
+    public function images_annonce()
+    {
+        return $this->hasMany(Images_annonce::class);
+    }
 }

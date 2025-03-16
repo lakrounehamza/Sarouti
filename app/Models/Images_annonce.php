@@ -10,4 +10,8 @@ class Images_annonce extends Model
         'path',
         'annonce_id',
     ];
+    public function annonce()
+    {
+        return $this->belongsTo(Annonce::class);
+    }
 }
