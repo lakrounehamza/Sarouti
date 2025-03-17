@@ -11,4 +11,10 @@ class Like extends Model
         'client_id',
     ];
     
+    public function  client(){
+        return  $this->belongsTo(Client::class);
+    }
+    public function  annonce(){
+        return  $this->belongsTo(Annonce::class);
+    }
 }

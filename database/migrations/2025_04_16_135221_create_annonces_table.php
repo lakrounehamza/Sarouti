@@ -14,14 +14,17 @@ return new class extends Migration
         Schema::create('annonces', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('description');
-            $table->string('price');
-            $table->emun('type', ['rental', 'sale'])->default('rental');
+            $table->text('description'); // Utiliser 'text' au lieu de 'string' pour des descriptions longues
+            $table->decimal('price', 10, 2); // 'decimal' pour les prix au lieu de 'string'
+            $table->enum('type', ['rental', 'sale'])->default('rental');
             $table->string('ville');
-            $table->enum('status', ['accepted', ' aejected','waiting'])->default('waiting')->nullable();            $table->foreignId('seller_id')->constrained('users')->onDelete('cascade');
+            $table->enum('status', ['accepted', 'rejected', 'waiting'])->default('waiting')->nullable();
+            $table->foreignId('seller_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
             $table->timestamps();
         });
     }
+    
 
     /**
      * Reverse the migrations.
