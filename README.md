@@ -87,4 +87,4 @@ Sarouti est une plateforme en ligne dédiée à la **location et à la vente de 
 Ce projet est sous licence **MIT**. Vous êtes libre de l'utiliser et de le modifier.
 
 ---
- **Contact & Support** : lrounehamza4@gmail.com
+ **Contact & Support** : lakrounehamza4@gmail.com
