@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Repositories;
+namespace App\repositorys;
 
-class UserAuthRepository
+class AuthRepository
 {
     /**
      * Create a new class instance.

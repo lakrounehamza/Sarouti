@@ -1,17 +1,15 @@
 <?php
 
-namespace App\Http\Requests;
-
+namespace App\Http\requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Contracts\Validation\Validator;
-class createUserRequest extends FormRequest
+class RegisterRequest extends FormRequest
 {
     public function autorize()
     {
         return  true;
     }
-    
     public function rules(): array
     {
         return [
