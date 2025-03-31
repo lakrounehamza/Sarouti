@@ -9,5 +9,7 @@ use  App\Models\User;
 
 class UserAuthController extends Controller
 {
-    
+    public function  register(){
+        
+    }
 }
