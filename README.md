@@ -41,7 +41,7 @@ Sarouti est une plateforme en ligne dédiée à la **location et à la vente de 
 - **API RESTful** pour la communication avec le backend
 - **WebSocket** pour les notifications en temps réel
 ## daigrame de class 
-![daigrame de class](public/images/classUml.jpg)
+![daigrame de class](public/images/classUml.png)
 ## - Installation et Déploiement
 ### - Prérequis
 - PHP 8.3.14 installé
