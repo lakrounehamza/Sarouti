@@ -15,10 +15,18 @@ class RegisterRequest extends FormRequest
         return [
             'name' => 'required|string',
             'email' => 'required|string',
-            'password' => 'required|string',
+            'password' => 'required|string|min:8|regex:/^[A-Za-z0-9\d@$!%*?&]{8,}$/',
             'role' => 'required|string',
             'phone' => 'required',
             'photo' => 'required',
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'password.min' => 'Le mot de passe doit contenir au moins 8 caractères',
+            'password.regex' => 'Le mot de passe doit contenir au moins une lettre majuscule, une lettre minuscule, un chiffre et un caractère spécial',
         ];
     }
 
@@ -29,5 +37,28 @@ class RegisterRequest extends FormRequest
             'message'   => 'Validation errors',
             'data'      => $validator->errors()
         ]));
+    }
+    
+    public function validatePassword($password)
+    {
+        $errors = [];
+        
+        if (strlen($password) < 8) {
+            $errors[] = 'Le mot de passe doit contenir au moins 8 caractères';
+        }
+        
+        if (!preg_match('/[A-Z]/', $password)) {
+            $errors[] = 'Le mot de passe doit contenir au moins une lettre majuscule';
+        }
+        
+        if (!preg_match('/[a-z]/', $password)) {
+            $errors[] = 'Le mot de passe doit contenir au moins une lettre minuscule';
+        }
+        
+        if (!preg_match('/[0-9]/', $password)) {
+            $errors[] = 'Le mot de passe doit contenir au moins un chiffre';
+        }
+        
+        return $errors;
     }
 }
