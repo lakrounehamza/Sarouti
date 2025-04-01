@@ -7,7 +7,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use  App\Models\User;
 use App\repositorys\AuthRepository;
-
+use  App\Http\Requests\RegisterRequest;
+use App\Exception\mailRegisterException;
 class UserAuthController extends Controller
 {
     private $authRepository;
@@ -15,15 +16,23 @@ class UserAuthController extends Controller
     {
         $this->authRepository = $authRepository;
     }
-    public function  register(){
+    public function  register(RegisterRequest $request){
         try {
-            $user = $this->authRepository->register(request());
+            if(User::where('email', $request->email)->exists()) 
+                throw new mailRegisterException("Email already exists");
+            $user = $this->authRepository->register($request);
             return response()->json([
                 'success' => true,
                 'message' => 'User registered successfully',
                 'data' => $user
-            ]);
-        } catch (\Exception $e) {
+            ], 200);
+        }catch (mailRegisterException $e) {
+            return response()->json([
+                'success' => false,
+                'message' => $e->getMessage()
+            ], 409);
+        } 
+        catch (\Exception $e) {
             return response()->json([
                 'success' => false,
                 'message' => 'Registration failed',
