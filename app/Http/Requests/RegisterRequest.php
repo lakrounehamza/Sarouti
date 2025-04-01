@@ -13,12 +13,12 @@ class RegisterRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string',
-            'email' => 'required|string',
+            'name' => 'required|string|min:3|max:30',
+            'email' => 'required|string|email|unique:users,email',
             'password' => 'required|string|min:8|regex:/^[A-Za-z0-9\d@$!%*?&]{8,}$/',
-            'role' => 'required|string',
-            'phone' => 'required',
-            'photo' => 'required',
+            'role' => 'required|string|in:seller,client',
+            'phone' => 'required|string|regex:/^(\+212|0)(6|7)[0-9]{8}$/',
+            'photo' => 'required|mimes:jpg,jpeg,png|max:2048',
         ];
     }
 
