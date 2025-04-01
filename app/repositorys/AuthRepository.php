@@ -1,14 +1,28 @@
 <?php
 
 namespace App\repositorys;
-
-class AuthRepository
+use App\contracts\AuthRepositoryInterface;
+use App\Models\User;
+use App\Http\Requests\Auth\LoginRequest;
+use  App\Http\Requests\RegisterRequest;
+use Illuminate\Support\Facades\Auth;
+class AuthRepository  implements AuthRepositoryInterface
 {
-    /**
-     * Create a new class instance.
-     */
-    public function __construct()
-    {
-        //
+    public function login(array $attributes){
+
     }
+    public function register(RegisterRequest $attributes){
+        User::create([
+            'name' => $attributes->name,
+            'email' => $attributes->email,
+            'password' => bcrypt($attributes->password),
+            'role' => $attributes->role,
+            'phone' => $attributes->phone,
+            'photo' => $attributes->photo,
+        ]);
+    }
+    public function logout(){}
+    public function  refresh(){}
+    public function forgot(){}
+    public function reset(){}
 }
