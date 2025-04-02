@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use  App\Models\User;
 use App\repositorys\AuthRepository;
 use  App\Http\Requests\RegisterRequest;
+use  App\Http\Requests\LoginRequest;
 use App\Exception\mailRegisterException;
 use App\Exception\PasswordException;
 
@@ -46,6 +47,21 @@ class UserAuthController extends Controller
             return response()->json([
                 'success' => false,
                 'message' => 'Registration failed',
+                'error' => $e->getMessage()
+            ], 500);
+        }
+    }
+    public function login(LoginRequest $request)
+    {
+        try {
+          $message = $this->authRepository->login($request);
+          
+        return  $message;
+           
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Login failed',
                 'error' => $e->getMessage()
             ], 500);
         }

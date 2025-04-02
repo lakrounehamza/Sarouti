@@ -20,7 +20,7 @@ class RegisterRequest extends FormRequest
             'password' => 'required|string|min:8|regex:/^[A-Za-z0-9\d@$!%*?&]{8,}$/',
             'role' => 'required|string|in:seller,client',
             'phone' => ['required', 'string', 'regex:/^(\+212|0)(6|7)[0-9]{8}$/'],
-            'photo' => ['required', 'string', 'regex:/^data:image\/(jpeg|png|jpg);base64,/i'],
+            'photo' => ['required', 'string'], //, 'regex:/^data:image\/(jpeg|png|jpg);base64,/i'
         ];
     }
 
