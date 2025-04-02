@@ -8,7 +8,7 @@ use Illuminate\Contracts\Validation\Validator;
 
 class RegisterRequest extends FormRequest
 {
-    public function autorize()
+    public function authorize()
     {
         return  true;
     }

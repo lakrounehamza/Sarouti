@@ -3,12 +3,13 @@
 namespace App\repositorys;
 use App\contracts\AuthRepositoryInterface;
 use App\Models\User;
-use App\Http\Requests\Auth\LoginRequest;
+// use App\Http\Requests\Auth\LoginRequest;
 use  App\Http\Requests\RegisterRequest;
+use  App\Http\Requests\LoginRequest;
 use Illuminate\Support\Facades\Auth;
 class AuthRepository  implements AuthRepositoryInterface
 {
-    public function login(array $attributes){
+    public function login(LoginRequest $attributes){
 
     }
     public function register(RegisterRequest $attributes){
