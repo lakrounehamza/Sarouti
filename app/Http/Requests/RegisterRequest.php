@@ -1,9 +1,11 @@
 <?php
 
 namespace App\Http\requests;
+
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Contracts\Validation\Validator;
+
 class RegisterRequest extends FormRequest
 {
     public function autorize()
@@ -17,8 +19,8 @@ class RegisterRequest extends FormRequest
             'email' => 'required|string|email|unique:users,email',
             'password' => 'required|string|min:8|regex:/^[A-Za-z0-9\d@$!%*?&]{8,}$/',
             'role' => 'required|string|in:seller,client',
-            'phone' => 'required|string|regex:/^(\+212|0)(6|7)[0-9]{8}$/',
-            'photo' => 'required|mimes:jpg,jpeg,png|max:2048',
+            'phone' => ['required', 'string', 'regex:/^(\+212|0)(6|7)[0-9]{8}$/'],
+            'photo' => ['required', 'string', 'regex:/^data:image\/(jpeg|png|jpg);base64,/i'],
         ];
     }
 
@@ -38,27 +40,27 @@ class RegisterRequest extends FormRequest
             'data'      => $validator->errors()
         ]));
     }
-    
+
     public function validatePassword($password)
     {
         $errors = [];
-        
+
         if (strlen($password) < 8) {
             $errors[] = 'Le mot de passe doit contenir au moins 8 caractères';
         }
-        
+
         if (!preg_match('/[A-Z]/', $password)) {
             $errors[] = 'Le mot de passe doit contenir au moins une lettre majuscule';
         }
-        
+
         if (!preg_match('/[a-z]/', $password)) {
             $errors[] = 'Le mot de passe doit contenir au moins une lettre minuscule';
         }
-        
+
         if (!preg_match('/[0-9]/', $password)) {
             $errors[] = 'Le mot de passe doit contenir au moins un chiffre';
         }
-        
+
         return $errors;
     }
 }
