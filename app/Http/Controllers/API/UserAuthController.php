@@ -66,4 +66,17 @@ class UserAuthController extends Controller
             ], 500);
         }
     }
+    public function logout()
+    {
+        try {
+            $message = $this->authRepository->logout();
+            return $message;
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Logout failed',
+                'error' => $e->getMessage()
+            ], 500);
+        }
+    }
 }
