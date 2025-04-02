@@ -40,7 +40,20 @@ class AuthRepository  implements AuthRepositoryInterface
             'photo' => $attributes->photo,
         ]);
     }
-    public function logout(){}
+    public function logout(){
+        $user = Auth::user();
+        if ($user) {
+            JWTAuth::invalidate(JWTAuth::getToken());
+            return response()->json([
+                'success' => true,
+                'message' => 'Logout successful'
+            ], 200);
+        }
+        return response()->json([
+            'success' => false,
+            'message' => 'User not authenticated'
+        ], 401);
+    }
     public function  refresh(){}
     public function forgot(){}
     public function reset(){}
