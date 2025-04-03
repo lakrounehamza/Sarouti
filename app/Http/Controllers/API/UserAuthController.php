@@ -9,7 +9,7 @@ use  App\Models\User;
 use App\repositorys\AuthRepository;
 use  App\Http\Requests\RegisterRequest;
 use  App\Http\Requests\LoginRequest;
-use App\Exception\mailRegisterException;
+use App\Exception\MailRegisterException;
 use App\Exception\PasswordException;
 
 class UserAuthController extends Controller
