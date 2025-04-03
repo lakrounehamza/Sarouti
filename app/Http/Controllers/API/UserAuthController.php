@@ -53,30 +53,24 @@ class UserAuthController extends Controller
     }
     public function login(LoginRequest $request)
     {
-        try {
+        
           $message = $this->authRepository->login($request);
           
         return  $message;
            
-        } catch (\Exception $e) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Login failed',
-                'error' => $e->getMessage()
-            ], 500);
-        }
+       
     }
     public function logout()
     {
-        try {
             $message = $this->authRepository->logout();
             return $message;
-        } catch (\Exception $e) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Logout failed',
-                'error' => $e->getMessage()
-            ], 500);
-        }
+        
+    }
+    public function refresh()
+    {
+       
+            $message = $this->authRepository->refresh();
+            return $message;
+       
     }
 }
