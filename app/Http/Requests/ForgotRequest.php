@@ -2,7 +2,8 @@
 
 namespace App\Http\Requests;
 
-class ForgotRequest
+use Illuminate\Foundation\Http\FormRequest;
+class ForgotRequest  extends FormRequest
 {
     public function authorize()
     {
@@ -17,7 +18,8 @@ class ForgotRequest
     public function messages(): array
     {
         return [
-            'email' => 'l\'adresse e-mail doit être valide',
+            'email.required' => 'ladresse e-mail est requise',
+            'email.email' => 'l\'adresse e-mail doit être valide'
         ];
     }
 }

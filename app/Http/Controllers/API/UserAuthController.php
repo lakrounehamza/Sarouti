@@ -9,6 +9,7 @@ use  App\Models\User;
 use App\repositorys\AuthRepository;
 use  App\Http\Requests\RegisterRequest;
 use  App\Http\Requests\LoginRequest;
+use App\Http\Requests\ForgotRequest;
 use App\Exception\MailRegisterException;
 use App\Exception\PasswordException;
 
@@ -73,4 +74,10 @@ class UserAuthController extends Controller
             return $message;
        
     }
+    public function forgot(ForgotRequest $request)
+    {
+        $message = $this->authRepository->forgot($request);
+        return $message;
+    }
+    
 }

@@ -4,12 +4,14 @@ namespace App\repositorys;
 
 use App\contracts\AuthRepositoryInterface;
 use App\Models\User;
-// use App\Http\Requests\Auth\LoginRequest;
+use Illuminate\Support\Facades\Password;
 use  App\Http\Requests\RegisterRequest;
 use  App\Http\Requests\LoginRequest;
+use  App\Http\Requests\ForgotRequest;
 use Illuminate\Support\Facades\Auth;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 
 class AuthRepository  implements AuthRepositoryInterface
 {
@@ -80,6 +82,17 @@ class AuthRepository  implements AuthRepositoryInterface
             }
         }
     }
-    public function forgot() {}
+    public function forgot(ForgotRequest $attributes) {
+        $email  = $attributes->email;
+        $status = Password::sendResetLink( ['email' =>  $email]
+        );
+        Log::channel('auth')->info('Password reset requested', [
+            'email' => $email,
+        ]);
+
+        return $status === Password::RESET_LINK_SENT
+            ? response()->json(['message' => __($status)])
+            : response()->json(['error' => __($status)], 400); 
+    }
     public function reset() {}
 }
