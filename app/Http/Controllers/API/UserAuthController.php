@@ -12,11 +12,13 @@ use  App\Http\Requests\LoginRequest;
 use App\Http\Requests\ForgotRequest;
 use App\Exception\MailRegisterException;
 use App\Exception\PasswordException;
+use App\Customs\Services\EmailVerificationService;
 
 class UserAuthController extends Controller
 {
     private $authRepository;
-    public function __construct(AuthRepository $authRepository)
+    private $emailService;
+    public function __construct(AuthRepository $authRepository ,EmailVerificationService $service)
     {
         $this->authRepository = $authRepository;
     }
@@ -29,6 +31,8 @@ class UserAuthController extends Controller
                 throw new PasswordException(implode(", ", $errors));
             }
             $user = $this->authRepository->register($request);
+            
+            $this->emailService->sendVerificationEmail($user);
             return response()->json([
                 'success' => true,
                 'message' => 'User registered successfully',

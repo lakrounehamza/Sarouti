@@ -15,7 +15,7 @@ class AuthMiddleware
 {
     public function handle(Request $request, Closure $next): Response
     {
-        if ($request->is('api/login')) {
+        if ($request->is('api/login') || $request->is('api/register') || $request->is('api/verify-email/*')) {
             return $next($request);
         }
 

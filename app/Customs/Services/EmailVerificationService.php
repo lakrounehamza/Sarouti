@@ -4,6 +4,9 @@ namespace App\Customs\Services;
 
 use App\Models\EmailVirification;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\EmailVerificationNotification;
+use  App\Models\User;
 class EmailVerificationService
 {
     /**
@@ -13,7 +16,11 @@ class EmailVerificationService
     {
         //
     }
-    public function generateVerificationLink($email)
+    public function sendVerificationEmail(User $user)
+    {
+       Notification::send($user, new EmailVerificationNotification($this->generateVerificationLink($user->email)));
+    }
+    public function generateVerificationLink(String $email)
     {
         $chechToken = EmailVirification::where('email', $email)->first();
         if (!$chechToken) {
@@ -23,7 +30,7 @@ class EmailVerificationService
             $saveToken = EmailVirification::create([
                 'email' => $email,
                 'token' => $token,
-                'email_expired_at' => now()->addMinutes(30),
+                'email_expired_at' => now()->addMinutes(02),
             ]);
             return $url;
         }
