@@ -10,7 +10,7 @@ Route::post('login',[UserAuthController::class,'login']);
 Route::middleware([AuthMiddleware::class])->group(function () {
 Route::post('logout',[UserAuthController::class,'logout']);
 Route::post('refresh',[UserAuthController::class,'refresh']);
-Route::post('password/forgot',[UserAuthController::class,'forgot']);
-Route::post('password/reste',[UserAuthController::class,'reste']);
+Route::post('forgot-password',[UserAuthController::class,'forgot']);
+Route::post('reset-password',[UserAuthController::class,'reste']);
 
 });

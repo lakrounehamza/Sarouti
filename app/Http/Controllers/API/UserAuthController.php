@@ -79,5 +79,8 @@ class UserAuthController extends Controller
         $message = $this->authRepository->forgot($request);
         return $message;
     }
-    
+    public function  reste (Request $request){
+        $message = $this->authRepository->reset($request);
+        return $message;
+    }
 }
