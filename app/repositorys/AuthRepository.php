@@ -145,5 +145,8 @@ class AuthRepository  implements AuthRepositoryInterface
             ], 500);
         }
     }
+    public function verifyEmail($email ,$token){
+        
+    }
     
 }

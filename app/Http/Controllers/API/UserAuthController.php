@@ -88,4 +88,9 @@ class UserAuthController extends Controller
         $message = $this->authRepository->reset($request);
         return $message;
     }
+    public function verifyEmail($email ,$token)
+    {
+        $message = $this->authRepository->verifyEmail($email ,$token);
+        return $message;
+    }
 }
