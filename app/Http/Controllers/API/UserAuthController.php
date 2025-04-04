@@ -13,7 +13,7 @@ use App\Http\Requests\ForgotRequest;
 use App\Exception\MailRegisterException;
 use App\Exception\PasswordException;
 use App\Customs\Services\EmailVerificationService;
-
+USE App\Http\Requests\VerifyEmailRequest;
 class UserAuthController extends Controller
 {
     private $authRepository;
@@ -88,9 +88,9 @@ class UserAuthController extends Controller
         $message = $this->authRepository->reset($request);
         return $message;
     }
-    public function verifyEmail($email ,$token)
+    public function verifyEmail(VerifyEmailRequest $request)
     {
-        $message = $this->authRepository->verifyEmail($email ,$token);
+        $message = $this->authRepository->verifyEmail($request->email ,$request->token);
         return $message;
     }
 }
