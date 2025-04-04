@@ -38,14 +38,15 @@ class AuthRepository  implements AuthRepositoryInterface
     }
     public function register(RegisterRequest $attributes)
     {
-        User::create([
+       return User::create([
             'name' => $attributes->name,
             'email' => $attributes->email,
             'password' => bcrypt($attributes->password),
             'role' => $attributes->role,
             'phone' => $attributes->phone,
             'photo' => $attributes->photo,
-        ]);
+        ]); 
+        
     }
     public function logout()
     {

@@ -16,7 +16,7 @@ class EmailVerificationService
     {
         //
     }
-    public function sendVerificationEmail(User $user)
+    public function sendVerificationEmail( $user)
     {
        Notification::send($user, new EmailVerificationNotification($this->generateVerificationLink($user->email)));
     }
@@ -24,7 +24,7 @@ class EmailVerificationService
     {
         $chechToken = EmailVirification::where('email', $email)->first();
         if (!$chechToken) {
-            $chechToken->delete();
+            // $chechToken->delete();
             $token =Str::uuid();
             $url = config('app.url') . '/api/verify-email/' . $token;
             $saveToken = EmailVirification::create([
@@ -32,7 +32,14 @@ class EmailVerificationService
                 'token' => $token,
                 'email_expired_at' => now()->addMinutes(02),
             ]);
-            return $url;
+            if($saveToken) {
+                return $url;
+            } else {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Failed to save token'
+                ], 500);
+            }
         }
     }
 }

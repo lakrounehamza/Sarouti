@@ -21,6 +21,7 @@ class UserAuthController extends Controller
     public function __construct(AuthRepository $authRepository ,EmailVerificationService $service)
     {
         $this->authRepository = $authRepository;
+        $this->emailService = $service;
     }
     public function  register(RegisterRequest $request)
     {
@@ -30,7 +31,7 @@ class UserAuthController extends Controller
             if (($errors = $request->validatePassword($request->password)) !== []) {
                 throw new PasswordException(implode(", ", $errors));
             }
-            $user = $this->authRepository->register($request);
+             $user = $this->authRepository->register($request);
             
             $this->emailService->sendVerificationEmail($user);
             return response()->json([
