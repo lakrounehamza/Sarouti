@@ -28,7 +28,12 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(User $user)
+   
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(User $user)
     {
         $user = $this->userRepository->getUserById($user);
         return  response()->json([
@@ -36,14 +41,6 @@ class UserController extends Controller
             'message' => 'get user  by id ',
             'user' => $user
         ]);
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
     }
 
     /**
