@@ -19,11 +19,11 @@ class ImageAnnonceRepository implements ImageAnnonceRepositoryInterface
         $image = Images_annonce::find($imageId);
         return $image;
     }
-    public function createImage(CreateImageRequest $attributes)
+    public function createImage(CreateImageRequest $attributes ,$annonceId)
     {
         Images_annonce::create([
             'path' => $attributes->path,
-            'annonce_id' => $attributes->annonce_id,
+            'annonce_id' => $annonce_id,
         ]);
     }
     public function updateImage($imageId, UpdateImageRequest $attributes)

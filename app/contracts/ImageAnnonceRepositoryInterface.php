@@ -7,7 +7,7 @@ interface ImageAnnonceRepositoryInterface
 {
     public function getAllImagesByAnnonceId($annonceId);
     public function getImageById($imageId);
-    public function createImage(CreateImageRequest $attributes);
+    public function createImage(CreateImageRequest $attributes,$annonceId);
     public function updateImage($imageId,UpdateImageRequest $attributes);
     public function deleteImage($imageId);
 }

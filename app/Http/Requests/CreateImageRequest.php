@@ -23,7 +23,6 @@ class CreateImageRequest extends FormRequest
     {
         return [
             'image' => 'required',
-            'annonce_id' => 'required|exists:annonces,id',
         ];
     }
 }

@@ -9,6 +9,7 @@ use  App\Models\Annonce;
 use  App\Http\Requests\CreateAnnonceRequest;
 use  App\Http\Requests\UpdateAnnonceRequest;
 use  App\Repositorys\ImageAnnonceRepository;
+use App\Http\Requests\CreateImageAnnonceRequest;
 class AnnonceController extends Controller
 {
     private  $annonceRepository;
@@ -42,8 +43,8 @@ class AnnonceController extends Controller
             $this->annonceRepository->createAnnonce($request);
             $images = $request->images;
             if ($images) {
-                foreach ($images as $path) {
-                    $this->imageAnnonceRepository->createImage($path, $request->id);
+                foreach ($images as $image) {
+                    $this->imageAnnonceRepository->createImage($image->path, $request->id);
                 }
             }
             return  response()->json([
