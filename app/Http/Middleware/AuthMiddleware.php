@@ -13,9 +13,12 @@ use Tymon\JWTAuth\Exceptions\TokenBlacklistedException;
 
 class AuthMiddleware
 {
+    protected $except = [
+        'api/*',
+    ];
     public function handle(Request $request, Closure $next, $role): Response
     {
-        if ($request->is('api/login') || $request->is('api/register') || $request->is('api/verify-email/*')) {
+        if ($request->is('api/login') || $request->is('api/register') || $request->is('api/verify-email/*') ||  $request->is('api/annonces') || $request->is('api/annonces/*')) {
             return $next($request);
         }
 

@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('annonces', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->text('description'); // Utiliser 'text' au lieu de 'string' pour des descriptions longues
-            $table->decimal('price', 10, 2); // 'decimal' pour les prix au lieu de 'string'
+            $table->text('description'); 
+            $table->decimal('price', 10, 2); 
             $table->enum('type', ['rental', 'sale'])->default('rental');
             $table->string('ville');
             $table->enum('status', ['accepted', 'rejected', 'waiting'])->default('waiting')->nullable();

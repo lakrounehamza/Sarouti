@@ -15,17 +15,18 @@ Route::post('refresh',[UserAuthController::class,'refresh']);
 Route::post('forgot-password',[UserAuthController::class,'forgot']);
 Route::post('reset-password',[UserAuthController::class,'reste']);
 Route::post('verify-email',[UserAuthController::class,'verifyEmail']);
+
+Route::post('annonces',[AnnonceController::class,'store']);
 });
 // Route::middleware(['auth:seller'])
 Route::get('annonces',[AnnonceController::class,'index']);
-Route::get('annonces/{annonce}',[AnnonceController::class,'show']);
-Route::post('annonces',[AnnonceController::class,'store']);
-Route::put('annonces/{annonce}',[AnnonceController::class,'update']);
-Route::delete('annonces/{annonce}',[AnnonceController::class,'destroy']);
-Route::middleware(['auth:seller'])->controller(CategoryController::class)->group(function () {
-Route::get('categories','index');
-Route::get('categories/{category}','show');
-Route::post('categories','store');
-Route::put('categories/{category}','update');
-Route::delete('categories/{category}','destroy');
-});
+Route::get('annonces/{annonceId}',[AnnonceController::class,'show']);
+Route::put('annonces/{annonceId}',[AnnonceController::class,'update']);
+Route::delete('annonces/{annonceId}',[AnnonceController::class,'destroy']);
+// Route::middleware(['auth:seller'])->controller(CategoryController::class)->group(function () {
+// Route::get('categories','index');
+// Route::get('categories/{category}','show');
+// Route::post('categories','store');
+// Route::put('categories/{categoryId}','update');
+// Route::delete('categories/{categoryId}','destroy');
+// });

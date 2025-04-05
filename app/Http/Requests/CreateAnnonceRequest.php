@@ -11,7 +11,7 @@ class CreateAnnonceRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -32,4 +32,5 @@ class CreateAnnonceRequest extends FormRequest
             'category_id' => 'required|exists:categories,id',
         ];
     }
+    
 }
