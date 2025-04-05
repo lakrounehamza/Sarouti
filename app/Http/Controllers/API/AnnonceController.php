@@ -89,8 +89,20 @@ class AnnonceController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Annonce $annonce)
     {
-        //
+        try {
+            $this->annonceRepository->deleteAnnone($annonce);
+            return  response()->json([
+                'success' => true,
+                'message' => 'Annonce deleted successfully'
+            ]);
+        } catch (\Exception $e) {
+            return  response()->json([
+                'success' => false,
+                'message' => $e->getMessage()
+            ]);
+        }
     }
+  
 }
