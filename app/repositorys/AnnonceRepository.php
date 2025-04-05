@@ -4,14 +4,21 @@ namespace App\Repositorys;
 use  App\Models\Annonce;
 use  App\Http\Requests\CreateAnnonceRequest;
 use  App\Http\Requests\UpdateAnnonceRequest;
+use App\Models\Images_annonce;
 class AnnonceRepository
 {
     public function getAllAnnonce(){
         $annonces = Annonce::all();
         return  $annonces;
     }
-    public function getAnnonceById(Annonce  $annonce){
+    public function getAnnonceById($annonceId){
+        $annonce = Annonce::find($annonceId);
+        if($annonce){
+            $images = Images_annonce::where('annonce_id', $annonceId)->get();
+            $annonce->images = $images;
         return  $annonce;
+
+        }
     }
     public function createAnnonce(CreateAnnonceRequest  $attributes){
         Annonce::create([
