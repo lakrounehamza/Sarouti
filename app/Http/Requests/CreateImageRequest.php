@@ -22,7 +22,7 @@ class CreateImageRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'image' => 'required',
+            'path' => 'required',
         ];
     }
 }

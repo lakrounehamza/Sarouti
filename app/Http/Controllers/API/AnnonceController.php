@@ -42,10 +42,22 @@ class AnnonceController extends Controller
         try {
             $this->annonceRepository->createAnnonce($request);
             $images = $request->images;
+            $annonceId = $this->annonceRepository->getLastInsertedId();
             if ($images) {
-                foreach ($images as $image) {
-                    $this->imageAnnonceRepository->createImage($image->path, $request->id);
-                }
+                $imagePaths = array_map(function($img) {
+                    return $img['path'] ;
+                }, $images);
+                // foreach ($images as $image) {
+                    // $this->imageAnnonceRepository->createImage($image->path, $annonceId);
+
+                    
+                    return response()->json([
+                        'success' => true,
+                        'message' => 'Images received: ' . implode(', ', $imagePaths),
+                        'annonceId' => $annonceId
+                    ]);
+                    
+                // }
             }
             return  response()->json([
                 'success' => true,

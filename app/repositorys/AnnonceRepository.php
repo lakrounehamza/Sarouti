@@ -47,4 +47,8 @@ class AnnonceRepository
             $annonce->delete();
         }
     }
+    public function getLastInsertedId()
+    {
+        return Annonce::latest()->first()->id;
+    }
 }

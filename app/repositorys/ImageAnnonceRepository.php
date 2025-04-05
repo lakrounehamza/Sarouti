@@ -22,8 +22,8 @@ class ImageAnnonceRepository implements ImageAnnonceRepositoryInterface
     public function createImage(CreateImageRequest $attributes ,$annonceId)
     {
         Images_annonce::create([
-            'path' => $attributes->path,
-            'annonce_id' => $annonce_id,
+            'path' => $attributes,
+            'annonce_id' => $annonceId,
         ]);
     }
     public function updateImage($imageId, UpdateImageRequest $attributes)
