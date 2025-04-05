@@ -9,7 +9,7 @@ use App\Http\Requests\CreateCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
 use App\Models\Category;
 
-class CateroryController extends Controller
+class CategoryController extends Controller
 {
     private $categoryRepository;
     public function __construct(CategoryRepositoryInterface $categoryRepository)

@@ -23,5 +23,9 @@ Route::post('annonces',[AnnonceController::class,'store']);
 Route::put('annonces/{annonce}',[AnnonceController::class,'update']);
 Route::delete('annonces/{annonce}',[AnnonceController::class,'destroy']);
 Route::middleware(['auth:seller'])->controller(CategoryController::class)->group(function () {
-
+Route::get('categories','index');
+Route::get('categories/{category}','show');
+Route::post('categories','store');
+Route::put('categories/{category}','update');
+Route::delete('categories/{category}','destroy');
 });
