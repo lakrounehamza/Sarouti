@@ -39,8 +39,10 @@ class CategoryRepository implements CategoryRepositoryInterface
     }
 
 
-    public function deleteCategory(Category $category)
+    public function deleteCategory( $categoryId)
     {
-        $category->delete();
+        $category = Category::find($categoryId);
+        if($category)
+            $category->annonces()->delete();
     }
 }
