@@ -14,8 +14,10 @@ class CategoryRepository implements CategoryRepositoryInterface
     }
 
    
-    public function getCategoryById(Category $category)
+    public function getCategoryById( $categoryId)
     {
+        $category = Category::find($categoryId);
+        if($category)
         return $category;
     }
 
