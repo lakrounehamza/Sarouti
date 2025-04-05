@@ -3,6 +3,7 @@
 namespace App\repositorys;
 use App\Contracts\UserRepositoryInterface;
 use  App\Models\User;
+use  App\Http\Requests\UpdateUserRequest;
 class UserRepository  implements  UserRepositoryInterface
 {
 
@@ -13,8 +14,17 @@ class UserRepository  implements  UserRepositoryInterface
     public function getUserById(User  $user){
         return  $user;
     }
-    public function updateUser(User  $user){}
-    public function editeUser(User  $user){}
-    public function deleteUser(User $user,array $attributes){}
-    public function getUserByRole($role){}
+    public function updateUser(User  $user,UpdateUSerRequest $attributes){
+        $user->update($attributes->all());
+    }
+    public function editeUser(User  $user){
+      
+    }
+    public function deleteUser(User $user){
+        $user->delete();
+    }
+    public function getUserByRole($role){
+        $users =  User::where('role',$role);
+        return  $users;
+    }
 }
