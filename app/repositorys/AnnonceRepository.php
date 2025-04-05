@@ -40,8 +40,11 @@ class AnnonceRepository
         if ($annonce)
             $annonce->update($attributes->all());
     }
-    public function deleteAnnone(Annonce $annonce)
+    public function deleteAnnone( $annonceId)
     {
-        $annonce->delete();
+        $annonce = Annonce::find($annonceId);
+        if ($annonce) {
+            $annonce->delete();
+        }
     }
 }
