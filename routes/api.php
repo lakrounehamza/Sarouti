@@ -16,5 +16,8 @@ Route::post('reset-password',[UserAuthController::class,'reste']);
 Route::post('verify-email',[UserAuthController::class,'verifyEmail']);
 });
 // Route::middleware(['auth:seller'])
-Route::get('annonces',[AnnonceController::class,'index'])->middleware(['auth:seller']);
-Route::get('annonces/{annonce}',[AnnonceController::class,'show'])->middleware(['auth:seller']);
+Route::get('annonces',[AnnonceController::class,'index']);
+Route::get('annonces/{annonce}',[AnnonceController::class,'show']);
+Route::post('annonces',[AnnonceController::class,'store']);
+Route::put('annonces/{annonce}',[AnnonceController::class,'update']);
+Route::delete('annonces/{annonce}',[AnnonceController::class,'destroy']);
