@@ -40,6 +40,12 @@ class AnnonceController extends Controller
     public function store(CreateAnnonceRequest $request) {
         try {
             $this->annonceRepository->createAnnonce($request);
+            $images = $request->images;
+            if ($images) {
+                foreach ($images as $path) {
+                    $this->imageAnnonceRepository->createImage($path, $request->id);
+                }
+            }
             return  response()->json([
                 'success' => true,
                 'message' => 'Annonce created successfully'
