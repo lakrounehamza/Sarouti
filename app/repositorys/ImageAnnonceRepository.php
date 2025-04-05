@@ -7,7 +7,7 @@ use App\Models\Images_annonce;
 use App\Http\Requests\CreateImageRequest;
 use App\Http\Requests\UpdateImageRequest;
 
-class Images_annonceRepository implements ImageAnnonceRepositoryInterface
+class ImageAnnonceRepository implements ImageAnnonceRepositoryInterface
 {
     public function getAllImagesByAnnonceId($annonceId)
     {

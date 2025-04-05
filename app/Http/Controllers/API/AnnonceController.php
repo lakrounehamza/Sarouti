@@ -8,13 +8,15 @@ use  App\Repositorys\AnnonceRepository;
 use  App\Models\Annonce;
 use  App\Http\Requests\CreateAnnonceRequest;
 use  App\Http\Requests\UpdateAnnonceRequest;
-
+use  App\Repositorys\ImageAnnonceRepository;
 class AnnonceController extends Controller
 {
     private  $annonceRepository;
-    public function  __construct(AnnonceRepository  $repository)
+    private $imageAnnonceRepository;
+    public function  __construct(AnnonceRepository  $repository , ImageAnnonceRepository $imageAnnonceRepository)
     {
         $this->annonceRepository =  $repository;
+        $this->imageAnnonceRepository =  $imageAnnonceRepository;
     }
     /**
      * Display a listing of the resource.
@@ -22,6 +24,10 @@ class AnnonceController extends Controller
     public function index()
     {
         $annonces  =  $this->annonceRepository->getAllAnnonce();
+        foreach ($annonces as $annonce) {
+            $images = $this->imageAnnonceRepository->getAllImagesByAnnonceId($annonce->id);
+            $annonce->images = $images;
+        }
         return  response()->json([
             'success' => true,
             'annonces' => $annonces
