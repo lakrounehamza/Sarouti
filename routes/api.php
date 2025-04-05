@@ -17,3 +17,4 @@ Route::post('verify-email',[UserAuthController::class,'verifyEmail']);
 });
 // Route::middleware(['auth:seller'])
 Route::get('annonces',[AnnonceController::class,'index'])->middleware(['auth:seller']);
+Route::get('annonces/{annonce}',[AnnonceController::class,'show'])->middleware(['auth:seller']);
