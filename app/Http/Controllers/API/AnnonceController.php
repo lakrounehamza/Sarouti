@@ -61,16 +61,16 @@ class AnnonceController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Annonce $annonce)
+    public function show( $annonceId)
     {
         try {
-            $annonceGet = $this->annonceRepository->getAnnonceById($annonce);
+            $annonce= $this->annonceRepository->getAnnonceById($annonceId);
             $images = $this->imageAnnonceRepository->getAllImagesByAnnonceId($annonce->id);
-            $annonceGet->images = $images;
+            $annonce->images = $images;
             return  response()->json([
                 'succes' => true,
                 'message' => 'Annonce  get  successfully',
-                'annonce' => $annonceGet
+                'annonce' => $annonce
             ]);
         } catch (\Exception $e) {
             return  response()->json([
@@ -83,10 +83,10 @@ class AnnonceController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateAnnonceRequest $request, Annonce $annonce)
+    public function update(UpdateAnnonceRequest $request,  $annonceId)
     {
         try {
-            $this->annonceRepository->UpdateAnnonce($annonce, $request);
+            $this->annonceRepository->UpdateAnnonce($annonceId, $request);
             return  response()->json([
                 'success' => true,
                 'message' => 'Annonce updated successfully'
@@ -103,10 +103,10 @@ class AnnonceController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Annonce $annonce)
+    public function destroy( $annonceId)
     {
         try {
-            $this->annonceRepository->deleteAnnone($annonce);
+            $this->annonceRepository->deleteAnnone($annonceId);
             return  response()->json([
                 'success' => true,
                 'message' => 'Annonce deleted successfully'
