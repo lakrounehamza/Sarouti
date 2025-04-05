@@ -12,5 +12,5 @@ Route::post('logout',[UserAuthController::class,'logout']);
 Route::post('refresh',[UserAuthController::class,'refresh']);
 Route::post('forgot-password',[UserAuthController::class,'forgot']);
 Route::post('reset-password',[UserAuthController::class,'reste']);
-
 });
+Route::post('verify-email',[UserAuthController::class,'verifyEmail']);

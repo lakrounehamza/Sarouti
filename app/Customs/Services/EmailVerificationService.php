@@ -85,12 +85,13 @@ class EmailVerificationService
     }
     public function  checkEmailVerification($user)
     {
-        $emailVerification = EmailVirification::where('email_expired_at', $user->email)->first();
-        if ($emailVerification) {
+        // $emailVerification = EmailVirification::where('email_expired_at', $user->email)->first();
+        if ($user->email_verified_at) {
             return response()->json([
                 'success' => true,
                 'message' => 'Email already verified'
-            ], 200);
+            ], 200)->send();
+            exit;
         }
         return response()->json([
             'success' => false,
