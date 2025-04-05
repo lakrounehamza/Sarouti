@@ -30,7 +30,12 @@ class UserController extends Controller
      */
     public function store(User $user)
     {
-        
+        $user = $this->userRepository->getUserById($user);
+        return  response()->json([
+            'success'=> true,
+            'message' => 'get user  by id ',
+            'user' => $user
+        ]);
     }
 
     /**
