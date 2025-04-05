@@ -65,6 +65,8 @@ class AnnonceController extends Controller
     {
         try {
             $annonceGet = $this->annonceRepository->getAnnonceById($annonce);
+            $images = $this->imageAnnonceRepository->getAllImagesByAnnonceId($annonce->id);
+            $annonceGet->images = $images;
             return  response()->json([
                 'succes' => true,
                 'message' => 'Annonce  get  successfully',
