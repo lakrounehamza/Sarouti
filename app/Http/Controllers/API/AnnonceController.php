@@ -69,10 +69,22 @@ class AnnonceController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateAnnonceRequest $request, Annonce $annonce)
     {
-        
+        try {
+            $this->annonceRepository->UpdateAnnonce($annonce, $request);
+            return  response()->json([
+                'success' => true,
+                'message' => 'Annonce updated successfully'
+            ]);
+        } catch (\Exception $e) {
+            return  response()->json([
+                'success' => false,
+                'message' => $e->getMessage()
+            ]);
+        }
     }
+    
 
     /**
      * Remove the specified resource from storage.
