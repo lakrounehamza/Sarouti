@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateTmageRequest extends FormRequest
+class UpdateImageRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,8 +22,7 @@ class CreateTmageRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'image' => 'required',
-            'annonce_id' => 'required|exists:annonces,id',
+            'path' => 'required',
         ];
     }
 }
