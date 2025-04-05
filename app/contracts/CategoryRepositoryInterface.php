@@ -7,8 +7,8 @@ use  App\Http\Requests\UpdateCategoryRequest;
 interface CategoryRepositoryInterface
 {
     public function getAllCategories();
-    public function getCategoryById(Category $category);
+    public function getCategoryById( $categoryId);
     public function createCategory(CreateCategoryRequest $attributes);
-    public function updateCategory(Category $category, UpdateCategoryRequest $attributes);
-    public function deleteCategory(Category $category);
+    public function updateCategory($categoryId, UpdateCategoryRequest $attributes);
+    public function deleteCategory($categoryId);
 }
