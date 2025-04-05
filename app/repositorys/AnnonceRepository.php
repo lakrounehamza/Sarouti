@@ -14,8 +14,6 @@ class AnnonceRepository
     public function getAnnonceById($annonceId){
         $annonce = Annonce::find($annonceId);
         if($annonce){
-            $images = Images_annonce::where('annonce_id', $annonceId)->get();
-            $annonce->images = $images;
         return  $annonce;
 
         }
