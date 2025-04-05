@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use  App\Repositorys\AnnonceRepository;
 use  App\Models\Annonce;
+use  App\Http\Requests\CreateAnnonceRequest;
+use  App\Http\Requests\UpdateAnnonceRequest;
 
 class AnnonceController extends Controller
 {
@@ -29,7 +31,20 @@ class AnnonceController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request) {}
+    public function store(CreateAnnonceRequest $request) {
+        try {
+            $this->annonceRepository->createAnnonce($request);
+            return  response()->json([
+                'success' => true,
+                'message' => 'Annonce created successfully'
+            ]);
+        } catch (\Exception $e) {
+            return  response()->json([
+                'success' => false,
+                'message' => $e->getMessage()
+            ]);
+        }
+    }
 
     /**
      * Display the specified resource.
