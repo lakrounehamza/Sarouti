@@ -5,6 +5,7 @@ use  App\Http\Controllers\API\UserAuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\AuthMiddleware;
 use  App\Http\Controllers\API\AnnonceController;
+use  App\Http\Controllers\API\CategoryController;
 
 Route::post('register',[UserAuthController::class,'register']);
 Route::post('login',[UserAuthController::class,'login']);
@@ -21,3 +22,6 @@ Route::get('annonces/{annonce}',[AnnonceController::class,'show']);
 Route::post('annonces',[AnnonceController::class,'store']);
 Route::put('annonces/{annonce}',[AnnonceController::class,'update']);
 Route::delete('annonces/{annonce}',[AnnonceController::class,'destroy']);
+Route::middleware(['auth:seller'])->controller(CategoryController::class)->group(function () {
+
+});
