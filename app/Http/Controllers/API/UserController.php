@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Repositorys\UserRepository;
 use App\Models\User;
+use App\Http\Requests\UpdateUserREquest;
 class UserController extends Controller
 {
     protected  $userRepository;
@@ -46,15 +47,19 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateUserREquest $request, User $user)
     {
-        //
+        $this->userRepository->updateUser($user , $request);
+        return  response()->json([
+            'success' =>true , 
+            'message' => 'user updated successfully'
+        ]);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(User $user)
     {
         //
     }
