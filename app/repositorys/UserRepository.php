@@ -16,13 +16,17 @@ class UserRepository  implements  UserRepositoryInterface
         if($user)
         return  $user;
     }
-    public function updateUser(User  $user,UpdateUSerRequest $attributes){
+    public function updateUser( $userId,UpdateUSerRequest $attributes){
+        $user = User::find($userId);
+        if($user)
         $user->update($attributes->all());
     }
-    public function editeUser(User  $user){
+    public function editeUser(  $user){
       
     }
-    public function deleteUser(User $user){
+    public function deleteUser( $userId){
+        $user = User::find($userId);
+        if($user)
         $user->delete();
     }
     public function getUserByRole($role){
