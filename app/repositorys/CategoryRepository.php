@@ -28,13 +28,14 @@ class CategoryRepository implements CategoryRepositoryInterface
 
     public function updateCategory(Category $category, UpdateCategoryRequest $attributes)
     {
-       
+        $category->update($attributes->all());
+        return $category;
     }
 
 
     public function deleteCategory(Category $category)
     {
-
+        $category->delete();
     }
 
 }
