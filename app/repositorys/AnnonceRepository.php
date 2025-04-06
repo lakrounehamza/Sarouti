@@ -51,4 +51,14 @@ class AnnonceRepository
     {
         return Annonce::latest()->first()->id;
     }
+    public function getImagesByAnnonceId($annonceId)
+    {
+        $images = Images_annonce::where('annonce_id', $annonceId)->get();
+        return $images;
+    }
+    public function  getAnnonceBySellerId($sellerId)
+    {
+        $annonces = Annonce::where('seller_id', $sellerId)->get();
+        return $annonces;
+    }
 }
