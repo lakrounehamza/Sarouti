@@ -22,8 +22,8 @@ class CreateLikeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'client_id' => 'required|exists:clients,id',
-            'annonce_id' => 'required|exists:annonces,id',
+            'client_id' => 'required',
+            'annonce_id' => 'required',
         ];
     }
 }

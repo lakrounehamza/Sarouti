@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\AuthMiddleware;
 use  App\Http\Controllers\API\AnnonceController;
 use  App\Http\Controllers\API\CategoryController;
+use App\Http\Controllers\API\LikeController;
 
 Route::post('register',[UserAuthController::class,'register']);
 Route::post('login',[UserAuthController::class,'login']);
@@ -26,6 +27,8 @@ Route::delete('annonces/{annonceId}',[AnnonceController::class,'destroy']);
 Route::get('annonces/category/{categoryName}',[AnnonceController::class,'getAnnonceByCategoryName']);
 Route::get('annonces/seller/{sellerId}',[AnnonceController::class,'getAnnonceBySellerId']);
 Route::get('categories',[CategoryController::class,'index']);
+Route::get('categories/{categoryId}',[CategoryController::class,'show']);
+Route::post('likes',[LikeController::class,'store']);
 // Route::middleware(['auth:seller'])->controller(CategoryController::class)->group(function () {
 // Route::get('categories','index');
 // Route::get('categories/{category}','show');
