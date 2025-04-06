@@ -10,14 +10,18 @@ use  App\Http\Requests\CreateAnnonceRequest;
 use  App\Http\Requests\UpdateAnnonceRequest;
 use  App\Repositorys\ImageAnnonceRepository;
 use App\Http\Requests\CreateImageAnnonceRequest;
+use App\Repositorys\LikeRepository;
 class AnnonceController extends Controller
 {
     private  $annonceRepository;
     private $imageAnnonceRepository;
-    public function  __construct(AnnonceRepository  $repository , ImageAnnonceRepository $imageAnnonceRepository)
+    private  $likeRepository;
+    public function  __construct(AnnonceRepository  $repository , ImageAnnonceRepository $imageAnnonceRepository ,LikeRepository $likeRepository)
     {
         $this->annonceRepository =  $repository;
         $this->imageAnnonceRepository =  $imageAnnonceRepository;
+        $this->likeRepository =  $likeRepository;
+        
     }
     /**
      * Display a listing of the resource.
