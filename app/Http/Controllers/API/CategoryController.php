@@ -4,7 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Contracts\CategoryRepositoryInterface;
+use App\Repositorys\CategoryRepository;
 use App\Http\Requests\CreateCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
 use App\Models\Category;
@@ -12,7 +12,7 @@ use App\Models\Category;
 class CategoryController extends Controller
 {
     private $categoryRepository;
-    public function __construct(CategoryRepositoryInterface $categoryRepository)
+    public function __construct(CategoryRepository $categoryRepository)
     {
 
         $this->categoryRepository = $categoryRepository;

@@ -25,6 +25,7 @@ Route::put('annonces/{annonceId}',[AnnonceController::class,'update']);
 Route::delete('annonces/{annonceId}',[AnnonceController::class,'destroy']);
 Route::get('annonces/category/{categoryName}',[AnnonceController::class,'getAnnonceByCategoryName']);
 Route::get('annonces/seller/{sellerId}',[AnnonceController::class,'getAnnonceBySellerId']);
+Route::get('categories',[CategoryController::class,'index']);
 // Route::middleware(['auth:seller'])->controller(CategoryController::class)->group(function () {
 // Route::get('categories','index');
 // Route::get('categories/{category}','show');

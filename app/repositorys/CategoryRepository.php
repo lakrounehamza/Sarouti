@@ -2,7 +2,7 @@
 
 namespace App\Repositorys;
 
-use  app\Contracts\CategoryRepositoryInterface;
+use  App\Contracts\CategoryRepositoryInterface;
 use  App\Models\Category;
 use  App\Http\Requests\CreateCategoryRequest;
 use  App\Http\Requests\UpdateCategoryRequest;
