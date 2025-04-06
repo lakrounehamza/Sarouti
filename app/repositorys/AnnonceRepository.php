@@ -51,10 +51,12 @@ class AnnonceRepository
     {
         return Annonce::latest()->first()->id;
     }
-    public function getImagesByAnnonceId($annonceId)
+    public function getAnnonceByCategoryName($categoryName)
     {
-        $images = Images_annonce::where('annonce_id', $annonceId)->get();
-        return $images;
+        $annonces = Annonce::whereHas('category', function ($query) use ($categoryName) {
+            $query->where('name', $categoryName);
+        })->get();
+        return $annonces;
     }
     public function  getAnnonceBySellerId($sellerId)
     {

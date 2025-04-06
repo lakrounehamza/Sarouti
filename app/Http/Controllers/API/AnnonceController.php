@@ -123,6 +123,38 @@ class AnnonceController extends Controller
             ]);
         }
     }
+    public function getAnnonceByCategoryName($categoryName)
+    {
+        try {
+            $annonces = $this->annonceRepository->getAnnonceByCategoryName($categoryName);
+            return  response()->json([
+                'success' => true,
+                'message' => 'Annonce retrieved successfully',
+                'annonces' => $annonces
+            ]);
+        } catch (\Exception $e) {
+            return  response()->json([
+                'success' => false,
+                'message' => $e->getMessage()
+            ]);
+        }
+    }
+    public function getAnnonceBySellerId($sellerId)
+    {
+        try {
+            $annonces = $this->annonceRepository->getAnnonceBySellerId($sellerId);
+            return  response()->json([
+                'success' => true,
+                'message' => 'Annonce retrieved successfully',
+                'annonces' => $annonces
+            ]);
+        } catch (\Exception $e) {
+            return  response()->json([
+                'success' => false,
+                'message' => $e->getMessage()
+            ]);
+        }
+    }
     
   
 }
