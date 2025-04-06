@@ -43,7 +43,18 @@ class CommentController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $comment = $this->commentRepository->getCommentById($id);
+        if ($comment) {
+            return response()->json([
+                'success' => true,
+                'comment' => $comment
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'Comment not found'
+            ], 404);
+        }
     }
 
     /**
