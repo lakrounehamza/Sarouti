@@ -39,4 +39,8 @@ class CommentRepository implements CommentRepositoryInterface
     {
         return Comment::where('client_id', $clientId)->get();
     }
+    public function getCommentsByAnnonceIdAndClientId($annonceId, $clientId)
+    {
+        return Comment::where('annonce_id', $annonceId)->where('client_id', $clientId)->get();
+    }
 }
