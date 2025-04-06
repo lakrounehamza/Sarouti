@@ -82,6 +82,17 @@ class CommentController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try {
+            $this->commentRepository->deleteComment($id);
+            return response()->json([
+                'success' => true,
+                'message' => 'Comment deleted successfully'
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'error deleting comment: ' . $e->getMessage()
+            ], 500);
+        }
     }
 }
