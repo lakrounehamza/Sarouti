@@ -47,17 +47,9 @@ class AnnonceController extends Controller
                 $imagePaths = array_map(function($img) {
                     return $img['path'] ;
                 }, $images);
-                // foreach ($images as $image) {
-                    // $this->imageAnnonceRepository->createImage($image->path, $annonceId);
-
-                    
-                    return response()->json([
-                        'success' => true,
-                        'message' => 'Images received: ' . implode(', ', $imagePaths),
-                        'annonceId' => $annonceId
-                    ]);
-                    
-                // }
+                foreach ($imagePaths as $image) {
+                    $this->imageAnnonceRepository->createImage($image, $annonceId);                    
+                }
             }
             return  response()->json([
                 'success' => true,
