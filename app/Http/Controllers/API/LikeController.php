@@ -22,4 +22,19 @@ class LikeController extends Controller
             'message' => 'Like created successfully'
         ]);
     }
+    public function destroy($id)
+    {
+        try {
+            $this->likeRepository->deleteLike($id);
+            return response()->json([
+                'success' => true,
+                'message' => 'Like deleted successfully'
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Error deleting like: ' . $e->getMessage()
+            ], 500);
+        }
+    }
 }

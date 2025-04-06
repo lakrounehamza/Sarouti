@@ -29,6 +29,7 @@ Route::get('annonces/seller/{sellerId}',[AnnonceController::class,'getAnnonceByS
 Route::get('categories',[CategoryController::class,'index']);
 Route::get('categories/{categoryId}',[CategoryController::class,'show']);
 Route::post('likes',[LikeController::class,'store']);
+Route::delete('likes/{likeId}',[LikeController::class,'destroy']);
 // Route::middleware(['auth:seller'])->controller(CategoryController::class)->group(function () {
 // Route::get('categories','index');
 // Route::get('categories/{category}','show');
