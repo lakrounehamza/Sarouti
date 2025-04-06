@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Repositorys\CommentRepository;
 use App\Http\Requests\CreateCommentRequest;
+use App\Http\Requests\UpdateCommentRequest;
 
 class CommentController extends Controller
 {
@@ -60,9 +61,20 @@ class CommentController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateCommentRequest $request, string $id)
     {
-        //
+        try {
+            $this->commentRepository->updateComment($id, $request);
+            return response()->json([
+                'success' => true,
+                'message' => 'Comment updated successfully'
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Error updating comment: ' . $e->getMessage()
+            ], 500);
+        }
     }
 
     /**
