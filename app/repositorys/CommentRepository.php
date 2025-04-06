@@ -25,6 +25,11 @@ class CommentRepository implements CommentRepositoryInterface
             $comment->update($attributes->all());
         return $comment;
     }
-
+    public function deleteComment($commentId)
+    {
+        $comment = Comment::find($commentId);
+        if ($comment)
+            $comment->delete();
+    }
     
 }
