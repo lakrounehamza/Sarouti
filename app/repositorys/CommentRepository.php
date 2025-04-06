@@ -3,6 +3,7 @@
 namespace App\Repositorys;
 use App\Contracts\CommentRepositoryInterface;
 use App\Models\Comment;
+use App\Http\Requests\CreateCommentRequest;
 class CommentRepository implements CommentRepositoryInterface
 {
 
@@ -12,6 +13,11 @@ class CommentRepository implements CommentRepositoryInterface
         if ($comment)
             return $comment;
     }
+    public function createComment(CreateCommentRequest $attributes)
+    {
+        return Comment::create($attributes->all());
+    }
     
+
     
 }
