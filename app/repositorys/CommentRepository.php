@@ -31,5 +31,12 @@ class CommentRepository implements CommentRepositoryInterface
         if ($comment)
             $comment->delete();
     }
-    
+    public function getCommentsByAnnonceId($annonceId)
+    {
+        return Comment::where('annonce_id', $annonceId)->get();
+    }
+    public function getCommentsByClientId($clientId)
+    {
+        return Comment::where('client_id', $clientId)->get();
+    }
 }
