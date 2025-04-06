@@ -32,6 +32,8 @@ class AnnonceController extends Controller
         foreach ($annonces as $annonce) {
             $images = $this->imageAnnonceRepository->getAllImagesByAnnonceId($annonce->id);
             $annonce->images = $images;
+            $likes = $this->likeRepository->getLikesByAnnonceId($annonce->id);
+            $annonce->likes = $likes;
         }
         return  response()->json([
             'success' => true,
@@ -76,6 +78,8 @@ class AnnonceController extends Controller
             $annonce= $this->annonceRepository->getAnnonceById($annonceId);
             $images = $this->imageAnnonceRepository->getAllImagesByAnnonceId($annonce->id);
             $annonce->images = $images;
+            $likes = $this->likeRepository->getLikesByAnnonceId($annonce->id);
+            $annonce->likes = $likes;
             return  response()->json([
                 'succes' => true,
                 'message' => 'Annonce  get  successfully',
