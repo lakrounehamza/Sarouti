@@ -43,10 +43,83 @@
       </div>
     </div>
   </header>
-
-
   <main>
-
+    <article>
+      <div id="login-popup" tabindex="-1"
+        class="bg-black/50 overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 h-full items-center justify-center flex">
+        <div class="relative p-4 w-full max-w-md h-full md:h-auto">
+          <div class="relative bg-white rounded-lg shadow">
+            <button type="button"
+              class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center popup-close">
+              <svg aria-hidden="true" class="w-5 h-5" fill="#c6c7c7" viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd"
+                  d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                  cliprule="evenodd"></path>
+              </svg>
+              <span class="sr-only">Fermer la fenêtre</span>
+            </button>
+            <div class="p-5">
+              <h3 class="text-2xl mb-0.5 font-medium"></h3>
+              <p class="mb-4 text-sm font-normal text-gray-800"></p>
+              <div class="text-center">
+                <p class="mb-3 text-2xl font-semibold leading-5 text-slate-900">
+                  Connexion à votre compte
+                </p>
+                <p class="mt-2 text-sm leading-4 text-slate-600">
+                  Vous devez être connecté pour effectuer cette action.
+                </p>
+              </div>
+              <div class="mt-7 flex flex-col gap-2">
+                <button
+                  class="inline-flex h-10 w-full items-center justify-center gap-2 rounded border border-slate-300 bg-white p-2 text-sm font-medium text-black outline-none focus:ring-2 focus:ring-[#333] focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-60">
+                  <img src="https://www.svgrepo.com/show/512317/github-142.svg" alt="GitHub" class="h-[18px] w-[18px] ">
+                  Continuer avec GitHub
+                </button>
+                <button
+                  class="inline-flex h-10 w-full items-center justify-center gap-2 rounded border border-slate-300 bg-white p-2 text-sm font-medium text-black outline-none focus:ring-2 focus:ring-[#333] focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-60">
+                  <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google"
+                    class="h-[18px] w-[18px] ">
+                  Continuer avec Google
+                </button>
+                <button
+                  class="inline-flex h-10 w-full items-center justify-center gap-2 rounded border border-slate-300 bg-white p-2 text-sm font-medium text-black outline-none focus:ring-2 focus:ring-[#333] focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-60">
+                  <img src="https://www.svgrepo.com/show/448234/linkedin.svg" alt="LinkedIn" class="h-[18px] w-[18px] ">
+                  Continuer avec LinkedIn
+                </button>
+              </div>
+              <div class="flex w-full items-center gap-2 py-6 text-sm text-slate-600">
+                <div class="h-px w-full bg-slate-200"></div>
+                OU
+                <div class="h-px w-full bg-slate-200"></div>
+              </div>
+              <form class="w-full">
+                <label for="email" class="sr-only">Adresse email</label>
+                <input name="email" type="email" autocomplete="email" required=""
+                  class="block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm outline-none placeholder:text-gray-400 focus:ring-2 focus:ring-black focus:ring-offset-1"
+                  placeholder="Adresse email" value="">
+                <label for="password" class="sr-only">Mot de passe</label>
+                <input name="password" type="password" autocomplete="current-password" required=""
+                  class="mt-2 block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm outline-none placeholder:text-gray-400 focus:ring-2 focus:ring-black focus:ring-offset-1"
+                  placeholder="Mot de passe" value="">
+                <p class="mb-3 mt-2 text-sm text-gray-500">
+                  <a href="/forgot-password" class="text-blue-800 hover:text-blue-600">Réinitialiser votre mot de passe
+                    ?</a>
+                </p>
+                <button type="submit"
+                  class="inline-flex w-full items-center justify-center rounded-lg bg-[#FFBF10] p-2 py-3 text-sm font-medium text-white outline-none focus:ring-2 focus:ring-black focus:ring-offset-1 disabled:bg-gray-400">
+                  Continuer
+                </button>
+              </form>
+              <div class="mt-6 text-center text-sm text-slate-600">
+                Vous n’avez pas de compte ?
+                <a href="/signup" class="font-medium text-[#FFBF10]">S’inscrire</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
     <div class="container mx-auto px-4 py-4">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <div class="bg-white  overflow-hidden">
@@ -93,7 +166,7 @@
         <p class="text-lg mb-10 text-gray-600 dark:text-gray-400">
           Une question ? Une demande ? N'hésitez pas à nous écrire.
         </p>
-  
+
         <div class="grid md:grid-cols-2 gap-12 text-left">
 
           <div>
@@ -110,26 +183,27 @@
               <li class="flex items-center space-x-3">
                 <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" stroke-width="1.5"
                   viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round"
-                    d="M21.75 6.75v10.5a2.25 2.25..." />
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25..." />
                 </svg>
                 <a href="mailto:info@saroiti.ma" class="hover:text-blue-500">info@saroiti.ma</a>
               </li>
               <li class="flex items-center space-x-3">
                 <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" stroke-width="1.5"
                   viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round"
-                    d="M2.25 6.75c0 8.284 6.716..." />
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716..." />
                 </svg>
                 <a href="tel:+212646981856" class="hover:text-blue-500">+212646981856</a>
               </li>
             </ul>
           </div>
-   
+
           <form class="space-y-6">
-            <input type="text" name="name" placeholder="Nom complet" class="w-full px-4 py-3 border rounded-md bg-white dark:bg-gray-800 placeholder-gray-500" />
-            <input type="email" name="email" placeholder="Email" class="w-full px-4 py-3 border rounded-md bg-white dark:bg-gray-800 placeholder-gray-500" />
-            <textarea name="message" rows="5" placeholder="Votre message" class="w-full px-4 py-3 border rounded-md bg-white dark:bg-gray-800 placeholder-gray-500"></textarea>
+            <input type="text" name="name" placeholder="Nom complet"
+              class="w-full px-4 py-3 border rounded-md bg-white dark:bg-gray-800 placeholder-gray-500" />
+            <input type="email" name="email" placeholder="Email"
+              class="w-full px-4 py-3 border rounded-md bg-white dark:bg-gray-800 placeholder-gray-500" />
+            <textarea name="message" rows="5" placeholder="Votre message"
+              class="w-full px-4 py-3 border rounded-md bg-white dark:bg-gray-800 placeholder-gray-500"></textarea>
             <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-md hover:bg-blue-700 transition">
               Envoyer le message
             </button>
@@ -137,7 +211,7 @@
         </div>
       </div>
     </section>
-  
+
     <!-- Footer Bottom -->
     <div class="bg-gray-800 text-gray-300 py-10">
       <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-4 gap-8">
@@ -145,10 +219,11 @@
         <div>
           <img src="../../assets/images/icon/logo.png" class="w-24 mb-4" alt="Logo">
           <p class="text-sm">
-            Sarouti est une plateforme en ligne dédiée à la location et à la vente de maisons. Elle permet aux vendeurs, clients et visiteurs d’interagir facilement et en toute sécurité.
+            Sarouti est une plateforme en ligne dédiée à la location et à la vente de maisons. Elle permet aux vendeurs,
+            clients et visiteurs d’interagir facilement et en toute sécurité.
           </p>
         </div>
-  
+
         <!-- Company Links -->
         <div>
           <h4 class="text-lg font-semibold mb-4 border-b-2 border-blue-600 w-fit">Entreprise</h4>
@@ -159,7 +234,7 @@
             <li><a href="#" class="hover:text-blue-400">Contact</a></li>
           </ul>
         </div>
-  
+
         <!-- Blog -->
         <div>
           <h4 class="text-lg font-semibold mb-4 border-b-2 border-blue-600 w-fit">Blog</h4>
@@ -170,7 +245,7 @@
             <li><a href="#" class="hover:text-blue-400">Article 4</a></li>
           </ul>
         </div>
-  
+
         <!-- Social -->
         <div>
           <h4 class="text-lg font-semibold mb-4 border-b-2 border-blue-600 w-fit">Suivez-nous</h4>
@@ -187,7 +262,7 @@
       </div>
     </div>
   </footer>
-  
+
 
 </body>
 
