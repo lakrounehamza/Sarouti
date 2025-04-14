@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white min-h-screen">
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+          <div class="w-24">
+            <img src="../../assets/images/icon/logo.png" alt="Logo" class="w-full h-auto" />
+          </div>
+          <div class="flex items-center border border-gray-200 rounded-full shadow px-6 py-2 hidden md:flex">
+            <div class="px-4 border-r border-gray-200 font-medium">Où</div>
+            <div class="px-4 border-r border-gray-200 font-medium">Semaine</div>
+            <div class="px-4 font-medium">Nombre de personnes</div>
+            <div class="bg-[#FFBF10] rounded-full w-8 h-8 flex items-center justify-center ml-4">
+              <img src="../../assets/images/icon/search.png" />
+            </div>
+          </div>
+    
+          <div class="flex items-center space-x-4">
+            <button class="hover:bg-gray-100 p-2 rounded-full hidden md:flex relative">
+              <span
+                class="bg-red-500/80 text-white rounded-full absolute -top-1 -left-[0px] w-5 h-5 flex items-center justify-center text-xs">2</span>
+              <img src="../../assets/images/icon/send.png" alt="Icône d'envoi" class="w-12 h-6" />
+            </button>
+            <div class="container mx-auto px-4 py-4">
+              <button
+                class="flex items-center space-x-2 bg-white rounded-full px-4 py-2 border border-gray-300 hover:shadow-md hidden    md:flex">
+                <img src="../../assets/images/icon/filter-icon.png" alt="Filter" class="w-4 h-4" />
+                <span>Filters</span>
+              </button>
+            </div>
+            <button class="flex items-center space-x-2 border rounded-full p-2  md:w-[150px] w-[150px] hover:shadow-md">
+              <img src="../../assets/images/icon/hamburger-menu.jpg" alt="User" class="w-6 h-6" />
+              <img src="../../assets/images/icon/profile-icon.jpg" alt="profile image" class="w-7 h-7" />
+            </button>
+          </div>
+        </div>
+      </header>
+
+    <main class="container mx-auto px-4 py-6">
+         <div class="mb-6">
+            <h1 class="text-2xl font-bold text-gray-800 mb-1">Anantara Kihavah Maldives Villas: Water Bungalows (Chambre d'hôtel)</h1>
+            <div class="flex items-center text-gray-500 text-sm">
+                <span>Maldives</span>
+            </div>
+        </div>
+
+         <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8 relative">
+            <div class="md:col-span-2 md:row-span-2">
+                <img src="./../../assets/images/misson1.png" alt="Maldives Resort" class="w-full h-full object-cover rounded-lg">
+            </div>
+            <div>
+                <img src="./../../assets/images/misson1.png" alt="Maldives Beach" class="w-full h-full object-cover rounded-lg">
+            </div>
+            <div>
+                <img src="./../../assets/images/misson1.png" alt="Water Villa" class="w-full h-full object-cover rounded-lg">
+            </div>
+            <div>
+                <img src="" alt="Ocean View" class="w-full h-full object-cover rounded-lg">
+            </div>
+            <div>
+                <img src="./../../assets/images/misson1.png" alt="Island View" class="w-full h-full object-cover rounded-lg">
+            </div>
+            <div class="absolute bottom-4 right-4 bg-white rounded-md px-3 py-1 text-sm font-medium shadow">
+                + 12 photos
+            </div>
+        </div>
+
+         <div class="flex flex-col md:flex-row gap-8">
+             <div class="md:w-2/3">
+                 <div class="mb-8 flex items-center justify-between">
+                    <div class="flex items-center space-x-4">
+                        <img src="./../../assets/images/misson1.png" alt="Hôte" class="w-12 h-12 rounded-full object-cover">
+                        <div>
+                            <p class="font-medium">Entrée entière gérée par Ohana</p>
+                            <p class="text-gray-500 text-sm">4 lits · 2 salles de bain</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <button class="text-gray-500">
+                            <i class="fas fa-share"></i>
+                        </button>
+                        <button class="text-gray-500">
+                            <i class="far fa-heart"></i>
+                        </button>
+                        <button class="text-gray-500">
+                            <i class="fas fa-ellipsis-h"></i>
+                        </button>
+                    </div>
+                </div>
+
+                 <div class="mb-8">
+                    <h2 class="text-xl font-bold mb-4">What the place offers:</h2>
+                    <div class="grid grid-cols-2 gap-y-3">
+                        <div class="amenity-item"><i class="fas fa-wifi"></i> WiFi gratuit</div>
+                        <div class="amenity-item"><i class="fas fa-parking"></i> Parking gratuit</div>
+                        <div class="amenity-item"><i class="fas fa-utensils"></i> Cuisine</div>
+                        <div class="amenity-item"><i class="fas fa-tv"></i> TV</div>
+                        <div class="amenity-item"><i class="fas fa-snowflake"></i> Climatisation</div>
+                        <div class="amenity-item"><i class="fas fa-swimmer"></i> Piscine</div>
+                        <div class="amenity-item"><i class="fas fa-hot-tub"></i> Jacuzzi</div>
+                        <div class="amenity-item"><i class="fas fa-umbrella-beach"></i> Vue sur la plage</div>
+                        <div class="amenity-item"><i class="fas fa-concierge-bell"></i> Service de chambre</div>
+                        <div class="amenity-item"><i class="fas fa-spa"></i> Spa sur place</div>
+                    </div>
+                </div>
+
+                 <div class="mb-8">
+                    <h2 class="text-xl font-bold mb-4">7 text text </h2>
+                    <div class="flex mb-4">
+                        <div class="flex-1 border rounded-l-lg p-4">
+                            <p class="text-gray-500 text-sm">Arrivée</p>
+                            <p class="font-medium">Feb 14, 2025</p>
+                        </div>
+                        <div class="flex-1 border-t border-r border-b rounded-r-lg p-4">
+                            <p class="text-gray-500 text-sm">Départ</p>
+                            <p class="font-medium">Feb 21, 2025</p>
+                        </div>
+                    </div>
+                </div>
+
+                 <div class="mb-8">
+                    <div class="flex justify-between mb-4">
+                        <div class="flex items-center">
+                            <button class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center mr-4">
+                                <i class="fas fa-chevron-left text-gray-500"></i>
+                            </button>
+                            <h3 class="font-medium"> 2025</h3>
+                        </div>
+                        <div class="flex items-center">
+                            <h3 class="font-medium mr-4">March 2025</h3>
+                            <button class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center">
+                                <i class="fas fa-chevron-right text-gray-500"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                     <div class="flex justify-between mb-4">
+                        <div class="flex-1 grid grid-cols-7 gap-2">
+                             <div class="text-center text-xs text-gray-500">L</div>
+                            <div class="text-center text-xs text-gray-500">M</div>
+                            <div class="text-center text-xs text-gray-500">M</div>
+                            <div class="text-center text-xs text-gray-500">J</div>
+                            <div class="text-center text-xs text-gray-500">V</div>
+                            <div class="text-center text-xs text-gray-500">S</div>
+                            <div class="text-center text-xs text-gray-500">D</div>
+
+                             <div class="text-center text-sm text-gray-300">30</div>
+                            <div class="text-center text-sm text-gray-300">31</div>
+                            <div class="text-center text-sm">1</div>
+                            <div class="text-center text-sm">2</div>
+                            <div class="text-center text-sm">3</div>
+                            <div class="text-center text-sm">4</div>
+                            <div class="text-center text-sm">5</div>
+                            <div class="text-center text-sm">6</div>
+                            <div class="text-center text-sm">7</div>
+                            <div class="text-center text-sm">8</div>
+                            <div class="text-center text-sm">9</div>
+                            <div class="text-center text-sm">10</div>
+                            <div class="text-center text-sm">11</div>
+                            <div class="text-center text-sm">12</div>
+                            <div class="text-center text-sm">13</div>
+                            <div class="text-center text-sm bg-yellow-500 text-white rounded-full">14</div>
+                            <div class="text-center text-sm bg-yellow-100">15</div>
+                            <div class="text-center text-sm bg-yellow-100">16</div>
+                            <div class="text-center text-sm bg-yellow-100">17</div>
+                            <div class="text-center text-sm bg-yellow-100">18</div>
+                            <div class="text-center text-sm bg-yellow-100">19</div>
+                            <div class="text-center text-sm bg-yellow-100">20</div>
+                        </div>
+
+                        <div class="flex-1 grid grid-cols-7 gap-2">
+                             <div class="text-center text-xs text-gray-500">L</div>
+                            <div class="text-center text-xs text-gray-500">M</div>
+                            <div class="text-center text-xs text-gray-500">M</div>
+                            <div class="text-center text-xs text-gray-500">J</div>
+                            <div class="text-center text-xs text-gray-500">V</div>
+                            <div class="text-center text-xs text-gray-500">S</div>
+                            <div class="text-center text-xs text-gray-500">D</div>
+
+                             <div class="text-center text-sm bg-yellow-100">21</div>
+                            <div class="text-center text-sm">22</div>
+                            <div class="text-center text-sm">23</div>
+                            <div class="text-center text-sm">24</div>
+                            <div class="text-center text-sm">25</div>
+                            <div class="text-center text-sm">26</div>
+                            <div class="text-center text-sm">27</div>
+                            <div class="text-center text-sm">28</div>
+                            <div class="text-center text-sm">1</div>
+                            <div class="text-center text-sm">2</div>
+                            <div class="text-center text-sm">3</div>
+                            <div class="text-center text-sm">4</div>
+                            <div class="text-center text-sm">5</div>
+                            <div class="text-center text-sm">6</div>
+                            <div class="text-center text-sm">7</div>
+                            <div class="text-center text-sm">8</div>
+                            <div class="text-center text-sm">9</div>
+                            <div class="text-center text-sm">10</div>
+                            <div class="text-center text-sm">11</div>
+                            <div class="text-center text-sm">12</div>
+                            <div class="text-center text-sm">13</div>
+                            <div class="text-center text-sm">14</div>
+                        </div>
+                    </div>
+                </div>
+
+                 <div class="mb-8">
+                    <h2 class="text-xl font-bold mb-4">Reviews</h2>
+                    <div class="flex items-center mb-4">
+                        <div class="flex">
+                            <i class="fas fa-star rating-star"></i>
+                            <i class="fas fa-star rating-star"></i>
+                            <i class="fas fa-star rating-star"></i>
+                            <i class="fas fa-star rating-star"></i>
+                            <i class="fas fa-star rating-star"></i>
+                        </div>
+                        <span class="ml-2 font-medium">4.92 (25 reviews)</span>
+                    </div>
+
+                     <div class="space-y-6">
+                         <div class="flex">
+                            <img src="./../../assets/images/misson1.png" alt="Avatar" class="profile-avatar mr-4">
+                            <div>
+                                <h4 class="font-medium">SAFI</h4>
+                                <p class="text-gray-500 text-sm mb-2">2025</p>
+                                <p class="text-gray-700">text text text text text text </p>
+                            </div>
+                        </div>
+
+                         <div class="flex">
+                            <img src="./../../assets/images/misson1.png" alt="Avatar" class="profile-avatar mr-4">
+                            <div>
+                                <h4 class="font-medium">Michael</h4>
+                                <p class="text-gray-500 text-sm mb-2">Juillet</p>
+                                <p class="text-gray-700">texte</p>
+                            </div>
+                        </div>
+
+                         <div class="flex">
+                            <img src="./../../assets/images/misson1.png" alt="Avatar" class="profile-avatar mr-4">
+                            <div>
+                                <h4 class="font-medium">Sophie</h4>
+                                <p class="text-gray-500 text-sm mb-2">Juin 2022</p>
+                                <p class="text-gray-700">tex text text </p>
+                            </div>
+                        </div>
+
+                        <button class="border border-gray-300 rounded-lg px-4 py-2 text-gray-700 hover:bg-gray-50">Afficher plus d'avis</button>
+                    </div>
+                </div>
+
+                 <div class="mb-8">
+                    <h2 class="text-xl font-bold mb-4">text text </h2>
+                    <div class="h-64 bg-gray-200 rounded-lg mb-2 relative">
+                         <img src="./../../assets/images/misson1.png" class="w-full h-full object-cover rounded-lg">
+                        
+                         <div class="absolute top-1/4 left-1/4 bg-yellow-500 w-4 h-4 rounded-full flex items-center justify-center">
+                            <div class="w-2 h-2 bg-white rounded-full"></div>
+                        </div>
+                        
+                        <div class="absolute top-1/3 right-1/3 bg-blue-500 w-4 h-4 rounded-full flex items-center justify-center">
+                            <div class="w-2 h-2 bg-white rounded-full"></div>
+                        </div>
+                        
+                        <div class="absolute bottom-1/4 right-1/4 bg-red-500 w-4 h-4 rounded-full flex items-center justify-center">
+                            <div class="w-2 h-2 bg-white rounded-full"></div>
+                        </div>
+                    </div>
+                    <p class="text-gray-500 text-sm"> text text text </p>
+                </div>
+            </div>
+
+             <div class="md:w-1/3">
+                <div class="border border-gray-200 rounded-xl p-6 shadow-lg sticky top-8">
+                    <div class="mb-4">
+                        <div class="flex justify-between items-center mb-4">
+                            <div>
+                                <span class="text-2xl font-bold">279 MD</span>
+                                <span class="text-gray-500"> / nuit</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-star text-yellow-400 mr-1 text-sm"></i>
+                                <span class="text-sm font-medium">4.92</span>
+                                <span class="text-gray-500 text-sm ml-1">(25)</span>
+                            </div>
+                        </div>
+
+                         <div class="border border-gray-200 rounded-lg overflow-hidden mb-4">
+                            <div class="grid grid-cols-2">
+                                <div class="p-3 border-r border-b">
+                                    <p class="text-xs text-gray-500">ARRIVÉE</p>
+                                    <p class="font-medium">14/00/0000</p>
+                                </div>
+                                <div class="p-3 border-b">
+                                    <p class="text-xs text-gray-500">DÉPART</p>
+                                    <p class="font-medium">21/05/2025</p>
+                                </div>
+                                <div class="p-3 col-span-2">
+                                    <p class="text-xs text-gray-500">VOYAGEURS</p>
+                                    <p class="font-medium">2 adultes</p>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <button class="w-full bg-black text-white py-3 rounded-lg font-medium hover:bg-gray-800 transition">Réserver</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200">
+
+        <div class="bg-gray-800 text-gray-300 py-10">
+          <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-4 gap-8">
+             <div>
+              <img src="../../assets/images/icon/logo.png" class="w-24 mb-4" alt="Logo">
+              <p class="text-sm">
+                Sarouti est une plateforme en ligne dédiée à la location et à la vente de maisons. Elle permet aux vendeurs,
+                clients et visiteurs d’interagir facilement et en toute sécurité.
+              </p>
+            </div>
+     
+            <div>
+              <h4 class="text-lg font-semibold mb-4 border-b-2 border-blue-600 w-fit">Entreprise</h4>
+              <ul class="space-y-2">
+                <li><a href="#" class="hover:text-blue-400">À propos</a></li>
+                <li><a href="#" class="hover:text-blue-400">Conditions générales</a></li>
+                <li><a href="#" class="hover:text-blue-400">Politique de confidentialité</a></li>
+                <li><a href="#" class="hover:text-blue-400">Contact</a></li>
+              </ul>
+            </div>
+     
+            <div>
+              <h4 class="text-lg font-semibold mb-4 border-b-2 border-blue-600 w-fit">Blog</h4>
+              <ul class="space-y-2">
+                <li><a href="#" class="hover:text-blue-400">Article 1</a></li>
+                <li><a href="#" class="hover:text-blue-400">Article 2</a></li>
+                <li><a href="#" class="hover:text-blue-400">Article 3</a></li>
+                <li><a href="#" class="hover:text-blue-400">Article 4</a></li>
+              </ul>
+            </div>
+     
+            <div>
+              <h4 class="text-lg font-semibold mb-4 border-b-2 border-blue-600 w-fit">Suivez-nous</h4>
+              <div class="flex space-x-3">
+                <a href="#" class="text-white hover:text-blue-500"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="text-white hover:text-blue-400"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="text-white hover:text-pink-500"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="text-white hover:text-red-500"><i class="fab fa-youtube"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="text-center mt-10 text-sm text-gray-500">
+            © 2025 Sarouti. Tous droits réservés.
+          </div>
+        </div>
+      </footer>
+</body>
+</html>
