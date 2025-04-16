@@ -7,14 +7,17 @@ const menu_div = document.getElementById("profile_menu");
 const token = getTokenFromCookie();
 if (token) {
     menu_div.innerHTML = `<div class="   absolute right-2 top-24 bg-black/50 backdrop-blur-md p-6 rounded-2xl shadow-lg flex flex-col items-center space-y-4" >
-          <button class="px-6 py-2 bg-white text-black rounded-lg hover:bg-gray-200 transition" id="connexion_button">déconnexion</button>
-          <button class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition" id="inscription_button">profile</button>
+          <button class="px-6 py-2 bg-white text-black rounded-lg hover:bg-gray-200 transition" id="deconnexion_buttonu" type="submit">déconnexion</button>
+          <button class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition" id="myProfile_button">profile</button>
         </div>`;
+        
+var  deconnexion_button = document.getElementById("deconnexion_buttonu");
 } else
     menu_div.innerHTML = `<div class="   absolute right-2 top-24 bg-black/50 backdrop-blur-md p-6 rounded-2xl shadow-lg flex flex-col items-center space-y-4" >
           <button class="px-6 py-2 bg-white text-black rounded-lg hover:bg-gray-200 transition" id="connexion_button">Connexion</button>
           <button class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition" id="inscription_button">Inscription</button>
         </div>`;
+        
 function connexion() {
     // event.preventDefault();
 
@@ -71,5 +74,17 @@ function getTimeFromCookie() {
     return null;
 }
 
-console.log(getTokenFromCookie());
+deconnexion_button.addEventListener("click", function (event) {
+    event.preventDefault();
+    console.log("deconnexion");
+    fetch(url_logout, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${getTokenFromCookie()}`
+        },
+    }).then(response => response.json()).then();
+    deleteTokenCookie();
+});
+// console.log(deconnexion_button);
 // console.log(getTimeFromCookie());
