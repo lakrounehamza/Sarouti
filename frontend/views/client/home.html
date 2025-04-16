@@ -36,11 +36,15 @@
             <span>Filters</span>
           </button>
         </div>
-        <button class="flex items-center space-x-2 border rounded-full p-2  md:w-[150px] w-[150px] hover:shadow-md">
+        <button class="flex items-center space-x-2 border rounded-full p-2  md:w-[150px] w-[150px] hover:shadow-md" id="button_profile_button">
           <img src="../../assets/images/icon/hamburger-menu.jpg" alt="User" class="w-6 h-6" />
           <img src="../../assets/images/icon/profile-icon.jpg" alt="profile image" class="w-7 h-7" />
         </button>
-      </div>
+        <div class=" hidden absolute right-28 top-24 bg-black/50 backdrop-blur-md p-6 rounded-2xl shadow-lg flex flex-col items-center space-y-4" id="profile_menu">
+          <button class="px-6 py-2 bg-white text-black rounded-lg hover:bg-gray-200 transition" id="connexion_button">Connexion</button>
+          <button class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition" id="inscription_button">Inscription</button>
+        </div>
+    
     </div>
   </header>
   <main>
@@ -387,11 +391,10 @@
         </div>
       </div>
     </section>
-
-    <!-- Footer Bottom -->
+ 
     <div class="bg-gray-800 text-gray-300 py-10">
       <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-4 gap-8">
-        <!-- Logo -->
+    
         <div>
           <img src="../../assets/images/icon/logo.png" class="w-24 mb-4" alt="Logo">
           <p class="text-sm">
@@ -399,8 +402,7 @@
             clients et visiteurs d’interagir facilement et en toute sécurité.
           </p>
         </div>
-
-        <!-- Company Links -->
+ 
         <div>
           <h4 class="text-lg font-semibold mb-4 border-b-2 border-blue-600 w-fit">Entreprise</h4>
           <ul class="space-y-2">
@@ -410,8 +412,7 @@
             <li><a href="#" class="hover:text-blue-400">Contact</a></li>
           </ul>
         </div>
-
-        <!-- Blog -->
+ 
         <div>
           <h4 class="text-lg font-semibold mb-4 border-b-2 border-blue-600 w-fit">Blog</h4>
           <ul class="space-y-2">
@@ -438,7 +439,7 @@
       </div>
     </div>
   </footer>
-
+<script src="../../src/js/global/home.js"></script>
 
 </body>
 
