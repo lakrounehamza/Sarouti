@@ -146,19 +146,22 @@
                   Remplissez les informations pour vous inscrire.
                 </p>
               </div>
-              <form class="w-full mt-4">
-                <input name="name" type="text" autocomplete="name" required
+              <form  id="form-inscription" class="w-full mt-4" enctype="multipart/form-data">
+                <input id="inscription_name" type="text" autocomplete="name" required
                   class="mb-2 block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm placeholder:text-gray-400 focus:ring-2 focus:ring-black focus:ring-offset-1"
                   placeholder="Nom complet">
-                <input name="email" type="email" autocomplete="email" required
+                <input type="email" id="inscription_email" autocomplete="email" required
                   class="mb-2 block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm placeholder:text-gray-400 focus:ring-2 focus:ring-black focus:ring-offset-1"
                   placeholder="Adresse e-mail">
-                <input name="password" type="password" autocomplete="new-password" required
+                <input id="inscription_password" type="password" autocomplete="new-password" required
                   class="mb-2 block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm placeholder:text-gray-400 focus:ring-2 focus:ring-black focus:ring-offset-1"
                   placeholder="Mot de passe">
-                <input name="password_confirmation" type="password" autocomplete="new-password" required
+                <input id="inscription_password_confirmation" type="password" autocomplete="new-password" required
                   class="mb-2 block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm placeholder:text-gray-400 focus:ring-2 focus:ring-black focus:ring-offset-1"
                   placeholder="Confirmez le mot de passe">
+                  <input id="inscription_phone" type="text" required
+                  class="mb-2 block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm placeholder:text-gray-400 focus:ring-2 focus:ring-black focus:ring-offset-1"
+                  placeholder="Numéro de téléphone">
                 <div class="mb-2">
                   <label class="block text-sm font-medium text-gray-700">Photo de profil</label>
                   <div class="mt-1 flex items-center">
@@ -171,20 +174,20 @@
                     <label for="file-upload"
                       class="ml-5 cursor-pointer rounded-md border border-gray-300 bg-white px-3 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:ring-2 focus:ring-black focus:ring-offset-2">
                       <span>Téléverser</span>
-                      <input id="file-upload" name="profile_photo" type="file" class="sr-only" accept="image/*">
+                      <input id="file-upload" id="inscription_profile_photo" type="file" class="sr-only" accept="image/*">
                     </label>
                   </div>
                 </div>
                 <div class="mb-4">
                   <label class="block text-sm font-medium text-gray-700">Type de compte</label>
-                  <select name="role"
+                  <select id="inscription_role"
                     class="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm focus:ring-2 focus:ring-black focus:ring-offset-1">
                     <option value="client">Client</option>
                     <option value="seller">Vendeur</option>
                     <option value="admin">Administrateur</option>
                   </select>
                 </div>
-                <button type="submit"
+                <button  id="inscription_button_popap"
                   class="w-full rounded-lg bg-[#FFBF10] py-3 text-sm font-medium text-white hover:bg-gray-800 focus:ring-2 focus:ring-black focus:ring-offset-1 disabled:bg-gray-400">
                   Créer un compte
                 </button>

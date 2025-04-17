@@ -88,3 +88,38 @@ deconnexion_button.addEventListener("click", function (event) {
 });
 // console.log(deconnexion_button);
 // console.log(getTimeFromCookie());
+function inscription(event){
+    event.preventDefault();
+    // const password = document.getElementById('inscription_password').value;
+    // const email  = document.getElementById('inscription_email').value;
+    // const username = document.getElementById('inscription_name').value;
+    // const password_confirmation = document.getElementById('inscription_password_confirmation').value;
+    // const phone = document.getElementById('inscription_phone').value;
+    // const profile_photo = document.getElementById('inscription_profile_photo').value;
+    // const role = document.getElementById('inscription_role').value;
+    const form = document.getElementById('form-inscription');
+    const formData = new FormData(form);
+    fetch(url_inscription, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        // body: JSON.stringify({ password, email, name, phone, profile_photo, role })
+        body : formData,
+    })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            if (data.success) {
+                console.log("Inscription réussie !");
+                console.log(data.message);
+            }
+        }).catch(error => {
+            console.error("Erreur lors de l'inscription : !!!!! ");
+        });
+}
+const inscription_button_popap = document.getElementById("inscription_button_popap");
+inscription_button_popap.addEventListener("click", function (event) {
+    event.preventDefault();
+    inscription();
+});
