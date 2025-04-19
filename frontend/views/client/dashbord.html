@@ -143,6 +143,41 @@
                 </div>
 
             </div>
+            <div class="flex flex-col md:flex-row h-full">
+                <aside id="sidebar"
+                    class="hidden md:block w-full md:w-80 bg-gray-900 border-b md:border-b-0 md:border-r border-gray-800 md:relative fixed top-0 left-0 z-40 h-full overflow-y-auto transition-transform duration-300 ease-in-out md:translate-x-0 translate-x-[-100%]">
+
+                    <div class="p-4">
+                        <div class="relative">
+                            <input type="search" placeholder="Recherche"
+                                class="w-full bg-gray-800 rounded-xl py-2 pl-10 pr-4 text-gray-100 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary">
+                            <svg class="w-5 h-5 text-gray-400 absolute left-3 top-2.5" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="overflow-y-auto max-h-[300px] md:max-h-[calc(100vh-5rem)]">
+                        <div class="px-2 space-y-1">
+                            <div class="p-3 rounded-xl hover:bg-gray-800 flex items-center gap-3">
+                                <div class="w-12 h-12 rounded-xl overflow-hidden">
+                                    <img src="h" alt="Utilisateur" class="w-full h-full object-cover" />
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <div class="flex items-center justify-between">
+                                        <h3 class="font-semibold">Abhi</h3>
+                                        <span class="text-xs text-gray-400">20m</span>
+                                    </div>
+                                    <p class="text-sm text-gray-400 truncate">Salut ! Nous sommes prêts à commencer...
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+            </div>
 
         </section>
 
