@@ -8,7 +8,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
 
 <body class="bg-gray-100">
-    <div class="flex h-screen bg-gray-100">
+    <main class="flex h-screen bg-gray-100 ">
 
         <aside class="hidden md:flex flex-col w-64 bg-gray-800">
             <div class="flex items-center justify-center h-16 bg-gray-900">
@@ -59,8 +59,8 @@
             </div>
         </aside>
 
-        <nav class="flex flex-col flex-1 overflow-y-auto">
-            <div class="flex items-center justify-between h-16 bg-white border-b border-gray-200">
+        <section class="flex flex-col flex-1 overflow-y-auto">
+            <nav class="flex items-center justify-between h-16 bg-white border-b border-gray-200">
                 <div class="flex items-center px-4 w-24">
                     <img src="../../assets/images/icon/logo.png" alt="Logo" class="w-full h-auto" />
 
@@ -71,10 +71,39 @@
                     <img src="../../assets/images/icon/hamburger-menu.jpg" alt="User" class="w-6 h-6" />
                     <img src="../../assets/images/icon/profile-icon.jpg" alt="profile image" id="profile-image-client" class="w-7 h-7" />
                   </button>
+                </nav>
+                <div class="container mx-auto px-4 py-8">
+                    <h1 class="text-3xl font-bold text-center mb-8">Les domendes</h1>
+        
+                    <div class="flex flex-col md:flex-row justify-between items-center mb-6">
+                        <div class="w-full md:w-1/3 mb-4 md:mb-0">
+                            <input type="text" placeholder="Search users..."
+                                class="w-full px-4 py-2 rounded-md border border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        </div>
+                    </div>
+        
+                    <div class="overflow-x-auto bg-white rounded-lg shadow">
+                        <table class="w-full table-auto">
+                            <thead>
+                                <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
+                                    <th class="py-3 px-6 text-left">vendeur</th>
+                                    <th class="py-3 px-6 text-left">annonce</th>
+                                    <th class="py-3 px-6 text-left">Date de commande</th>
+                                    <th class="py-3 px-6 text-left">Statuses</th>
+                                    <th class="py-3 px-6 text-center">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-gray-600 text-sm">
+                              
+                            </tbody>
+                        </table>
+                    </div>
+        
                 </div>
-        </nav>
-    </div>
+                
+            </section>
 
+    </main> 
 </body>
 
 </html>
