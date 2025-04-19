@@ -8,9 +8,9 @@
     <script src="https://cdn.tailwindcss.com"></script>
 
 <body class="bg-gray-100">
-    <aside  class="flex h-screen bg-gray-100">
+    <div class="flex h-screen bg-gray-100">
 
-        <div class="hidden md:flex flex-col w-64 bg-gray-800">
+        <aside class="hidden md:flex flex-col w-64 bg-gray-800">
             <div class="flex items-center justify-center h-16 bg-gray-900">
                 <span class="text-white font-bold uppercase">tableau de bord client</span>
             </div>
@@ -57,9 +57,24 @@
 
                 </nav>
             </div>
-        </div>
-    </aside> 
-    
+        </aside>
+
+        <nav class="flex flex-col flex-1 overflow-y-auto">
+            <div class="flex items-center justify-between h-16 bg-white border-b border-gray-200">
+                <div class="flex items-center px-4 w-24">
+                    <img src="../../assets/images/icon/logo.png" alt="Logo" class="w-full h-auto" />
+
+                </div>
+                <div class="flex items-center pr-4">
+                    <button class="flex items-center space-x-2 border rounded-full p-2  md:w-[90px] w-[90px] hover:shadow-md"
+                    id="button_profile_button">
+                    <img src="../../assets/images/icon/hamburger-menu.jpg" alt="User" class="w-6 h-6" />
+                    <img src="../../assets/images/icon/profile-icon.jpg" alt="profile image" id="profile-image-client" class="w-7 h-7" />
+                  </button>
+                </div>
+        </nav>
+    </div>
+
 </body>
 
 </html>
