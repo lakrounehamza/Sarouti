@@ -103,6 +103,12 @@ class AnnonceRepository
     public function  getAnnonceBySellerId($sellerId)
     {
         $annonces = Annonce::where('seller_id', $sellerId)->get();
+        foreach ($annonces as $annonce) {
+            $images = Images_annonce::where('annonce_id', $annonce->id)->get();
+            $annonce->images = $images;
+            $features = Feature::where('annonce_id', $annonce->id)->get();
+            $annonce->features = $features;
+        }
         return $annonces;
     }
     public function getCommentsByAnnonceId($annonceId)
