@@ -46,3 +46,18 @@ close_popup_inscription.addEventListener("click", function (event) {
         Inscription_popup.classList.add("hidden");
     }       
 });
+
+function getAllAnonces() {
+    const url = 'http://127.0.0.1:8000/api/annonces';
+
+    fetch(url, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    }).then(response => response.json())
+    .then(data => {
+    setAnnonce(data.annonces);
+    })
+    .catch(error => console.error('Error fetching annonces:', error));
+}
