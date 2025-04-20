@@ -35,4 +35,8 @@ class Annonce extends Model
     {
         return $this->hasMany(Comment::class);
     }
+    public function features()
+    {
+        return $this->hasMany(Feature::class);
+    }
 }
