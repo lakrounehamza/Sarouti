@@ -118,6 +118,35 @@ function setAnnonce(annonces){
     `;
 
       annoncesContainer.appendChild(annonceElement);
-  
+ 
+      initializeCarousel(annonce.id, annonce.images.length);
     });
 }
+function initializeCarousel(id, totalImages) {
+    const carousel = document.getElementById(`carousel-images-${id}`);
+    const prevButton = document.getElementById(`prev-${id}`);
+    const nextButton = document.getElementById(`next-${id}`);
+    const indicators = document.querySelectorAll(`#indicators-${id} .w-2.h-2`);
+
+    let currentIndex = 0;
+
+    function updateCarousel() {
+      carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+      indicators.forEach((indicator, index) => {
+        indicator.classList.toggle('bg-white', index === currentIndex);
+        indicator.classList.toggle('bg-white/50', index !== currentIndex);
+      });
+    }
+
+    prevButton.addEventListener('click', () => {
+      currentIndex = (currentIndex === 0) ? totalImages - 1 : currentIndex - 1;
+      updateCarousel();
+    });
+
+    nextButton.addEventListener('click', () => {
+      currentIndex = (currentIndex === totalImages - 1) ? 0 : currentIndex + 1;
+      updateCarousel();
+    });
+
+
+  }
