@@ -8,33 +8,53 @@ use  App\Http\Controllers\API\AnnonceController;
 use  App\Http\Controllers\API\CategoryController;
 use App\Http\Controllers\API\LikeController;
 use App\Http\Controllers\API\UserController;
+use App\Http\Controllers\API\DomendeController;
 
-Route::post('register',[UserAuthController::class,'register']);
-Route::post('login',[UserAuthController::class,'login']);
+Route::post('register', [UserAuthController::class, 'register']);
+Route::post('login', [UserAuthController::class, 'login']);
 Route::middleware(['auth:'])->group(function () {
-Route::post('logout',[UserAuthController::class,'logout']);
-Route::post('refresh',[UserAuthController::class,'refresh']);
-Route::post('forgot-password',[UserAuthController::class,'forgot']);
-Route::post('reset-password',[UserAuthController::class,'reste']);
-Route::post('verify-email',[UserAuthController::class,'verifyEmail']);
+    Route::post('logout', [UserAuthController::class, 'logout']);
+    Route::post('refresh', [UserAuthController::class, 'refresh']);
+    Route::post('forgot-password', [UserAuthController::class, 'forgot']);
+    Route::post('reset-password', [UserAuthController::class, 'reste']);
+    Route::post('verify-email', [UserAuthController::class, 'verifyEmail']);
 
-// Route::post('annonces',[AnnonceController::class,'store']);
+    // Route::post('annonces',[AnnonceController::class,'store']);
 });
 // Route::middleware(['auth:seller'])
+Route::middleware(['auth:client'])->group(function () {
+
+    Route::get('domendes/{id}', [DomendeController::class, 'getDomendesByClient']);
+    Route::POST('domendes', [DomendeController::class, 'store']);
+    
+    Route::put('domendes/{id}', [DomendeController::class, 'update']);
+    Route::delete('domendes/{id}', [DomendeController::class, 'destroy']);
+});
+Route::middleware(['auth:admin'])->group(function () {
+    Route::get('categories', [CategoryController::class, 'index']);
+    Route::post('categories', [CategoryController::class, 'store']);
+    Route::delete('categories', [CategoryController::class, 'destroy']);
+    Route::get('categories/{categoryId}', [CategoryController::class, 'show']);
+});
+Route::middleware(['auth:seller'])->group(function () {
+
+    // Route::post('annonces', [AnnonceController::class, 'store']);
+    // Route::delete('annonces/{annonceId}', [AnnonceController::class, 'destroy']);
+});
+
 Route::post('annonces',[AnnonceController::class,'store']);
-Route::get('annonces',[AnnonceController::class,'index']);
-Route::get('annonces/{annonceId}',[AnnonceController::class,'show']);
-Route::put('annonces/{annonceId}',[AnnonceController::class,'update']);
-Route::delete('annonces/{annonceId}',[AnnonceController::class,'destroy']);
-Route::get('annonces/category/{categoryName}',[AnnonceController::class,'getAnnonceByCategoryName']);
-Route::get('annonces/seller/{sellerId}',[AnnonceController::class,'getAnnonceBySellerId']);
-Route::get('categories',[CategoryController::class,'index']);
-Route::get('categories/{categoryId}',[CategoryController::class,'show']);
-Route::post('likes',[LikeController::class,'store']);
-Route::delete('likes/{likeId}',[LikeController::class,'destroy']);
-Route::get('annonces/{annonceId}/comments',[AnnonceController::class,'getCommentsByAnnonceId']);
-Route::get('users/{id}',[UserController::class,'show']);
-Route::get('users',[UserController::class,'index']);
+Route::get('annonces', [AnnonceController::class, 'index']);
+Route::get('annonces/{annonceId}', [AnnonceController::class, 'show']);
+Route::put('annonces/{annonceId}', [AnnonceController::class, 'update']);
+Route::get('annonces/category/{categoryName}', [AnnonceController::class, 'getAnnonceByCategoryName']);
+Route::get('annonces/seller/{sellerId}', [AnnonceController::class, 'getAnnonceBySellerId']);
+// Route::get('categories', [CategoryController::class, 'index']);
+Route::post('likes', [LikeController::class, 'store']);
+Route::delete('likes/{likeId}', [LikeController::class, 'destroy']);
+Route::get('annonces/{annonceId}/comments', [AnnonceController::class, 'getCommentsByAnnonceId']);
+Route::get('users/{id}', [UserController::class, 'show']);
+Route::get('users', [UserController::class, 'index']);
+
 // Route::middleware(['auth:seller'])->controller(CategoryController::class)->group(function () {
 // Route::get('categories','index');
 // Route::get('categories/{category}','show');

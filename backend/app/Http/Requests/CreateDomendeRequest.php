@@ -11,7 +11,7 @@ class CreateDomendeRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,11 @@ class CreateDomendeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'client_id' => 'required|string',
+            'annonce_id' => 'required|string',
+            'debu' => 'nullable|string',
+            'fin' => 'nullable|string',
+            'status' => 'nullable|string'
         ];
     }
 }
