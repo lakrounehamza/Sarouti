@@ -18,8 +18,21 @@ class DomendeController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index() {
-        return  response()->json( ['message' => 'index']);
+    public function index()
+    {
+        try {
+            $domendes = $this->domendeRepository->getAllDomendes();
+            return response()->json([
+                'success' => true,
+                'data' => $domendes,
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to retrieve domendes.',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
     }
 
     /**
@@ -59,14 +72,8 @@ class DomendeController extends Controller
     {
         //
     }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
+ 
+ 
     public  function  getDomendesByClient(string  $id)
     {
         try {
