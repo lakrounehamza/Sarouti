@@ -11,6 +11,7 @@ use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\DomendeController;
 use App\Http\Controllers\API\MessageController;
 use App\Http\Controllers\API\CommentController;
+use App\Http\Controllers\API\RoleController;
 
 Route::post('register', [UserAuthController::class, 'register']);
 Route::post('login', [UserAuthController::class, 'login']);
@@ -44,11 +45,16 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::patch('users/{id}/actif', [UserController::class, 'actifUser']);
     Route::patch('users/{id}/suspendre', [UserController::class, 'suspendreUser']);
     Route::get('annonces/admin/domendes', [AnnonceController::class, 'annoncesForAdmin']);
-    
+
     Route::PATCH('annonces/{id}/accept', [AnnonceController::class, 'acceptAnnonce']);
     Route::PATCH('annonces/{id}/reject', [AnnonceController::class, 'rejectAnnonce']);
-    Route::get('statistic/admin',[AnnonceController::class,'satatisticAdmin']);
-
+    Route::get('statistic/admin', [AnnonceController::class, 'satatisticAdmin']);
+    Route::patch('/roles/{id}/accept', [RoleController::class, 'acceptRole']);
+    Route::patch('/roles/{id}/annule', [RoleController::class, 'annuleRole']);
+    Route::delete('/roles',[RoleController::class,'destroy']);
+    Route::get('/roles',[RoleController::class,'index']);
+    Route::get('/roles/{id}',[RoleController::class,'show']);
+    Route::post('/roles/{id}',[RoleController::class,'store']);
 });
 Route::middleware(['auth:seller'])->group(function () {
 
