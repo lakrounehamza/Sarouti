@@ -57,18 +57,21 @@ function getAllAnonces() {
       }
     }).then(response => response.json())
     .then(data => {
+        console.log(data.annonces);
     setAnnonce(data.annonces);
+
     })
     .catch(error => console.error('Error fetching annonces:', error));
 }
 function setAnnonce(annonces){
     const annoncesContainer = document.getElementById('annonces-container');
 
-    data.annonces.forEach(annonce => {
+    annonces.forEach(annonce => {
+
       const annonceElement = document.createElement('div');
       annonceElement.className = 'bg-white overflow-hidden';
 
-      // console.log("image = " + annonce.images[0].path);
+    //   console.log("image = " + annonce.images[0].path);
 
       annonceElement.innerHTML = `
       <div class="relative h-60"> 
@@ -150,3 +153,4 @@ function initializeCarousel(id, totalImages) {
 
 
   }
+  getAllAnonces();
