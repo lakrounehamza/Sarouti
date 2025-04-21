@@ -13,4 +13,5 @@ class Client extends User
     {
         return $this->hasMany(Comment::class);
     }
+
 }

@@ -6,5 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Domende extends Model
 {
-    protected $fillabe = [ 'client_id', 'annonce_id' , 'status'];
+    protected $fillable = ['client_id', 'annonce_id', 'debu', 'fin', 'status'];
+    public function client()
+    {
+        return $this->belongsTo(User::class);
+    }
+    public function annonce()
+    {
+        return $this->belongsTo(Annonce::class);
+    }
+
 }
