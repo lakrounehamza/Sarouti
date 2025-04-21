@@ -12,6 +12,7 @@ use App\Http\Controllers\API\DomendeController;
 use App\Http\Controllers\API\MessageController;
 use App\Http\Controllers\API\CommentController;
 use App\Http\Controllers\API\RoleController;
+use App\Http\Controllers\API\SignaleController;
 
 Route::post('register', [UserAuthController::class, 'register']);
 Route::post('login', [UserAuthController::class, 'login']);
@@ -51,10 +52,15 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::get('statistic/admin', [AnnonceController::class, 'satatisticAdmin']);
     Route::patch('/roles/{id}/accept', [RoleController::class, 'acceptRole']);
     Route::patch('/roles/{id}/annule', [RoleController::class, 'annuleRole']);
-    Route::delete('/roles',[RoleController::class,'destroy']);
-    Route::get('/roles',[RoleController::class,'index']);
-    Route::get('/roles/{id}',[RoleController::class,'show']);
-    Route::post('/roles/{id}',[RoleController::class,'store']);
+    Route::delete('/roles', [RoleController::class, 'destroy']);
+    Route::get('/roles', [RoleController::class, 'index']);
+    Route::get('/roles/{id}', [RoleController::class, 'show']);
+    Route::post('/roles/{id}', [RoleController::class, 'store']);
+    Route::get('/signales', [SignaleController::class, 'index']);
+    Route::post('/signales', [SignaleController::class, 'store']);
+    Route::get('/signales/{id}', [SignaleController::class, 'show']);
+    Route::patch('/signales/{id}/accept', [SignaleController::class, 'acceptRole']);
+    Route::patch('/signales/{id}/annule', [SignaleController::class, 'annuleRole']);
 });
 Route::middleware(['auth:seller'])->group(function () {
 

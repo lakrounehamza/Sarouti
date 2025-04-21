@@ -33,8 +33,7 @@ class RoleController extends Controller
                 'success' => true,
                 'data' => $role,
             ], 200);
-        } catch (\Exception $e) {
-            // Handle any errors
+        } catch (\Exception $e) { 
             return response()->json([
                 'success' => false,
                 'message' => 'An error occurred while creating the role.',
