@@ -12,7 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('admins', function (Blueprint $table) {
-            $table->foreignId('id')->constrained('users')->primary()->onDelete('cascade');
+            $table->foreignId('id');
+            $table->foreign('id')->references('id')->on('users')->onDelete('cascade');
+            $table->primary('id');
             $table->timestamps();
         });
     }
@@ -25,3 +27,5 @@ return new class extends Migration
         Schema::dropIfExists('admins');
     }
 };
+
+

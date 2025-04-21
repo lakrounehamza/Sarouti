@@ -13,8 +13,10 @@ return new class extends Migration
     {
         Schema::create('domendes', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('client_id')->constrained('clients')->onDelete('cascade');
+            $table->foreignId('client_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('annonce_id')->constrained('annonces')->onDelete('cascade');
+            $table->string('debu');
+            $table->string('fin');
             $table->enum('status', ['accepted', 'rejected', 'waiting'])->default('waiting')->nullable();
             $table->timestamps();
         });

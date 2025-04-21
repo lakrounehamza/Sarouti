@@ -49,7 +49,7 @@ class AnnonceController extends Controller
         try { 
             $this->annonceRepository->createAnnonce($request);
             
-             $annonceId = $this->annonceRepository->getLastInsertedId();
+            //  $annonceId = $this->annonceRepository->getLastInsertedId();
     
             return response()->json([
                 'success' => true,

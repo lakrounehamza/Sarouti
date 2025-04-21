@@ -24,14 +24,17 @@ class CreateAnnonceRequest extends FormRequest
         return [
             'title' => 'required|string|max:255',
             'description' => 'required|string',
-            'price' => 'required|numeric|min:0',
-            'type' => 'required|in:rental,sale',
-            'ville' => 'required|string|max:255',
-            'status' => 'in:accepted,rejected,waiting',
-            'latitude'=>'required|string',
-            'longitude'=>'required|string',
+            'price' => 'required|numeric',
+            'type' => 'required|string',
+            'ville' => 'required|string',
+            'latitude' => 'required|string',
+            'longitude' => 'required|string',
             'seller_id' => 'required|exists:users,id',
             'category_id' => 'required|exists:categories,id',
+            'images' => 'nullable|array',
+            'images.*' => 'mimes:jpeg,png,jpg,gif|max:2048', 
+            'features' => 'nullable|array',
+            'features.*' => 'string|max:255',
         ];
     }
     
