@@ -22,12 +22,40 @@ class DomendeRepository implements DomendeRepositoryInteface
     public function getDomendeByIdClient(string $id)
     {
         return Domende::where('client_id', $id)
-        ->with(['annonces', 'users']) 
-        ->get();
+            ->with(['annonces', 'users'])
+            ->get();
     }
 
-    public function getDomendeByIdSeller(string $id) {}
-    public function getDomendeByIdAnnonce(string $id) {}
-    public function accepterDomende(string $id) {}
-    public function refuserDemande(string $id) {}
+    public function getDomendeByIdSeller(string $id)
+    {
+        return Domende::whereHas('annonce', function ($query) use ($id) {
+            $query->where('seller_id', $id);
+        })
+            ->with(['annonce', 'client'])
+            ->get();
+    }
+    public function getDomendeByIdAnnonce(string $id)
+    {
+        return Domende::where('annonce_id', $id)
+            ->with(['client', 'annonce'])
+            ->get();
+    }
+    public function accepterDomende(string $id)
+    {
+        $domende = Domende::findOrFail($id); 
+        $domende->status = 'accepted';  
+        $domende->save();  
+        return $domende;
+    }
+    public function refuserDemande(string $id)
+    {
+        $domende = Domende::findOrFail($id);  
+        $domende->status = 'rejected';  
+        $domende->save();  
+
+        return $domende; 
+    }
+    public  function getAllDomendes(){
+        return Domende::all(); 
+    }
 }
