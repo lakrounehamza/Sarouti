@@ -44,31 +44,25 @@ class AnnonceController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(CreateAnnonceRequest $request) {
-        try {
+    public function store(CreateAnnonceRequest $request)
+    {
+        try { 
             $this->annonceRepository->createAnnonce($request);
-            $images = $request->images;
-            $annonceId = $this->annonceRepository->getLastInsertedId();
-            if ($images) {
-                $imagePaths = array_map(function($img) {
-                    return $img['path'] ;
-                }, $images);
-                foreach ($imagePaths as $image) {
-                    $this->imageAnnonceRepository->createImage($image, $annonceId);                    
-                }
-            }
-            return  response()->json([
+            
+             $annonceId = $this->annonceRepository->getLastInsertedId();
+    
+            return response()->json([
                 'success' => true,
                 'message' => 'Annonce created successfully'
             ]);
         } catch (\Exception $e) {
-            return  response()->json([
+             return response()->json([
                 'success' => false,
-                'message' => $e->getMessage(). '  Annonce not created'
+                'message' => 'Annonce not created: ' . $e->getMessage()
             ]);
         }
     }
-
+    
     /**
      * Display the specified resource.
      */
@@ -155,6 +149,22 @@ class AnnonceController extends Controller
                 'success' => true,
                 'message' => 'Annonce retrieved successfully',
                 'annonces' => $annonces
+            ]);
+        } catch (\Exception $e) {
+            return  response()->json([
+                'success' => false,
+                'message' => $e->getMessage()
+            ]);
+        }
+    }
+    public function getCommentsByAnnonceId($annonceId)
+    {
+        try {
+            $comments = $this->annonceRepository->getCommentsByAnnonceId($annonceId);
+            return  response()->json([
+                'success' => true,
+                'message' => 'Comments retrieved successfully',
+                'comments' => $comments
             ]);
         } catch (\Exception $e) {
             return  response()->json([
