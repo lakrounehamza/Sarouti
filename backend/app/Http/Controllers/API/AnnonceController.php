@@ -11,17 +11,17 @@ use  App\Http\Requests\UpdateAnnonceRequest;
 use  App\Repositorys\ImageAnnonceRepository;
 use App\Http\Requests\CreateImageAnnonceRequest;
 use App\Repositorys\LikeRepository;
+
 class AnnonceController extends Controller
 {
     private  $annonceRepository;
     private $imageAnnonceRepository;
     private  $likeRepository;
-    public function  __construct(AnnonceRepository  $repository , ImageAnnonceRepository $imageAnnonceRepository ,LikeRepository $likeRepository)
+    public function  __construct(AnnonceRepository  $repository, ImageAnnonceRepository $imageAnnonceRepository, LikeRepository $likeRepository)
     {
         $this->annonceRepository =  $repository;
         $this->imageAnnonceRepository =  $imageAnnonceRepository;
         $this->likeRepository =  $likeRepository;
-        
     }
     /**
      * Display a listing of the resource.
@@ -46,30 +46,30 @@ class AnnonceController extends Controller
      */
     public function store(CreateAnnonceRequest $request)
     {
-        try { 
+        try {
             $this->annonceRepository->createAnnonce($request);
-            
+
             //  $annonceId = $this->annonceRepository->getLastInsertedId();
-    
+
             return response()->json([
                 'success' => true,
                 'message' => 'Annonce created successfully'
             ]);
         } catch (\Exception $e) {
-             return response()->json([
+            return response()->json([
                 'success' => false,
                 'message' => 'Annonce not created: ' . $e->getMessage()
             ]);
         }
     }
-    
+
     /**
      * Display the specified resource.
      */
-    public function show( $annonceId)
+    public function show($annonceId)
     {
         try {
-            $annonce= $this->annonceRepository->getAnnonceById($annonceId);
+            $annonce = $this->annonceRepository->getAnnonceById($annonceId);
             $images = $this->imageAnnonceRepository->getAllImagesByAnnonceId($annonce->id);
             $annonce->images = $images;
             $likes = $this->likeRepository->getLikesByAnnonceId($annonce->id);
@@ -105,12 +105,12 @@ class AnnonceController extends Controller
             ]);
         }
     }
-    
+
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy( $annonceId)
+    public function destroy($annonceId)
     {
         try {
             $this->annonceRepository->deleteAnnone($annonceId);
@@ -173,6 +173,21 @@ class AnnonceController extends Controller
             ]);
         }
     }
-    
-  
+
+    public function statisticSeller($id)
+    {
+        try {
+            $statistics = $this->annonceRepository->statisticSeller($id);
+            return response()->json([
+                'success' => true,
+                'message' => 'Statistics retrieved successfully',
+                'statistics' => $statistics
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to retrieve statistics: ' . $e->getMessage()
+            ]);
+        }
+    }
 }

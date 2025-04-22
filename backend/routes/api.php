@@ -24,11 +24,11 @@ Route::middleware(['auth:'])->group(function () {
 // Route::middleware(['auth:seller'])
 Route::middleware(['auth:client'])->group(function () {
 
-    Route::get('domendes/{id}', [DomendeController::class, 'getDomendesByClient']);
+    Route::get('domendes/client/{id}', [DomendeController::class, 'getDomendesByClient']);
     Route::POST('domendes', [DomendeController::class, 'store']);
-    
     Route::put('domendes/{id}', [DomendeController::class, 'update']);
     Route::delete('domendes/{id}', [DomendeController::class, 'destroy']);
+    Route::PATCH('domendes/{id}/reject', [DomendeController::class, 'rejectDomende']);
 });
 Route::middleware(['auth:admin'])->group(function () {
     Route::get('categories', [CategoryController::class, 'index']);
@@ -39,11 +39,15 @@ Route::middleware(['auth:admin'])->group(function () {
 });
 Route::middleware(['auth:seller'])->group(function () {
 
+    Route::get('domendes/seller/{sellerId}', [DomendeController::class, 'getDomendesBySeller']);
     // Route::post('annonces', [AnnonceController::class, 'store']);
     // Route::delete('annonces/{annonceId}', [AnnonceController::class, 'destroy']);
-});
 
-Route::post('annonces',[AnnonceController::class,'store']);
+    Route::PATCH('domendes/{id}/accept', [DomendeController::class, 'acceptDomende']);
+    Route::PATCH('domendes/{id}/reject', [DomendeController::class, 'rejectDomende']);
+});
+Route::get('statistic/seller/{id}',[AnnonceController::class,'statisticSeller']);
+Route::post('annonces', [AnnonceController::class, 'store']);
 Route::get('annonces', [AnnonceController::class, 'index']);
 Route::get('annonces/{annonceId}', [AnnonceController::class, 'show']);
 Route::put('annonces/{annonceId}', [AnnonceController::class, 'update']);

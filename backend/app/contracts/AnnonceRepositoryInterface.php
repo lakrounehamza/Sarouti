@@ -14,5 +14,5 @@ public function deleteAnnone($annonceid);
 public function getLastInsertedId();
 public function getAnnonceByCategoryName($categoryName);
 public function getAnnonceBySellerId($sellerId);
-
+public  function statisticSeller($seller_id);
 }
