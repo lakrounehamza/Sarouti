@@ -318,7 +318,7 @@ async function getAllMyAnnonce() {
     const cookies = document.cookie;
     const token = cookies.split(';')[2].split('=')[1];
     const id = cookies.split(';')[3].split('=')[1];
-    console.log("id = " + id);
+    // console.log("id = " + id);
 
     const url = "http://127.0.0.1:8000/api/annonces/seller/" + id;
     try {
@@ -329,12 +329,6 @@ async function getAllMyAnnonce() {
                 "Authorization": `Bearer ${token}`
             }
         });
-
-        if (!response.ok) {
-            console.error("Erreur lors de la récupération des annonces :", response.statusText);
-            return;
-        }
-
         const data = await response.json();
         console.log("Réponse API :", data);
 
@@ -382,3 +376,84 @@ function setAnnonce(annonces) {
 }
 
  getAllMyAnnonce();
+
+ 
+getMyDomendes();
+async function getMyDomendes() {
+    const cookies = document.cookie;
+    const token = cookies.split(';')[2]?.split('=')[1];
+    const id = cookies.split(';')[3]?.split('=')[1];
+
+    const url = "http://127.0.0.1:8000/api/domendes/seller/" + id;
+    // console.log("my id:", id);
+
+    try {
+        const response = await fetch(url, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            }
+        });
+        const data = await response.json();
+        console.log("Réponse API :", data);
+        if (!data.data || !Array.isArray(data.data)) {
+            console.error("Format de données inattendu ou 'data' manquant :", data);
+            return;
+        }
+
+        populateDemandesTable(data.data);
+
+    } catch (error) {
+        console.error("Erreur lors de la requête API :", error);
+    }
+}
+
+function populateDemandesTable(demandes) {
+    const tableBody = document.getElementById("table-lesDomends-seller");
+    tableBody.innerHTML = '';  
+    demandes.forEach(demande => {
+        const row = document.createElement('tr');
+        row.className = "border-b border-gray-200 hover:bg-gray-100";
+        row.innerHTML = `
+            <td class="px-6 py-4 whitespace-nowrap">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 h-10 w-10">
+                        <img class="h-10 w-10 rounded-full" src="http://127.0.0.1:8000/${demande.client?.photo}" alt="photo de client">
+                    </div>
+                    <div class="ml-4">
+                        <div class="text-sm font-medium text-gray-900">
+                            ${demande.client.name}
+                        </div>
+                        <div class="text-sm text-gray-500">
+                            ${demande.client.email}
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td class="py-3 px-6 text-left">
+                <a href="/frontend/views/client/details.html?${demande.annonce_id}">
+                    ${demande.annonce?.title}
+                </a>
+            </td>
+            <td class="py-3 px-6 text-left">${new Date(demande.created_at).toLocaleDateString()}</td>
+            <td class="py-3 px-6 text-left">${demande.status}</td>
+            <td class="py-3 px-6 text-center">
+                <div class="flex item-center justify-center">
+                    <button class="w-4 mr-2 transform hover:text-blue-500 hover:scale-110">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                            <path d="M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-111 111-47-47c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l64 64c9.4-9.4 24.6-9.4 33.9 0L369 209z" />
+                        </svg>
+                    </button>
+                    <button class="w-4 mr-2 transform hover:text-red-500 hover:scale-110">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                            <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM184 232l144 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-144 0c-13.3 0-24-10.7-24-24s10.7-24 24-24z" />
+                        </svg>
+                    </button>
+                </div>
+            </td>
+        `;
+
+        tableBody.appendChild(row);
+    });
+}
