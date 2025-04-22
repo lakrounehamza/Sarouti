@@ -16,13 +16,13 @@
             </div>
             <div class="flex flex-col flex-1 overflow-y-auto">
                 <nav class="flex-1 px-2 py-4 bg-gray-800">
-                    <button class="flex items-center px-4 py-2 text-gray-100 hover:bg-gray-700">
+                    <!-- <button class="flex items-center px-4 py-2 text-gray-100 hover:bg-gray-700">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="h-6 w-6 mr-2">
                             <path
                                 d="M272.5 5.7c9-7.6 22.1-7.6 31.1 0l264 224c10.1 8.6 11.4 23.7 2.8 33.8s-23.7 11.3-33.8 2.8L512 245.5V432c0 44.2-35.8 80-80 80H144c-44.2 0-80-35.8-80-80V245.5L39.5 266.3c-10.1 8.6-25.3 7.3-33.8-2.8s-7.3-25.3 2.8-33.8l264-224zM112 204.8V432c0 17.7 14.3 32 32 32h288c17.7 0 32-14.3 32-32V204.8L288 55.5 112 204.8zM224 224a64 64 0 1 1 128 0 64 64 0 1 1 -128 0zm32 96h64c44.2 0 80 35.8 80 80 0 8.8-7.2 16-16 16H192c-8.8 0-16-7.2-16-16 0-44.2 35.8-80 80-80z" />
                         </svg>
                         Home
-                    </button>
+                    </button> -->
                     <button class="flex items-center px-4 py-2 mt-2 hover:bg-gray-700 ">
                         <svg class="fill-current h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                             <path
@@ -31,12 +31,14 @@
                         <span class="pl-2 text-gray-100">Les annonces</span>
                     </button>
                     <button class="flex items-center px-4 py-2 mt-2  hover:bg-gray-700">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 512 512" class="h-6 w-6 mr-2">
-                            <path d="M448 416v-64H64v64h384zm0 64H64c-35.3 0-64-28.7-64-64v-64c0-35.3 28.7-64 64-64h384c35.3 0 64 28.7 64 64v64c0 35.3-28.7 64-64 64zM288 160c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96C0 60.7 28.7 32 64 32h144h16h144c44.2 0 80 35.8 80 80v16h38.1c21.4 0 32.1 25.9 17 41L433 239c-9.4 9.4-24.6 9.4-33.9 0l-70.1-70c-15.1-15.1-4.4-41 17-41H384v-16c0-8.8-7.2-16-16-16h-80v64z"/>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 512 512"
+                            class="h-6 w-6 mr-2">
+                            <path
+                                d="M448 416v-64H64v64h384zm0 64H64c-35.3 0-64-28.7-64-64v-64c0-35.3 28.7-64 64-64h384c35.3 0 64 28.7 64 64v64c0 35.3-28.7 64-64 64zM288 160c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96C0 60.7 28.7 32 64 32h144h16h144c44.2 0 80 35.8 80 80v16h38.1c21.4 0 32.1 25.9 17 41L433 239c-9.4 9.4-24.6 9.4-33.9 0l-70.1-70c-15.1-15.1-4.4-41 17-41H384v-16c0-8.8-7.2-16-16-16h-80v64z" />
                         </svg>
-                        <span class="text-gray-100" >les Demandes</span>
+                        <span class="text-gray-100">les Demandes</span>
                     </button>
-                    
+
                     <button class="flex items-center px-4 py-2 mt-2 text-gray-100 hover:bg-gray-700">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" viewBox="0 0 512 512">
                             <path
@@ -69,6 +71,89 @@
                 </nav>
             </div>
         </aside>
+        <section class="flex flex-col flex-1 overflow-y-auto">
+            <nav class="flex items-center justify-between h-16 bg-white border-b border-gray-200">
+                <div class="flex items-center px-4 w-24">
+                    <img src="../../assets/images/icon/logo.png" alt="Logo" class="w-full h-auto" />
+
+                </div>
+                <div class="flex items-center pr-4">
+                    <button
+                        class="flex items-center space-x-2 border rounded-full p-2  md:w-[90px] w-[90px] hover:shadow-md"
+                        id="button_profile_button">
+                        <img src="../../assets/images/icon/hamburger-menu.jpg" alt="User" class="w-6 h-6" />
+                        <img src="../../assets/images/icon/profile-icon.jpg" alt="profile image"
+                            id="profile-image-client" class="w-7 h-7" />
+                    </button>
+            </nav>
+            <div class="container mx-auto px-4 py-8">
+                <h1 class="text-3xl font-bold text-center mb-8">Les domendes</h1>
+
+                <div class="flex flex-col md:flex-row justify-between items-center mb-6">
+                    <div class="w-full md:w-1/3 mb-4 md:mb-0">
+                        <input type="text" placeholder="Search users..."
+                            class="w-full px-4 py-2 rounded-md border border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    </div>
+                </div>
+
+                <div class="overflow-x-auto bg-white rounded-lg shadow">
+                    <table class="w-full table-auto">
+                        <thead>
+                            <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
+                                <th class="py-3 px-6 text-left">client</th>
+                                <th class="py-3 px-6 text-left">annonce</th>
+                                <th class="py-3 px-6 text-left">Date de commande</th>
+                                <th class="py-3 px-6 text-left">Statuses</th>
+                                <th class="py-3 px-6 text-center">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-gray-600 text-sm">
+                            <tr class="border-b border-gray-200 hover:bg-gray-100">
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div class="flex-shrink-0 h-10 w-10">
+                                            <img class="h-10 w-10 rounded-full" src="" alt="photo  de  vendeur">
+                                        </div>
+                                        <div class="ml-4">
+                                            <div class="text-sm font-medium text-gray-900">
+                                                nom client
+                                            </div>
+                                            <div class="text-sm text-gray-500">
+                                                emil de vendor
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="py-3 px-6 text-left">
+                                    <a href="">
+                                        titre
+                                    </a>
+                                </td>
+                                <td class="py-3 px-6 text-left">2025-00-00</td>
+                                <td class="py-3 px-6 text-left">encour</td>
+                                <td class="py-3 px-6 text-center">
+                                    <div class="flex item-center justify-center">
+                                        <button class="w-4 mr-2 transform hover:text-blue-500 hover:scale-110">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                                <path
+                                                    d="M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-111 111-47-47c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l64 64c9.4 9.4 24.6 9.4 33.9 0L369 209z" />
+                                            </svg>
+                                        </button>
+                                        <button class="w-4 mr-2 transform hover:text-red-500 hover:scale-110">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                                <path
+                                                    d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM184 232l144 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-144 0c-13.3 0-24-10.7-24-24s10.7-24 24-24z" />
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </section>
     </main>
 </body>
 
