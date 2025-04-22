@@ -86,6 +86,116 @@
                             id="profile-image-client" class="w-7 h-7" />
                     </button>
             </nav>
+            <section class="bg-white mt-4 p-1 xs:p-8">
+                <div class="max-w-96 sm:max-w-4xl mx-auto border border-[#4D7C0F] rounded-lg p-8">
+                    <div class="flex justify-between" >
+                    <h2 class="sm:text-xl text-[12px] font-bold mb-6">Ajouter une annonce de maison</h2>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6"
+                        viewBox="0 0 384 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+                        <path
+                            d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
+                    </svg>
+                    </div>
+                    <form enctype="multipart/form-data" id="add-annonce-form" method="POST">
+                        <div class="space-y-6">
+                            <div>
+                                <label for="title"
+                                    class="text-xs xs:text-sm font-medium text-gray-700 mb-1 block">Titre</label>
+                                <input type="text" id="title" name="title"
+                                    class="h-[50px] rounded-[5px] text-xs xs:text-sm border border-[#D1D5DB] w-full px-2"
+                                    placeholder="Entrez le titre ici">
+                            </div>
+                            <div>
+                                <label for="ville"
+                                    class="text-xs xs:text-sm font-medium text-gray-700 mb-1 block">Ville</label>
+                                <input type="text" id="ville" name="ville"
+                                    class="h-[50px] rounded-[5px] text-xs xs:text-sm border border-[#D1D5DB] w-full px-2"
+                                    placeholder="Entrez la ville ici">
+                            </div>
+                            <div class="grid sm:grid-cols-2 grid-cols-1 gap-6">
+                                <div>
+                                    <label for="prix"
+                                        class="text-xs xs:text-sm font-medium text-gray-700 mb-1 block">Prix</label>
+                                    <div class="relative">
+                                        <span
+                                            class="absolute inset-y-0 left-0 flex items-center pl-1 text-gray-500 text-lg font-medium ">DH</span>
+                                        <input type="text" id="price" name="price"
+                                            class="h-[50px] rounded-[5px] text-xs xs:text-sm border border-[#D1D5DB] w-full px-2 pl-8 font-light"
+                                            placeholder="0.00">
+                                    </div>
+                                </div>
+                                <div>
+                                    <input type="hidden" name="seller_id" value="1">
+                                    <input type="hidden" name="category_id" value="1">
+                                    <label for="type"
+                                        class="text-xs xs:text-sm font-medium text-gray-700 mb-1 block">Type
+                                        d’annonce</label>
+                                    <select name="type" id="type"
+                                        class="h-[50px] rounded-[5px] text-xs xs:text-sm border border-[#D1D5DB] w-full px-2">
+                                        <option value="acheter" selected>Acheter</option>
+                                        <option value="louer">Louer</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div>
+                                <label for="description"
+                                    class="text-xs xs:text-sm font-medium text-gray-700 mb-1 block">Description de la
+                                    maison
+                                </label>
+                                <textarea id="description" name="description" rows="4"
+                                    class="w-full text-xs xs:text-sm border border-[#D1D5DB] rounded-[5px] p-2"
+                                    placeholder="Décrivez quelque chose..."></textarea>
+                            </div>
+                            <div>
+                                <label for="images"
+                                    class="text-xs xs:text-sm font-medium text-gray-700 mb-1 block">Télécharger
+                                    des images de la maison</label>
+                                <input type="file" id="images" name="images[]" multiple
+                                    accept="image/jpeg, image/png, image/jpg">
+                                <output class="mt-2 block"></output>
+                            </div>
+                            <div>
+                                <label
+                                    class="text-xs xs:text-sm font-medium text-gray-700 mb-1 block">Localisation</label>
+                                <div id="map" class="w-full h-64 rounded-md border border-[#D1D5DB]"></div>
+                                <input type="hidden" name="latitude" id="latitude">
+                                <input type="hidden" name="longitude" id="longitude">
+                            </div>
+                            <div>
+                                <label class="text-xs xs:text-sm font-medium text-gray-700 mb-1 block">Ce que cet
+                                    endroit
+                                    offre</label>
+                                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                                    <label class="flex items-center space-x-2">
+                                        <input type="checkbox" name="features[]" value="wifi" class="accent-[#4D7C0F]">
+                                        <span class="text-xs xs:text-sm">Wi-Fi</span>
+                                    </label>
+                                    <label class="flex items-center space-x-2">
+                                        <input type="checkbox" name="features[]" value="salle_de_bain"
+                                            class="accent-[#4D7C0F]">
+                                        <span class="text-xs xs:text-sm">Salle de bain</span>
+                                    </label>
+                                    <label class="flex items-center space-x-2">
+                                        <input type="checkbox" name="features[]" value="cuisine"
+                                            class="accent-[#4D7C0F]">
+                                        <span class="text-xs xs:text-sm">Cuisine</span>
+                                    </label>
+                                    <label class="flex items-center space-x-2">
+                                        <input type="checkbox" name="features[]" value="parc_de_maison"
+                                            class="accent-[#4D7C0F]">
+                                        <span class="text-xs xs:text-sm">Parc de maison</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-8 pt-6 border-t border-gray-200 flex justify-between">
+                            <button class="  sm:block underline-offset-8 border-2  p-[13px_25px]  ">Annuler</button>
+                            <button type="submit"
+                                class=" w-[200px] h-[50px] text-xs sm:text-base bg-orange-500 rounded-[5px] p-[13px_25px] text-white">Enregistrer</button>
+                        </div>
+                    </form>
+                </div>
+            </section>
             <div class="container mx-auto px-4 py-8">
                 <h1 class="text-3xl font-bold text-center mb-8">Les domendes</h1>
 
@@ -152,7 +262,7 @@
                     </table>
                 </div>
             </div>
-            
+
             <div class="flex flex-col md:flex-row h-full">
                 <aside id="sidebar"
                     class="hidden md:block w-full md:w-80 bg-gray-900 border-b md:border-b-0 md:border-r border-gray-800 md:relative fixed top-0 left-0 z-40 h-full overflow-y-auto transition-transform duration-300 ease-in-out md:translate-x-0 translate-x-[-100%]">
@@ -259,45 +369,47 @@
             <div class="dark:bg-gray-800 h-screen ">
 
                 <div class="col-span-3 md:col-span-2 flex flex-col items-center md:items-start gap-4 pt-16 px-2">
-    
-                    <p class="flex justify-center w-full gap-2 pt-4 font-extrabold text-2xl md:text-3xl dark:text-white">
+
+                    <p
+                        class="flex justify-center w-full gap-2 pt-4 font-extrabold text-2xl md:text-3xl dark:text-white">
                         <span>Staistiques</span>
-    
+
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" viewBox="0 0 512 512">
                             <path
                                 d="M64 64c0-17.7-14.3-32-32-32S0 46.3 0 64L0 400c0 44.2 35.8 80 80 80l400 0c17.7 0 32-14.3 32-32s-14.3-32-32-32L80 416c-8.8 0-16-7.2-16-16L64 64zm406.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L320 210.7l-57.4-57.4c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L240 221.3l57.4 57.4c12.5 12.5 32.8 12.5 45.3 0l128-128z" />
                         </svg>
                     </p>
                     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 pb-8 pt-4 mx-auto">
-    
+
                         <div title="All countributed components"
                             class="flex flex-col justify-center items-center gap-2 border-2 border-dashed border-gray-500/50 p-4 rounded-md h-32 dark:text-gray-200">
                             <div class="flex gap-2 items-center">
                                 <span class="font-bold text-3xl md:text-4xl">
                                     30
                                 </span>
-                                <svg class="fill-current h-8 w-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <svg class="fill-current h-8 w-8" xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24">
                                     <path
                                         d="M18.546 3h-13.069l-5.477 8.986v9.014h24v-9.014l-5.454-8.986zm-3.796 12h-5.5l-2.25-3h-4.666l4.266-7h10.82l4.249 7h-4.669l-2.25 3zm-9.75-4l.607-1h12.787l.606 1h-14zm12.18-3l.607 1h-11.573l.607-1h10.359zm-1.214-2l.606 1h-9.144l.607-1h7.931z" />
                                 </svg>
                             </div>
                             <span class="font-semibold text-sm text-center">Anonces</span>
                         </div>
-    
+
                         <div title="Users got help"
                             class="flex flex-col justify-center items-center gap-2 border-2 border-dashed border-gray-500/50 p-4 rounded-md h-32 dark:text-gray-200">
                             <div class="flex gap-2 items-center">
                                 <span class="font-bold text-3xl md:text-4xl">
                                     93.9k
                                 </span>
-                                <svg xmlns="http://www.w3.org/2000/svg"  class="w-8 h-8" viewBox="0 0 512 512">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" viewBox="0 0 512 512">
                                     <path
                                         d="M32 32l448 0c17.7 0 32 14.3 32 32l0 32c0 17.7-14.3 32-32 32L32 128C14.3 128 0 113.7 0 96L0 64C0 46.3 14.3 32 32 32zm0 128l448 0 0 256c0 35.3-28.7 64-64 64L96 480c-35.3 0-64-28.7-64-64l0-256zm128 80c0 8.8 7.2 16 16 16l160 0c8.8 0 16-7.2 16-16s-7.2-16-16-16l-160 0c-8.8 0-16 7.2-16 16z" />
                                 </svg>
                             </div>
                             <span class="font-semibold text-sm text-center">domzndes sur les annonces</span>
                         </div>
-    
+
                         <div title="Total favorites received on components"
                             class="flex flex-col justify-center items-center gap-2 border-2 border-dashed border-gray-500/50 p-4 rounded-md h-32 dark:text-gray-200">
                             <div class="flex gap-2 items-center">
@@ -312,10 +424,10 @@
                                 </svg>
                             </div>
                             <span class="font-semibold text-sm text-center">like
-    
+
                             </span>
                         </div>
-    
+
                         <div title="component views"
                             class="md:col-start-2 lg:col-auto flex flex-col justify-center items-center gap-2 border-2 border-dashed border-gray-500/50 p-4 rounded-md h-32 dark:text-gray-200">
                             <div class="flex gap-2 items-center">
@@ -334,14 +446,14 @@
                             </div>
                             <span class="font-semibold text-sm text-center">client views les annonces</span>
                         </div>
-    
+
                     </div>
-    
+
                 </div>
-    
+
             </div>
         </section>
-        
+
     </main>
 </body>
 
