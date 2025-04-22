@@ -38,9 +38,11 @@ class AuthRepository  implements AuthRepositoryInterface
     }
     public function register(RegisterRequest $attributes)
     {
-        $imageName = time() . '.' . $attributes->photo->extension();
-        $attributes->photo->move(public_path('uploads/photos'), $imageName);
-    
+        $file = $attributes->file('photo');
+
+        $imageName = time() . '_' . uniqid() . '.' . $file->extension();
+        $file->move(public_path('uploads/photos'), $imageName);
+
         return User::create([
             'name' => $attributes->name,
             'email' => $attributes->email,
@@ -90,7 +92,7 @@ class AuthRepository  implements AuthRepositoryInterface
     {
         try {
             $status = Password::sendResetLink($request->only('email'));
-            
+
             Log::channel('auth')->info('Password reset requested', [
                 'email' => $request->email,
                 'status' => $status
@@ -98,7 +100,7 @@ class AuthRepository  implements AuthRepositoryInterface
 
             return response()->json([
                 'success' => $status === Password::RESET_LINK_SENT,
-                'message' => __($status) ,
+                'message' => __($status),
                 'data' => [
                     'email' => $request->email
                 ]
@@ -147,9 +149,5 @@ class AuthRepository  implements AuthRepositoryInterface
             ], 500);
         }
     }
-    public function verifyEmail($email ,$token){
-        
-        
-    }
-    
+    public function verifyEmail($email, $token) {}
 }

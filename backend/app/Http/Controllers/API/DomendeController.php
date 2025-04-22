@@ -56,6 +56,7 @@ class DomendeController extends Controller
         }
 
     }
+    
 
     /**
      * Display the specified resource.
@@ -100,4 +101,63 @@ class DomendeController extends Controller
             ], 500);
         }
     }
+    public function acceptDomende(string $id)
+    {
+        try {
+            $domende = $this->domendeRepository->accepterDomende($id);
+            return response()->json([
+                'success' => true,
+                'message' => 'Domende accepted successfully.',
+                'data' => $domende,
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to accept Domende.',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
+    }
+    public function rejectDomende(string $id)
+    {
+        try {
+            $domende = $this->domendeRepository->refuserDemande($id);
+            return response()->json([
+                'success' => true,
+                'message' => 'Domende rejected successfully.',
+                'data' => $domende,
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to reject Domende.',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
+    }
+    public function getDomendesBySeller(string $sellerId)
+    {
+        try {
+            $domendes = $this->domendeRepository->getDomendeByIdSeller($sellerId);
+    
+            if ($domendes->isEmpty()) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'No domendes found for this seller.',
+                ], 404);
+            }
+    
+            return response()->json([
+                'success' => true,
+                'data' => $domendes,
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to retrieve domendes for the seller.',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
+    }
+
 }

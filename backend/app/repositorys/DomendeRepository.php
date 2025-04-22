@@ -22,7 +22,7 @@ class DomendeRepository implements DomendeRepositoryInteface
     public function getDomendeByIdClient(string $id)
     {
         return Domende::where('client_id', $id)
-            ->with(['annonces', 'users'])
+            ->with(['annonce', 'client'])
             ->get();
     }
 

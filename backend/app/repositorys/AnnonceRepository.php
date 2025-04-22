@@ -7,7 +7,7 @@ use  App\Http\Requests\CreateAnnonceRequest;
 use  App\Http\Requests\UpdateAnnonceRequest;
 use App\Models\Images_annonce;
 use App\Models\Feature;
-use Illuminate\Support\Str;
+use Illuminate\Support\Str; 
 class AnnonceRepository
 {
     public function getAllAnnonce()
@@ -101,6 +101,9 @@ class AnnonceRepository
     public function  getAnnonceBySellerId($sellerId)
     {
         $annonces = Annonce::where('seller_id', $sellerId)->get();
+        foreach($annonces as $annonce){
+            $annonce->image = Images_annonce::where('annonce_id','=',$annonce->id)->select('path')->first();
+        }
         return $annonces;
     }
     public function getCommentsByAnnonceId($annonceId)
