@@ -13,24 +13,24 @@
         <aside class="hidden w-64 bg-gray-800 md:block min-h-screen">
             <div
                 class="py-3 text-2xl uppercase text-center tracking-widest bg-gray-900 border-b-2 border-gray-800 mb-8">
-                <a href="/" class="text-white">Tableau de Bord Administrateur</a>
+                <p class="text-white">Tableau de Bord Administrateur</p>
             </div>
             <nav class="text-sm text-gray-300">
                 <ul class="flex flex-col">
                     <li class="px-4 py-2 text-xs uppercase tracking-wider text-gray-500 font-bold">GESTION DES
                         UTILISATEURS</li>
                     <li class="px-4 cursor-pointer hover:bg-gray-700">
-                        <a class="py-3 flex items-center" href="/">
+                        <button class="py-3 flex items-center" id="users-button">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                                 stroke="currentColor" class="w-4 mr-3">
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                     d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0 1 11.964-3.07M12 6.375a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0Zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z" />
                             </svg>
                             Utilisateurs
-                        </a>
+                        </button>
                     </li>
                     <li class="px-4 cursor-pointer hover:bg-gray-700">
-                        <a class="py-3 flex items-center" href="/">
+                        <button class="py-3 flex items-center"  id="roles-button">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                                 stroke="currentColor" class="w-4 mr-3">
                                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -39,53 +39,53 @@
                                     d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
                             </svg>
                             Rôles
-                        </a>
+                        </button>
                     </li>
                     <li class="px-4 cursor-pointer hover:bg-gray-700">
-                        <a class="py-3 flex items-center" href="/">
+                        <button class="py-3 flex items-center" id="signalements-button">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 512 512"
                                 stroke="currentColor" class="w-4 mr-3">
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                     d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-384c13.3 0 24 10.7 24 24l0 112c0 13.3-10.7 24-24 24s-24-10.7-24-24l0-112c0-13.3 10.7-24 24-24zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z" />
                             </svg>
                             <span>Signalements</span>
-                        </a>
+                        </button>
                     </li>
                     <li class="px-4 py-2 text-xs uppercase tracking-wider text-gray-500 font-bold">GESTION DES MAISONS
                     </li>
                     <li class="px-4 cursor-pointer hover:bg-gray-700">
-                        <a class="py-3 flex items-center" href="/">
+                        <button class="py-3 flex items-center"  id="categorys-button">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                                 stroke="currentColor" class="w-4 mr-3">
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                     d="M6 6.878V6a2.25 2.25 0 0 1 2.25-2.25h7.5A2.25 2.25 0 0 1 18 6v.878m-12 0c.235-.083.487-.128.75-.128h10.5c.263 0 .515.045.75.128m-12 0A2.25 2.25 0 0 0 4.5 9v.878m13.5-3A2.25 2.25 0 0 1 19.5 9v.878m0 0a2.246 2.246 0 0 0-.75-.128H5.25c-.263 0-.515.045-.75.128m15 0A2.25 2.25 0 0 1 21 12v6a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 18v-6c0-.98.626-1.813 1.5-2.122" />
                             </svg>
                             Catégories
-                        </a>
+                        </button>
                     </li>
                     <li class="px-4 cursor-pointer hover:bg-gray-700">
-                        <a class="py-3 flex items-center" href="/">
+                        <button class="py-3 flex items-center" id="demandes-button">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                                 stroke="currentColor" class="w-4 mr-3">
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                     d="M9 3.75H6.912a2.25 2.25 0 0 0-2.15 1.588L2.35 13.177a2.25 2.25 0 0 0-.1.661V18a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18v-4.162c0-.224-.034-.447-.1-.661L19.24 5.338a2.25 2.25 0 0 0-2.15-1.588H15M2.25 13.5h3.86a2.25 2.25 0 0 1 2.012 1.244l.256.512a2.25 2.25 0 0 0 2.013 1.244h3.218a2.25 2.25 0 0 0 2.013-1.244l.256-.512a2.25 2.25 0 0 1 2.013-1.244h3.859M12 3v8.25m0 0-3-3m3 3 3-3" />
                             </svg>
                             Demandes
-                        </a>
+                        </button>
                     </li>
                     <li class="px-4 cursor-pointer hover:bg-gray-700">
-                        <a class="py-3 flex items-center" href="/">
+                        <button class="py-3 flex items-center" id="annonces-button">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                                 stroke="currentColor" class="w-4 mr-3">
                                 <path
                                     d="M18.546 3h-13.069l-5.477 8.986v9.014h24v-9.014l-5.454-8.986zm-3.796 12h-5.5l-2.25-3h-4.666l4.266-7h10.82l4.249 7h-4.669l-2.25 3zm-9.75-4l.607-1h12.787l.606 1h-14zm12.18-3l.607 1h-11.573l.607-1h10.359zm-1.214-2l.606 1h-9.144l.607-1h7.931z" />
                             </svg>
                             Annonces
-                        </a>
+                        </button>
                     </li>
                     <li class="px-4 py-2 text-xs uppercase tracking-wider text-gray-500 font-bold">AUTRES</li>
                     <li class="px-1 hover:bg-gray-700">
-                        <a href="#" class=" flex items-center">
+                        <button class=" flex items-center" id="notifications-button">
                             <div class="relative px-2 py-1 border-2 border-transparent text-gray-400 hover:text-gray-500 transition duration-150 ease-in-out"
                                 aria-label="Panier">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="w-4 mr-3">
@@ -100,26 +100,26 @@
                                 </span>
                             </div>
                             <span>Notifications</span>
-                        </a>
+                        </button>
                     </li>
                     <li class="px-4 hover:bg-gray-700">
-                        <a class="py-3 flex items-center" href="/">
+                        <button class="py-3 flex items-center" id="statistiques-button">
                             <svg class="w-4 mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                 stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                             </svg>
                             Statistiques
-                        </a>
+                        </button>
                     </li>
                     <li class="px-4 hover:bg-gray-700">
-                        <a class="py-3 flex items-center" href="/">
+                        <button class="py-3 flex items-center"  id="deconnexion-button">
                             <svg xmlns="http://www.w3.org/2000/svg" class="w-4 mr-3" viewBox="0 0 512 512">
                                 <path
                                     d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 192 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l210.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128zM160 96c17.7 0 32-14.3 32-32s-14.3-32-32-32L96 32C43 32 0 75 0 128L0 384c0 53 43 96 96 96l64 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-64 0c-17.7 0-32-14.3-32-32l0-256c0-17.7 14.3-32 32-32l64 0z" />
                             </svg>
                             Déconnexion
-                        </a>
+                        </button>
                     </li>
                 </ul>
             </nav>
@@ -139,7 +139,7 @@
                             id="profile-image-client" class="w-7 h-7" />
                     </button>
             </nav>
-            <div class="container mx-auto px-4 py-8">
+            <div class="container mx-auto px-4 py-8" id="users-container">
                 <h1 class="text-3xl font-bold text-center mb-8">Liste des utilisateurs</h1>
                 <div class="flex flex-col md:flex-row justify-between items-center mb-6">
                     <div class="w-full md:w-1/3 mb-4 md:mb-0">
@@ -209,7 +209,7 @@
                     </table>
                 </div>
             </div>
-            <div class="container mx-auto px-4 py-8">
+            <div class="container mx-auto px-4 py-8" id="roles-container">
                 <h1 class="text-3xl font-bold text-center mb-8">Les demandes de changement de rôle</h1>
                 <div class="overflow-x-auto bg-white rounded-lg shadow">
                     <table class="w-full table-auto">
@@ -253,7 +253,7 @@
                     </table>
                 </div>
             </div>
-            <div class="container mx-auto px-4 py-8">
+            <div class="container mx-auto px-4 py-8" id="signalements-container">
                 <h1 class="text-3xl font-bold text-center mb-8"> Liste des utilisateurs signalés</h1>
                 <div class="overflow-x-auto bg-white rounded-lg shadow">
                     <table class="w-full table-auto">
@@ -293,7 +293,7 @@
                     </table>
                 </div>
             </div>
-            <div class="flex px-4 flex-col container">
+            <div class="flex px-4 flex-col container"  id="categorys-container">
                 <h1 class="text-3xl font-bold text-center mb-8">Liste des Catégories </h1>
 
                 <div class=" overflow-x-auto">
@@ -410,7 +410,7 @@
                 </div>
             </div>
 
-            <div class="container mx-auto px-4 py-8">
+            <div class="container mx-auto px-4 py-8" id="demandes-container">
                 <h1 class="text-3xl font-bold text-center mb-8">Les domendes des annonces</h1>
 
                 <div class="flex flex-col md:flex-row justify-between items-center mb-6">
@@ -475,106 +475,9 @@
                         </tbody>
                     </table>
                 </div>
-            </div>
-            <div class="w-full z-10 h-full overflow-x-hidden transform translate-x-0 transition ease-in-out duration-700"
-                id="notification">
-                <div class="w-full 2xl:w-4/12 bg-gray-50 h-screen absolute right-0 justify-center overflow-y-auto p-8">
-                    <div class="flex items-center justify-between">
-                        <p class="text-2xl font-semibold leading-6 text-gray-800">Notifications</p>
-                        <button aria-label="Close notifications"
-                            class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 rounded-md">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path d="M18 6L6 18" stroke="#4B5563" stroke-width="1.25" stroke-linecap="round"
-                                    stroke-linejoin="round" />
-                                <path d="M6 6L18 18" stroke="#4B5563" stroke-width="1.25" stroke-linecap="round"
-                                    stroke-linejoin="round" />
-                            </svg>
-                        </button>
-                    </div>
-
-                    <div class="w-full p-4 mt-8 bg-white rounded flex items-start">
-                        <div class="w-8 h-8 border border-gray-200 rounded-full flex items-center justify-center pl-1">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5" viewBox="0 0 640 512">
-                                <path
-                                    d="M96 128a128 128 0 1 1 256 0A128 128 0 1 1 96 128zM0 482.3C0 383.8 79.8 304 178.3 304l91.4 0C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7L29.7 512C13.3 512 0 498.7 0 482.3zM504 312l0-64-64 0c-13.3 0-24-10.7-24-24s10.7-24 24-24l64 0 0-64c0-13.3 10.7-24 24-24s24 10.7 24 24l0 64 64 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-64 0 0 64c0 13.3-10.7 24-24 24s-24-10.7-24-24z" />
-                            </svg>
-                        </div>
-                        <div class="pl-3 w-full">
-
-                            <div class="flex items-center justify-between ">
-                                <p class="text-sm">
-                                    <span class="text-indigo-700">hamza lakroune</span> creer un compte avec role <span
-                                        class="text-indigo-700">client </span>
-                                </p>
-                                <button class="focus:outline-none cursor-pointer" aria-label="Dismiss notification">
-                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M10.5 3.5L3.5 10.5" stroke="#4B5563" stroke-width="1.25"
-                                            stroke-linecap="round" stroke-linejoin="round" />
-                                        <path d="M3.5 3.5L10.5 10.5" stroke="#4B5563" stroke-width="1.25"
-                                            stroke-linecap="round" stroke-linejoin="round" />
-                                    </svg>
-                                </button>
-                            </div>
-                            <p class="text-xs text-gray-500 pt-1">2 hours ago</p>
-                        </div>
-                    </div>
-                    <div class="w-full p-4   mt-4 bg-white rounded shadow flex">
-                        <div class="w-8 h-8 border   border-gray-200 rounded-full flex items-center justify-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="w-4">
-                                <path
-                                    d="M135.2 17.7C140.6 6.8 151.7 0 163.8 0L284.2 0c12.1 0 23.2 6.8 28.6 17.7L320 32l96 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 96C14.3 96 0 81.7 0 64S14.3 32 32 32l96 0 7.2-14.3zM32 128l384 0 0 320c0 35.3-28.7 64-64 64L96 512c-35.3 0-64-28.7-64-64l0-320zm96 64c-8.8 0-16 7.2-16 16l0 224c0 8.8 7.2 16 16 16s16-7.2 16-16l0-224c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16l0 224c0 8.8 7.2 16 16 16s16-7.2 16-16l0-224c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16l0 224c0 8.8 7.2 16 16 16s16-7.2 16-16l0-224c0-8.8-7.2-16-16-16z" />
-                            </svg>
-                        </div>
-                        <div class="pl-3 w-full">
-                            <div class="flex items-center justify-between">
-                                <p class="text-sm"><span class="text-indigo-700">hamza lakroune</span> suprimmer un
-                                    annonce
-                                    <span class="text-indigo-700">titre annonce</span>
-                                </p>
-                                <button class="focus:outline-none cursor-pointer" aria-label="Dismiss notification">
-                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M10.5 3.5L3.5 10.5" stroke="#4B5563" stroke-width="1.25"
-                                            stroke-linecap="round" stroke-linejoin="round" />
-                                        <path d="M3.5 3.5L10.5 10.5" stroke="#4B5563" stroke-width="1.25"
-                                            stroke-linecap="round" stroke-linejoin="round" />
-                                    </svg>
-                                </button>
-                            </div>
-                            <p class="text-xs text-gray-500 pt-1">2 hours ago</p>
-                        </div>
-                    </div>
-                    <div class="w-full p-4   mt-4 bg-white rounded shadow flex">
-                        <div class="w-8 h-8 border   border-gray-200 rounded-full flex items-center justify-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4" viewBox="0 0 512 512">
-                                <path
-                                    d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160L0 416c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-96c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 96c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-256c0-17.7 14.3-32 32-32l96 0c17.7 0 32-14.3 32-32s-14.3-32-32-32L96 64z" />
-                            </svg>
-                        </div>
-                        <div class="pl-3 w-full">
-                            <div class="flex items-center justify-between">
-                                <p class="text-sm"><span class="text-indigo-700">hamza lakroune </span> modifer un
-                                    annonce <span class="text-indigo-700"> titre annonces </span></p>
-                                <button class="focus:outline-none cursor-pointer" aria-label="Dismiss notification">
-                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M10.5 3.5L3.5 10.5" stroke="#4B5563" stroke-width="1.25"
-                                            stroke-linecap="round" stroke-linejoin="round" />
-                                        <path d="M3.5 3.5L10.5 10.5" stroke="#4B5563" stroke-width="1.25"
-                                            stroke-linecap="round" stroke-linejoin="round" />
-                                    </svg>
-                                </button>
-                            </div>
-                            <p class="text-xs text-gray-500 pt-1">2 hours ago</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+            </div> 
             <div class="w-full z-10 h-full   transform translate-x-0 transition ease-in-out duration-700"
-                id="notification">
+                id="notifications-container">
                 <div class="w-full   bg-gray-50 h-screen absolute right-0 justify-center overflow-y-auto p-8">
                     <div class="flex items-center justify-between">
                         <p class="text-2xl font-semibold leading-6 text-gray-800">Notifications</p>
@@ -672,6 +575,7 @@
             
         </section>
     </main>
+    <script src="../../src/js/admin/dashbord.js"></script>
 </body>
 
 </html>
