@@ -7,6 +7,7 @@ use App\Http\Middleware\AuthMiddleware;
 use  App\Http\Controllers\API\AnnonceController;
 use  App\Http\Controllers\API\CategoryController;
 use App\Http\Controllers\API\LikeController;
+use App\Http\Controllers\API\UserController;
 
 Route::post('register',[UserAuthController::class,'register']);
 Route::post('login',[UserAuthController::class,'login']);
@@ -30,6 +31,9 @@ Route::get('categories',[CategoryController::class,'index']);
 Route::get('categories/{categoryId}',[CategoryController::class,'show']);
 Route::post('likes',[LikeController::class,'store']);
 Route::delete('likes/{likeId}',[LikeController::class,'destroy']);
+Route::get('annonces/{annonceId}/comments',[AnnonceController::class,'getCommentsByAnnonceId']);
+Route::get('users/{id}',[UserController::class,'show']);
+Route::get('users',[UserController::class,'index']);
 // Route::middleware(['auth:seller'])->controller(CategoryController::class)->group(function () {
 // Route::get('categories','index');
 // Route::get('categories/{category}','show');

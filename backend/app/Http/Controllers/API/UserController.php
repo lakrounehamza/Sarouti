@@ -14,11 +14,11 @@ class UserController extends Controller
      * Display a listing of the resource.
      */
     public function __construct(UserRepository  $repository){
-        $this->userRepository;
+        $this->userRepository =  $repository;
     }
     public function index()
     {
-        $data  =  $this->userRepository->getAllUset();
+        $data  =  $this->userRepository->getAllUsers();
         return  response()->json([
             'success' =>true,
             'message'=>'get  all  users',
@@ -34,12 +34,11 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(User $user)
+    public function show(string $id)
     {
-        $user = $this->userRepository->getUserById($user);
+        $user = $this->userRepository->getUserById($id);
         return  response()->json([
-            'success'=> true,
-            'message' => 'get user  by id ',
+            'success'=> true, 
             'user' => $user
         ]);
     }
