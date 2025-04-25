@@ -1,0 +1,24 @@
+.image {
+    position: relative;
+    display: inline-block;
+    margin: 5px;
+}
+
+.image img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+.image span {
+    position: absolute;
+    top: -5px;
+    right: 5px;
+    background: red;
+    color: white;
+    border-radius: 50%;
+    cursor: pointer;
+    padding: 0 6px;
+}

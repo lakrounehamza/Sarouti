@@ -18,9 +18,10 @@ Route::post('forgot-password',[UserAuthController::class,'forgot']);
 Route::post('reset-password',[UserAuthController::class,'reste']);
 Route::post('verify-email',[UserAuthController::class,'verifyEmail']);
 
-Route::post('annonces',[AnnonceController::class,'store']);
+// Route::post('annonces',[AnnonceController::class,'store']);
 });
 // Route::middleware(['auth:seller'])
+Route::post('annonces',[AnnonceController::class,'store']);
 Route::get('annonces',[AnnonceController::class,'index']);
 Route::get('annonces/{annonceId}',[AnnonceController::class,'show']);
 Route::put('annonces/{annonceId}',[AnnonceController::class,'update']);

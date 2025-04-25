@@ -13,6 +13,9 @@ const signalementsContainer = document.getElementById("signalements-container");
 const categorysContainer = document.getElementById("categorys-container");
 const demandesContainer = document.getElementById("demandes-container");
 const notificationsContainer = document.getElementById("notifications-container");
+const fermePopapCategory = document.getElementById("fermePopapCategory");
+const addCategory = document.getElementById("addCategory");
+const popapAddCategory = document.getElementById("popap-addCategory");
 function switchSection(section) {
     if (section === 'usersContainer') {
         localStorage.setItem('dashboardSection', 'users');
@@ -68,9 +71,7 @@ function switchSection(section) {
 usersButton.addEventListener('click', () => {
     switchSection('usersContainer');
 });
-// RolesButton  signalementsButton categorysButton demandesButton annoncesButton statistiquesButton notificationsButton
-// usersContainer  rolesContainer signalementsContainer categorysContainer demandesContainer notificationsContainer
-RolesButton.addEventListener('click', () => {
+ RolesButton.addEventListener('click', () => {
     switchSection('rolesContainer');
 });
 signalementsButton.addEventListener('click', () => {
@@ -87,8 +88,7 @@ notificationsButton.addEventListener('click', () => {
 });
 document.addEventListener('DOMContentLoaded', () => {
     const savedSection = localStorage.getItem('dashboardSection');
-    // usersContainer  rolesContainer signalementsContainer categorysContainer demandesContainer notificationsContainer
-
+ 
     switch (savedSection) {
         case 'users':
             switchSection('usersContainer');
@@ -111,4 +111,10 @@ document.addEventListener('DOMContentLoaded', () => {
         default:
             switchSection('usersContainer');
     }
+});
+addCategory.addEventListener('click', () => {
+    popapAddCategory.classList.toggle("hidden");
+});
+fermePopapCategory.addEventListener('click', () => {
+    popapAddCategory.classList.toggle("hidden");
 });

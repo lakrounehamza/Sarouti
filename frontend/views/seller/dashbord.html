@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard vendor</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script> 
+    <link rel="stylesheet" href="../../src/css/addAnnonce.css"/>
 </head>
 
 <body class="bg-gray-100">
@@ -39,28 +42,32 @@
                         <span class="text-gray-100">les Demandes</span>
                     </button>
 
-                    <button class="flex items-center px-4 py-2 mt-2 text-gray-100 hover:bg-gray-700" id="button-messages">
+                    <button class="flex items-center px-4 py-2 mt-2 text-gray-100 hover:bg-gray-700"
+                        id="button-messages">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" viewBox="0 0 512 512">
                             <path
                                 d="M160 368c26.5 0 48 21.5 48 48v16l72.5-54.4c8.3-6.2 18.4-9.6 28.8-9.6H448c8.8 0 16-7.2 16-16V64c0-8.8-7.2-16-16-16H64c-8.8 0-16 7.2-16 16v288c0 8.8 7.2 16 16 16h96zm48 124l-5.3 4.1-17.1 12.8c-4.8 3.6-11.3 4.2-16.8 1.5s-8.8-8.2-8.8-14.3v-32h-96c-35.3 0-64-28.7-64-64V64C0 28.7 28.7 0 64 0h384c35.3 0 64 28.7 64 64v288c0 35.3-28.7 64-64 64H304L208 492z" />
                         </svg>
                         Les messages
                     </button>
-                    <button class="flex items-center px-4 py-2 mt-2 text-gray-100 hover:bg-gray-700" id="button-profile">
+                    <button class="flex items-center px-4 py-2 mt-2 text-gray-100 hover:bg-gray-700"
+                        id="button-profile">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" viewBox="0 0 448 512">
                             <path
                                 d="M304 128a80 80 0 1 0 -160 0 80 80 0 1 0 160 0zM96 128a128 128 0 1 1 256 0A128 128 0 1 1 96 128zM49.3 464h349.5c-8.9-63.3-63.3-112-129-112h-91.4c-65.7 0-120.1 48.7-129 112z" />
                         </svg>
                         Profile
                     </button>
-                    <button class="flex items-center px-4 py-2 mt-2 text-gray-100 hover:bg-gray-700" id="button-statistiques">
+                    <button class="flex items-center px-4 py-2 mt-2 text-gray-100 hover:bg-gray-700"
+                        id="button-statistiques">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" viewBox="0 0 512 512">
                             <path
                                 d="M64 64c0-17.7-14.3-32-32-32S0 46.3 0 64V400c0 44.2 35.8 80 80 80h400c17.7 0 32-14.3 32-32s-14.3-32-32-32H80c-8.8 0-16-7.2-16-16V64zm406.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L320 210.7l-57.4-57.4c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L240 221.3l57.4 57.4c12.5 12.5 32.8 12.5 45.3 0l128-128z" />
                         </svg>
                         les Statistiques
                     </button>
-                    <button class="flex items-center px-4 py-2 mt-2 text-gray-100 hover:bg-gray-700"  id="button-deconnexion">
+                    <button class="flex items-center px-4 py-2 mt-2 text-gray-100 hover:bg-gray-700"
+                        id="button-deconnexion">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" viewBox="0 0 512 512">
                             <path
                                 d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224H192c-17.7 0-32 14.3-32 32s14.3 32 32 32h210.7l-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128zM160 96c17.7 0 32-14.3 32-32S177.7 32 160 32H96C43 32 0 75 0 128v256c0 53 43 96 96 96h64c17.7 0 32-14.3 32-32s-14.3-32-32-32H96c-17.7 0-32-14.3-32-32V128c0-17.7 14.3-32 32-32h64z" />
@@ -88,116 +95,141 @@
             </nav>
             <div class="container mx-auto px-4 py-8 hidden" id="container-annonces">
                 <h1 class="text-3xl font-bold text-center mb-8">Les annonces</h1>
-            </div>
-            <section class="bg-white mt-4 p-1 xs:p-8">
-                <div class="max-w-96 sm:max-w-4xl mx-auto border border-[#4D7C0F] rounded-lg p-8">
-                    <div class="flex justify-between">
-                        <h2 class="sm:text-xl text-[12px] font-bold mb-6">Ajouter une annonce de maison</h2>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6"
-                            viewBox="0 0 384 512">                            <path
-                                d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
+                <button type="button" id="button-add-annonce"
+                    class="flex items-center justify-center w-48 mt-3 text-white bg-blue-500  h-14 rounded-xl">
+                    <div class="mr-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                            <path
+                                d="M64 80c-8.8 0-16 7.2-16 16l0 320c0 8.8 7.2 16 16 16l320 0c8.8 0 16-7.2 16-16l0-320c0-8.8-7.2-16-16-16L64 80zM0 96C0 60.7 28.7 32 64 32l320 0c35.3 0 64 28.7 64 64l0 320c0 35.3-28.7 64-64 64L64 480c-35.3 0-64-28.7-64-64L0 96zM200 344l0-64-64 0c-13.3 0-24-10.7-24-24s10.7-24 24-24l64 0 0-64c0-13.3 10.7-24 24-24s24 10.7 24 24l0 64 64 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-64 0 0 64c0 13.3-10.7 24-24 24s-24-10.7-24-24z" />
                         </svg>
                     </div>
-                    <form enctype="multipart/form-data" id="add-annonce-form" method="POST">
-                        <div class="space-y-6">
-                            <div>
-                                <label for="title"
-                                    class="text-xs xs:text-sm font-medium text-gray-700 mb-1 block">Titre</label>
-                                <input type="text" id="title" name="title"
-                                    class="h-[50px] rounded-[5px] text-xs xs:text-sm border border-[#D1D5DB] w-full px-2"
-                                    placeholder="Entrez le titre ici">
+                    <div>
+                        <div class="-mt-1 font-sans text-xl font-semibold">
+                            creer annonce
+                        </div>
+                    </div>
+                </button>
+            </div>
+            <div id="popap-add-annonces" tabindex="-1"
+                class="bg-black/50 overflow-y-auto   p-3 overflow-x-hidden fixed top-0 right-0 left-0 z-50 h-full items-center justify-center flex hidden">
+                <div class="relative  w-full max-w-md h-full  ">
+                    <section class="bg-white  p-1" >
+                        <div class="max-w-96 sm:max-w-4xl mx-auto border border-[#4D7C0F] rounded-lg p-8">
+                            <div class="flex justify-between">
+                                <h2 class="sm:text-xl text-[12px] font-bold mb-6">Ajouter une annonce de maison</h2>
+                                <button id="ferme-popap-annonce">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 384 512">
+                                        <path
+                                            d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
+                                    </svg>
+                                </button>
                             </div>
-                            <div>
-                                <label for="ville"
-                                    class="text-xs xs:text-sm font-medium text-gray-700 mb-1 block">Ville</label>
-                                <input type="text" id="ville" name="ville"
-                                    class="h-[50px] rounded-[5px] text-xs xs:text-sm border border-[#D1D5DB] w-full px-2"
-                                    placeholder="Entrez la ville ici">
-                            </div>
-                            <div class="grid sm:grid-cols-2 grid-cols-1 gap-6">
-                                <div>
-                                    <label for="prix"
-                                        class="text-xs xs:text-sm font-medium text-gray-700 mb-1 block">Prix</label>
-                                    <div class="relative">
-                                        <span
-                                            class="absolute inset-y-0 left-0 flex items-center pl-1 text-gray-500 text-lg font-medium ">DH</span>
-                                        <input type="text" id="price" name="price"
-                                            class="h-[50px] rounded-[5px] text-xs xs:text-sm border border-[#D1D5DB] w-full px-2 pl-8 font-light"
-                                            placeholder="0.00">
+                            <form enctype="multipart/form-data" id="add-annonce-form" method="POST">
+                                <div class="space-y-6">
+                                    <div>
+                                        <label for="title"
+                                            class="text-xs xs:text-sm font-medium text-gray-700 mb-1 block">Titre</label>
+                                        <input type="text" id="title" name="title"
+                                            class="h-[50px] rounded-[5px] text-xs xs:text-sm border border-[#D1D5DB] w-full px-2"
+                                            placeholder="Entrez le titre ici">
+                                    </div>
+                                    <div>
+                                        <label for="ville"
+                                            class="text-xs xs:text-sm font-medium text-gray-700 mb-1 block">Ville</label>
+                                        <input type="text" id="ville" name="ville"
+                                            class="h-[50px] rounded-[5px] text-xs xs:text-sm border border-[#D1D5DB] w-full px-2"
+                                            placeholder="Entrez la ville ici">
+                                    </div>
+                                    <div class="grid sm:grid-cols-2 grid-cols-1 gap-6">
+                                        <div>
+                                            <label for="prix"
+                                                class="text-xs xs:text-sm font-medium text-gray-700 mb-1 block">Prix</label>
+                                            <div class="relative">
+                                                <span
+                                                    class="absolute inset-y-0 left-0 flex items-center pl-1 text-gray-500 text-lg font-medium ">DH</span>
+                                                <input type="text" id="price" name="price"
+                                                    class="h-[50px] rounded-[5px] text-xs xs:text-sm border border-[#D1D5DB] w-full px-2 pl-8 font-light"
+                                                    placeholder="0.00">
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <input type="hidden" name="seller_id" value="1">
+                                            <input type="hidden" name="category_id" value="1">
+                                            <label for="type"
+                                                class="text-xs xs:text-sm font-medium text-gray-700 mb-1 block">Type
+                                                d’annonce</label>
+                                            <select name="type" id="type"
+                                                class="h-[50px] rounded-[5px] text-xs xs:text-sm border border-[#D1D5DB] w-full px-2">
+                                                <option value="acheter" selected>Acheter</option>
+                                                <option value="louer">Louer</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label for="description"
+                                            class="text-xs xs:text-sm font-medium text-gray-700 mb-1 block">Description
+                                            de la
+                                            maison
+                                        </label>
+                                        <textarea id="description" name="description" rows="4"
+                                            class="w-full text-xs xs:text-sm border border-[#D1D5DB] rounded-[5px] p-2"
+                                            placeholder="Décrivez quelque chose..."></textarea>
+                                    </div>
+                                    <div>
+                                        <label for="images"
+                                            class="text-xs xs:text-sm font-medium text-gray-700 mb-1 block">Télécharger
+                                            des images de la maison</label>
+                                        <input type="file" id="images" name="images[]" multiple
+                                            accept="image/jpeg, image/png, image/jpg">
+                                        <output class="mt-2 block"></output>
+                                    </div>
+                                    <div>
+                                        <label
+                                            class="text-xs xs:text-sm font-medium text-gray-700 mb-1 block">Localisation</label>
+                                        <div id="map" class="w-full h-64 rounded-md border border-[#D1D5DB]"></div>
+                                        <input type="hidden" name="latitude" id="latitude">
+                                        <input type="hidden" name="longitude" id="longitude">
+                                    </div>
+                                    <div>
+                                        <label class="text-xs xs:text-sm font-medium text-gray-700 mb-1 block">Ce que
+                                            cet
+                                            endroit
+                                            offre</label>
+                                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                                            <label class="flex items-center space-x-2">
+                                                <input type="checkbox" name="features[]" value="wifi"
+                                                    class="accent-[#4D7C0F]">
+                                                <span class="text-xs xs:text-sm">Wi-Fi</span>
+                                            </label>
+                                            <label class="flex items-center space-x-2">
+                                                <input type="checkbox" name="features[]" value="salle_de_bain"
+                                                    class="accent-[#4D7C0F]">
+                                                <span class="text-xs xs:text-sm">Salle de bain</span>
+                                            </label>
+                                            <label class="flex items-center space-x-2">
+                                                <input type="checkbox" name="features[]" value="cuisine"
+                                                    class="accent-[#4D7C0F]">
+                                                <span class="text-xs xs:text-sm">Cuisine</span>
+                                            </label>
+                                            <label class="flex items-center space-x-2">
+                                                <input type="checkbox" name="features[]" value="parc_de_maison"
+                                                    class="accent-[#4D7C0F]">
+                                                <span class="text-xs xs:text-sm">Parc de maison</span>
+                                            </label>
+                                        </div>
                                     </div>
                                 </div>
-                                <div>
-                                    <input type="hidden" name="seller_id" value="1">
-                                    <input type="hidden" name="category_id" value="1">
-                                    <label for="type"
-                                        class="text-xs xs:text-sm font-medium text-gray-700 mb-1 block">Type
-                                        d’annonce</label>
-                                    <select name="type" id="type"
-                                        class="h-[50px] rounded-[5px] text-xs xs:text-sm border border-[#D1D5DB] w-full px-2">
-                                        <option value="acheter" selected>Acheter</option>
-                                        <option value="louer">Louer</option>
-                                    </select>
+                                <div class="mt-8 pt-6 border-t border-gray-200 flex justify-between">
+                                    <button
+                                        class="  sm:block underline-offset-8 border-2  p-[13px_25px]  ">Annuler</button>
+                                    <button type="submit"
+                                        class=" w-[200px] h-[50px] text-xs sm:text-base bg-orange-500 rounded-[5px] p-[13px_25px] text-white">Enregistrer</button>
                                 </div>
-                            </div>
-                            <div>
-                                <label for="description"
-                                    class="text-xs xs:text-sm font-medium text-gray-700 mb-1 block">Description de la
-                                    maison
-                                </label>
-                                <textarea id="description" name="description" rows="4"
-                                    class="w-full text-xs xs:text-sm border border-[#D1D5DB] rounded-[5px] p-2"
-                                    placeholder="Décrivez quelque chose..."></textarea>
-                            </div>
-                            <div>
-                                <label for="images"
-                                    class="text-xs xs:text-sm font-medium text-gray-700 mb-1 block">Télécharger
-                                    des images de la maison</label>
-                                <input type="file" id="images" name="images[]" multiple
-                                    accept="image/jpeg, image/png, image/jpg">
-                                <output class="mt-2 block"></output>
-                            </div>
-                            <div>
-                                <label
-                                    class="text-xs xs:text-sm font-medium text-gray-700 mb-1 block">Localisation</label>
-                                <div id="map" class="w-full h-64 rounded-md border border-[#D1D5DB]"></div>
-                                <input type="hidden" name="latitude" id="latitude">
-                                <input type="hidden" name="longitude" id="longitude">
-                            </div>
-                            <div>
-                                <label class="text-xs xs:text-sm font-medium text-gray-700 mb-1 block">Ce que cet
-                                    endroit
-                                    offre</label>
-                                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                                    <label class="flex items-center space-x-2">
-                                        <input type="checkbox" name="features[]" value="wifi" class="accent-[#4D7C0F]">
-                                        <span class="text-xs xs:text-sm">Wi-Fi</span>
-                                    </label>
-                                    <label class="flex items-center space-x-2">
-                                        <input type="checkbox" name="features[]" value="salle_de_bain"
-                                            class="accent-[#4D7C0F]">
-                                        <span class="text-xs xs:text-sm">Salle de bain</span>
-                                    </label>
-                                    <label class="flex items-center space-x-2">
-                                        <input type="checkbox" name="features[]" value="cuisine"
-                                            class="accent-[#4D7C0F]">
-                                        <span class="text-xs xs:text-sm">Cuisine</span>
-                                    </label>
-                                    <label class="flex items-center space-x-2">
-                                        <input type="checkbox" name="features[]" value="parc_de_maison"
-                                            class="accent-[#4D7C0F]">
-                                        <span class="text-xs xs:text-sm">Parc de maison</span>
-                                    </label>
-                                </div>
-                            </div>
+                            </form>
                         </div>
-                        <div class="mt-8 pt-6 border-t border-gray-200 flex justify-between">
-                            <button class="  sm:block underline-offset-8 border-2  p-[13px_25px]  ">Annuler</button>
-                            <button type="submit"
-                                class=" w-[200px] h-[50px] text-xs sm:text-base bg-orange-500 rounded-[5px] p-[13px_25px] text-white">Enregistrer</button>
-                        </div>
-                    </form>
+                    </section>
                 </div>
-            </section>
+            </div>
             <div class="container mx-auto px-4 py-8" id="container-domendes">
                 <h1 class="text-3xl font-bold text-center mb-8">Les domendes</h1>
 
@@ -265,7 +297,7 @@
                 </div>
             </div>
 
-            <div class="flex flex-col md:flex-row h-full"  id="container-messages">
+            <div class="flex flex-col md:flex-row h-full" id="container-messages">
                 <aside id="sidebar"
                     class="hidden md:block w-full md:w-80 bg-gray-900 border-b md:border-b-0 md:border-r border-gray-800 md:relative fixed top-0 left-0 z-40 h-full overflow-y-auto transition-transform duration-300 ease-in-out md:translate-x-0 translate-x-[-100%]">
 
@@ -292,7 +324,8 @@
                                         <h3 class="font-semibold">hamza</h3>
                                         <span class="text-xs text-gray-400">20m</span>
                                     </div>
-                                    <p class="text-sm text-gray-400 truncate">Salut ! Nous sommes prêts à commencer...
+                                    <p class="text-sm text-gray-400 truncate">Salut ! Nous sommes prêts à
+                                        commencer...
                                     </p>
                                 </div>
                             </div>
@@ -323,7 +356,8 @@
                                     <span class="text-xs text-gray-400">09:20</span>
                                 </div>
                                 <div class="bg-gray-800 rounded-xl p-4">
-                                    <p>J'ai ajouté de nouveaux flux à notre système de design. Tu peux sectiontenant les
+                                    <p>J'ai ajouté de nouveaux flux à notre système de design. Tu peux
+                                        sectiontenant les
                                         utiliser pour tes projets !</p>
                                 </div>
                             </div>
@@ -336,7 +370,8 @@
                                     <span class="text-xs text-gray-400">09:27</span>
                                 </div>
                                 <div class="bg-primary bg-opacity-20 rounded-xl p-4">
-                                    <p>Abhi, toutes mes félicitations ! Je serai ravi de travailler avec toi sur un
+                                    <p>Abhi, toutes mes félicitations ! Je serai ravi de travailler avec toi sur
+                                        un
                                         nouveau projet 😊</p>
                                 </div>
                             </div>
@@ -368,7 +403,7 @@
                     </footer>
                 </section>
             </div>
-            <div class="dark:bg-gray-800 h-screen "  id="container-statistic">
+            <div class="dark:bg-gray-800 h-screen " id="container-statistic">
 
                 <div class="col-span-3 md:col-span-2 flex flex-col items-center md:items-start gap-4 pt-16 px-2">
 
@@ -502,7 +537,8 @@
             </div>
         </section>
 
-    </main>
+    </main> 
+
     <script src="../../src/js/seller/dashbord.js"></script>
 </body>
 
