@@ -259,5 +259,58 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     };
 
- 
+    const form = document.getElementById('add-annonce-form');
+    const loadingIndicator = document.getElementById('loading-indicator');
+
+    if (form) {
+        form.addEventListener('submit', async function (event) {
+            event.preventDefault();
+            if (loadingIndicator) loadingIndicator.style.display = 'block';
+
+            const formData = new FormData(form);
+            imagesArray.forEach((file) => {
+                formData.append('images[]', file);
+            });
+
+            try {
+                const response = await fetch("http://127.0.0.1:8000/api/annonces", {
+                    method: "POST",
+                    body: formData,
+                });
+
+                if (!response.ok) {
+                    const contentType = response.headers.get("content-type");
+                    if (contentType && contentType.includes("application/json")) {
+                        const errorData = await response.json();
+                        if (errorData.errors) {
+                            let errorMessage = "Erreurs de validation:\n";
+                            for (const [field, messages] of Object.entries(errorData.errors)) {
+                                errorMessage += `- ${field}: ${messages.join(', ')}\n`;
+                            }
+                            alert(errorMessage);
+                        } else {
+                            alert(errorData.message || "Erreur lors de la création de l'annonce.");
+                        }
+                    } else {
+                        alert(`Erreur serveur: ${response.status}`);
+                    }
+                } else {
+                    const result = await response.json();
+                    alert("Annonce créée avec succès !");
+
+                    form.reset();
+                    imagesArray = [];
+                    if (output) output.innerHTML = '';
+
+                    if (typeof marker !== 'undefined' && marker) {
+                        marker.remove();
+                        marker = null;
+                    }
+                }
+            } catch (error) {
+                console.error("Erreur:", error);
+                alert("Une erreur est survenue lors de la communication avec le serveur.");
+            }
+        });
+    }
 });
