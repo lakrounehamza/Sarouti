@@ -40,6 +40,8 @@ class AnnonceRepository
             'price' => $attributes->price,
             'type' => $attributes->type,
             'ville' => $attributes->ville,
+            'latitude'=>$attributes->latitude,
+            'longitude'=>$attributes->longitude,
             'localisation' => $localisation,
             'seller_id' => $attributes->seller_id,
             'category_id' => $attributes->category_id,

@@ -28,6 +28,8 @@ class CreateAnnonceRequest extends FormRequest
             'type' => 'required|in:rental,sale',
             'ville' => 'required|string|max:255',
             'status' => 'in:accepted,rejected,waiting',
+            'latitude'=>'required|string',
+            'longitude'=>'required|string',
             'seller_id' => 'required|exists:users,id',
             'category_id' => 'required|exists:categories,id',
         ];
