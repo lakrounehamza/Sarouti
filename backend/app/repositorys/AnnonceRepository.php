@@ -130,5 +130,13 @@ class AnnonceRepository
         'numbre_annonces' => $anoncesCount->numbre_annonces ?? 0,
         'numbre_domendes' => $domendesCount->numbre_domendes ?? 0,
     ]; 
+    }
+    function getAnnonceBySedllerId($sellerId)
+    {
+        $annonces = Annonce::where('seller_id', $sellerId)->get();
+        foreach ($annonces as $annonce) {
+            $annonce->image = Images_annonce::where('annonce_id', '=', $annonce->id)->select('path')->first();
+        }
+        return $annonces;
     } 
 }

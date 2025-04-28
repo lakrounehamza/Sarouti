@@ -144,7 +144,7 @@ class AnnonceController extends Controller
     public function getAnnonceBySellerId($sellerId)
     {
         try {
-            $annonces = $this->annonceRepository->getAnnonceBySellerId($sellerId);
+            $annonces = $this->annonceRepository->getAnnonceBySedllerId($sellerId);
             return  response()->json([
                 'success' => true,
                 'message' => 'Annonce retrieved successfully',
