@@ -9,7 +9,11 @@ class MessageRepository implements MessageRepositoryInterface
 {
     public function createMessage(createMessage $request)
     {
-        return Message::create($request);
+        return Message::create([
+            'sender_id'=>$request->sender_id,
+            'receiver_id'=>$request->receiver_id,
+            'content'=>$request->content,
+        ]);
     }
 
     public function deleteMessage(string $id)
