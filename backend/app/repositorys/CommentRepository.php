@@ -1,10 +1,12 @@
 <?php
 
 namespace App\Repositorys;
+
 use App\Contracts\CommentRepositoryInterface;
 use App\Models\Comment;
 use App\Http\Requests\CreateCommentRequest;
 use App\Http\Requests\UpdateCommentRequest;
+
 class CommentRepository implements CommentRepositoryInterface
 {
 
@@ -16,7 +18,12 @@ class CommentRepository implements CommentRepositoryInterface
     }
     public function createComment(CreateCommentRequest $attributes)
     {
-        return Comment::create($attributes->all());
+        return Comment::create([
+            'client_id'=> $attributes->client_id,
+            'annonce_id'=> $attributes->annonce_id,
+            'content'=> $attributes->content,
+            'rating'=> $attributes->rating,
+        ]);
     }
     public function updateComment($commentId, UpdateCommentRequest $attributes)
     {

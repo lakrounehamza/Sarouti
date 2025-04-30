@@ -9,6 +9,8 @@ use  App\Http\Controllers\API\CategoryController;
 use App\Http\Controllers\API\LikeController;
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\DomendeController;
+use App\Http\Controllers\API\MessageController;
+use App\Http\Controllers\API\CommentController;
 
 Route::post('register', [UserAuthController::class, 'register']);
 Route::post('login', [UserAuthController::class, 'login']);
@@ -60,7 +62,8 @@ Route::post('likes', [LikeController::class, 'store']);
 Route::delete('likes/{likeId}', [LikeController::class, 'destroy']);
 Route::get('annonces/{annonceId}/comments', [AnnonceController::class, 'getCommentsByAnnonceId']);
 Route::get('users', [UserController::class, 'index']);
-
+Route::post('messages', [MessageController::class, 'store']); 
+Route::post('comments', [CommentController::class, 'store']);
 // Route::middleware(['auth:seller'])->controller(CategoryController::class)->group(function () {
 // Route::get('categories','index');
 // Route::get('categories/{category}','show');

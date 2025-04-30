@@ -22,10 +22,10 @@ class CreateCommentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'client_id' => 'required|exists:clients,id',
+            'client_id' => 'required|exists:users,id',
             'annonce_id' => 'required|exists:annonces,id',
             'content' => 'required|string|max:255',
-            'rating' => 'nullabel|integer|between:1,5',
+            'rating' => 'required|integer|between:1,5',
         ];
     }
 }
