@@ -454,11 +454,12 @@ function populateDemandesTable(demandes) {
             <td class="py-3 px-6 text-left" id="status-domandes">${demande.status}</td>
             <td class="py-3 px-6 text-center">
                 <div class="flex item-center justify-center">
-                    <button class="w-4 mr-2 transform hover:text-blue-500 hover:scale-110" onclick="acceptDomende(${demande.id})">
+                ${demande.status !="accepted" ?`<button class="w-4 mr-2 transform hover:text-blue-500 hover:scale-110" onclick="acceptDomende(${demande.id})">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                             <path d="M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-111 111-47-47c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l64 64c9.4-9.4 24.6-9.4 33.9 0L369 209z" />
                         </svg>
-                    </button>
+                    </button>`:''}
+                    
                     <button class="w-4 mr-2 transform hover:text-red-500 hover:scale-110"  onclick="rejectDomende(${demande.id})">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                             <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM184 232l144 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-144 0c-13.3 0-24-10.7-24-24s10.7-24 24-24z" />
@@ -499,6 +500,7 @@ async function acceptDomende(id) {
         console.error( error);
         alert("Une erreur est survenue lors de la communication avec le serveur.");
     }
+
 }
 async function rejectDomende(id){
     const url = `http://127.0.0.1:8000/api/domendes/${id}/reject`;
@@ -559,3 +561,81 @@ document.getElementById('search-domende').addEventListener('input', function (ev
     }); 
     populateDemandesTable(filteredDemandes);
 });
+function myProfile() {
+    const cookies = document.cookie;
+    const token = cookies.split(';')[2]?.split('=')[1];
+    const id = cookies.split(';')[3]?.split('=')[1];
+
+    const url = `http://127.0.0.1:8000/api/users/${id}`;
+    const profileContainer = document.getElementById('container-profile');
+
+    const xhr = new XMLHttpRequest();
+    xhr.open("GET", url, true);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.setRequestHeader("Authorization", `Bearer ${token}`);
+
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) { 
+            if (xhr.status === 200) {  
+                const data = JSON.parse(xhr.responseText); 
+ 
+                let  div  =  document.createElement('div');
+                div.classList.add('flex-1', 'p-8')
+                div.innerHTML = ` 
+                        <div class="bg-white rounded-lg shadow-md p-6">
+                            <div class="flex items-center justify-between mb-6">
+                                <h2 class="text-2xl font-bold text-gray-800">Profil Utilisateur</h2>
+                                <button class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">
+                                    Modifier le profil
+                                </button>
+                            </div>
+
+                            <div class="flex items-center mb-8">
+                                <img src="${'http://127.0.0.1:8000/'+data.user.photo || ' ../../assets/images/icon/profile-icon.jpg'}" 
+                                     class="w-24 h-24 rounded-full" alt="Photo de profil">
+                            </div>
+
+                            <div class="mb-8">
+                                <h4 class="text-lg font-semibold mb-4">Informations Personnelles</h4>
+                                <table class="w-full border-collapse">
+                                    <tr class="border-b">
+                                        <td class="py-3 font-medium text-gray-600">Nom</td>
+                                        <td class="py-3">${data.user.name || 'Non spécifié'}</td>
+                                    </tr>
+                                    <tr class="border-b">
+                                        <td class="py-3 font-medium text-gray-600">Email</td>
+                                        <td class="py-3">${data.user.email || 'Non spécifié'}</td>
+                                    </tr>
+                                    <tr class="border-b">
+                                        <td class="py-3 font-medium text-gray-600">Téléphone</td>
+                                        <td class="py-3">${data.user.phone || 'Non spécifié'}</td>
+                                    </tr>
+                                    <tr class="border-b">
+                                        <td class="py-3 font-medium text-gray-600">Rôle</td>
+                                        <td class="py-3">${data.user.role || 'Non spécifié'}</td>
+                                        <td class="py-3">
+                                            <button class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">
+                                                Changer de rôle
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                `;
+                profileContainer.appendChild(div);    
+            } else {
+                console.error(`Erreur HTTP ${xhr.status}: ${xhr.statusText}`);
+                alert(`Erreur lors de la récupération du profil : ${xhr.statusText}`);
+            }
+        }
+    };
+
+    xhr.onerror = function () {
+        console.error("Erreur lors de la requête AJAX.");
+        alert("Une erreur est survenue lors de la communication avec le serveur.");
+    };
+
+    xhr.send();
+}
+myProfile();

@@ -29,6 +29,7 @@ Route::middleware(['auth:client'])->group(function () {
     Route::put('domendes/{id}', [DomendeController::class, 'update']);
     Route::delete('domendes/{id}', [DomendeController::class, 'destroy']);
     Route::PATCH('domendes/{id}/reject', [DomendeController::class, 'rejectDomende']);
+    Route::get('users/{id}', [UserController::class, 'show']);
 });
 Route::middleware(['auth:admin'])->group(function () {
     Route::get('categories', [CategoryController::class, 'index']);
@@ -45,6 +46,7 @@ Route::middleware(['auth:seller'])->group(function () {
 
     Route::PATCH('domendes/{id}/accept', [DomendeController::class, 'acceptDomende']);
     Route::PATCH('domendes/{id}/reject', [DomendeController::class, 'rejectDomende']);
+    Route::get('users/{id}', [UserController::class, 'show']);
 });
 Route::get('statistic/seller/{id}',[AnnonceController::class,'statisticSeller']);
 Route::post('annonces', [AnnonceController::class, 'store']);
@@ -57,7 +59,6 @@ Route::get('annonces/seller/{sellerId}', [AnnonceController::class, 'getAnnonceB
 Route::post('likes', [LikeController::class, 'store']);
 Route::delete('likes/{likeId}', [LikeController::class, 'destroy']);
 Route::get('annonces/{annonceId}/comments', [AnnonceController::class, 'getCommentsByAnnonceId']);
-Route::get('users/{id}', [UserController::class, 'show']);
 Route::get('users', [UserController::class, 'index']);
 
 // Route::middleware(['auth:seller'])->controller(CategoryController::class)->group(function () {
