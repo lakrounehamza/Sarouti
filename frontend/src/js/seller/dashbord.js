@@ -474,7 +474,56 @@ function populateDemandesTable(demandes) {
     });
 }
 async function acceptDomende(id) {
-}
-function rejectDomende(id){
+    const url = `http://127.0.0.1:8000/api/domendes/${id}/accept`;
 
+    const cookies = document.cookie;
+    const token = cookies.split(';')[2]?.split('=')[1];
+
+    if (!token) {
+        alert("Vous devez être connecté pour effectuer cette action.");
+        return;
+    }
+
+    try {
+        const response = await fetch(url, {
+            method: "PATCH",  
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            }
+        });
+        const data = await response.json(); 
+        getMyDomendes();  
+
+    } catch (error) {
+        console.error( error);
+        alert("Une erreur est survenue lors de la communication avec le serveur.");
+    }
+}
+async function rejectDomende(id){
+    const url = `http://127.0.0.1:8000/api/domendes/${id}/reject`;
+
+    const cookies = document.cookie;
+    const token = cookies.split(';')[2]?.split('=')[1];
+
+    if (!token) {
+        alert("Vous devez être connecté pour effectuer cette action.");
+        return;
+    }
+
+    try {
+        const response = await fetch(url, {
+            method: "PATCH",  
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            }
+        });
+        const data = await response.json(); 
+        getMyDomendes();  
+
+    } catch (error) {
+        console.error(error);
+        alert("Une erreur est survenue lors de la communication avec le serveur.");
+    }
 }
