@@ -401,14 +401,8 @@ function getMyDomendes() {
         if (xhr.readyState === 4) {  
             if (xhr.status === 200) {  
                 const data = JSON.parse(xhr.responseText);
-                console.log("Réponse API :", data);
-
-                if (!data.data || !Array.isArray(data.data)) {
-                    console.error("Format de données inattendu ou 'data' manquant :", data);
-                    return;
-                }
-
-                populateDemandesTable(data.data);  
+                allDemandes = data.data; 
+                populateDemandesTable(allDemandes);  
             } else {
                 console.error(`Erreur HTTP ${xhr.status}: ${xhr.statusText}`);
                 alert(`Erreur lors de la récupération des demandes : ${xhr.statusText}`);
@@ -551,4 +545,17 @@ function Pagination(demandes) {
 
         paginationContainer.appendChild(button);
     }
-}
+} 
+let allDemandes = [];
+ 
+document.getElementById('search-domende').addEventListener('input', function (event) {
+    const searchTerm = event.target.value.toLowerCase(); 
+    const filteredDemandes = allDemandes.filter(demande => { 
+        return (
+            demande.client.name.toLowerCase().includes(searchTerm) ||
+            demande.client.email.toLowerCase().includes(searchTerm) ||
+            (demande.annonce?.title || '').toLowerCase().includes(searchTerm)
+        );
+    }); 
+    populateDemandesTable(filteredDemandes);
+});
