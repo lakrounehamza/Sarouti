@@ -423,11 +423,16 @@ function getMyDomendes() {
 
     xhr.send();
 }
-
+let currentPage = 1; 
+const rowsPerPage = 4;
 function populateDemandesTable(demandes) {
     const tableBody = document.getElementById("table-lesDomends-seller");
     tableBody.innerHTML = '';  
-    demandes.forEach(demande => {
+    const startIndex = (currentPage - 1) * rowsPerPage;
+    const endIndex = startIndex + rowsPerPage;
+    const demandesPagination = demandes.slice(startIndex, endIndex);
+
+    demandesPagination.forEach(demande => {
         const row = document.createElement('tr');
         row.className = "border-b border-gray-200 hover:bg-gray-100";
         row.innerHTML = `
@@ -468,10 +473,11 @@ function populateDemandesTable(demandes) {
                 </div>
             </td>
         `;
-       
 
         tableBody.appendChild(row);
     });
+    
+    Pagination(demandes);
 }
 async function acceptDomende(id) {
     const url = `http://127.0.0.1:8000/api/domendes/${id}/accept`;
@@ -525,5 +531,24 @@ async function rejectDomende(id){
     } catch (error) {
         console.error(error);
         alert("Une erreur est survenue lors de la communication avec le serveur.");
+    }
+}
+function Pagination(demandes) {
+    const paginationContainer = document.getElementById("pagination-container");
+    paginationContainer.innerHTML = '';  
+
+    const totalPages = Math.ceil(demandes.length / rowsPerPage);
+
+    for (let i = 1; i <= totalPages; i++) {
+        const button = document.createElement('button');
+        button.className = `px-3 py-1 mx-1 border rounded ${i === currentPage ? 'bg-blue-500 text-white' : 'bg-gray-200'}`;
+        button.textContent = i;
+
+        button.addEventListener('click', () => {
+            currentPage = i;
+            populateDemandesTable(demandes); 
+        });
+
+        paginationContainer.appendChild(button);
     }
 }
