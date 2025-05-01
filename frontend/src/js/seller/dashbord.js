@@ -379,34 +379,49 @@ function setAnnonce(annonces) {
 
  
 getMyDomendes();
-async function getMyDomendes() {
+function getMyDomendes() {
     const cookies = document.cookie;
     const token = cookies.split(';')[2]?.split('=')[1];
     const id = cookies.split(';')[3]?.split('=')[1];
 
-    const url = "http://127.0.0.1:8000/api/domendes/seller/" + id;
-    // console.log("my id:", id);
-
-    try {
-        const response = await fetch(url, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${token}`
-            }
-        });
-        const data = await response.json();
-        console.log("Réponse API :", data);
-        if (!data.data || !Array.isArray(data.data)) {
-            console.error("Format de données inattendu ou 'data' manquant :", data);
-            return;
-        }
-
-        populateDemandesTable(data.data);
-
-    } catch (error) {
-        console.error("Erreur lors de la requête API :", error);
+    if (!token || !id) {
+        console.error("Token ou ID manquant.");
+        alert("Vous devez être connecté pour effectuer cette action.");
+        return;
     }
+
+    const url = `http://127.0.0.1:8000/api/domendes/seller/${id}`;
+    const xhr = new XMLHttpRequest();
+
+    xhr.open("GET", url, true);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.setRequestHeader("Authorization", `Bearer ${token}`);
+
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {  
+            if (xhr.status === 200) {  
+                const data = JSON.parse(xhr.responseText);
+                console.log("Réponse API :", data);
+
+                if (!data.data || !Array.isArray(data.data)) {
+                    console.error("Format de données inattendu ou 'data' manquant :", data);
+                    return;
+                }
+
+                populateDemandesTable(data.data);  
+            } else {
+                console.error(`Erreur HTTP ${xhr.status}: ${xhr.statusText}`);
+                alert(`Erreur lors de la récupération des demandes : ${xhr.statusText}`);
+            }
+        }
+    };
+
+    xhr.onerror = function () {
+        console.error("Erreur lors de la requête AJAX.");
+        alert("Une erreur est survenue lors de la communication avec le serveur.");
+    };
+
+    xhr.send();
 }
 
 function populateDemandesTable(demandes) {
@@ -419,7 +434,7 @@ function populateDemandesTable(demandes) {
             <td class="px-6 py-4 whitespace-nowrap">
                 <div class="flex items-center">
                     <div class="flex-shrink-0 h-10 w-10">
-                        <img class="h-10 w-10 rounded-full" src="http://127.0.0.1:8000/${demande.client?.photo}" alt="photo de client">
+                        <img class="h-10 w-10 rounded-full" src="http://127.0.0.1:8000/${demande.client.photo}" alt="photo de client">
                     </div>
                     <div class="ml-4">
                         <div class="text-sm font-medium text-gray-900">
@@ -437,15 +452,15 @@ function populateDemandesTable(demandes) {
                 </a>
             </td>
             <td class="py-3 px-6 text-left">${new Date(demande.created_at).toLocaleDateString()}</td>
-            <td class="py-3 px-6 text-left">${demande.status}</td>
+            <td class="py-3 px-6 text-left" id="status-domandes">${demande.status}</td>
             <td class="py-3 px-6 text-center">
                 <div class="flex item-center justify-center">
-                    <button class="w-4 mr-2 transform hover:text-blue-500 hover:scale-110">
+                    <button class="w-4 mr-2 transform hover:text-blue-500 hover:scale-110" onclick="acceptDomende(${demande.id})">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                             <path d="M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-111 111-47-47c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l64 64c9.4-9.4 24.6-9.4 33.9 0L369 209z" />
                         </svg>
                     </button>
-                    <button class="w-4 mr-2 transform hover:text-red-500 hover:scale-110">
+                    <button class="w-4 mr-2 transform hover:text-red-500 hover:scale-110"  onclick="rejectDomende(${demande.id})">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                             <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM184 232l144 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-144 0c-13.3 0-24-10.7-24-24s10.7-24 24-24z" />
                         </svg>
@@ -453,7 +468,13 @@ function populateDemandesTable(demandes) {
                 </div>
             </td>
         `;
+       
 
         tableBody.appendChild(row);
     });
+}
+async function acceptDomende(id) {
+}
+function rejectDomende(id){
+
 }
