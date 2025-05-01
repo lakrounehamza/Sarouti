@@ -29,8 +29,9 @@ class DomendeRepository implements DomendeRepositoryInteface
     public function getDomendeByIdSeller(string $id)
     {
         return Domende::whereHas('annonce', function ($query) use ($id) {
-            $query->where('seller_id', $id);
-        })
+                $query->where('seller_id', $id);
+            })
+            ->where('status', '!=' ,'rejected') 
             ->with(['annonce', 'client'])
             ->get();
     }
