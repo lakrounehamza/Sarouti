@@ -11,4 +11,6 @@ interface UserRepositoryInterface
     public function editeUser( $userId);
     public function deleteUser( $userId);
     public function getUserByRole($role);
+    public  function suspendreUser($id);
+    public  function actifUser($id);
 }

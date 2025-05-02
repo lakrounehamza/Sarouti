@@ -66,4 +66,52 @@ class UserController extends Controller
             'message' => 'utilisateur  suppimer  avec  sussce'
         ]);
     }
+    public function suspendreUser($id)
+{
+    try {
+        $user = $this->userRepository->suspendreUser($id);
+
+        if ($user) {
+            return response()->json([
+                'success' => true,
+                'message' => 'Utilisateur suspendu avec succès',
+                'user' =>$user
+            ]);
+        }
+
+        return response()->json([
+            'success' => false,
+            'message' => 'Utilisateur introuvable'
+        ], 404);
+    } catch (\Exception $e) {
+        return response()->json([
+            'success' => false,
+            'message' => 'Une erreur est survenue: ' . $e->getMessage()
+        ], 500);
+    }
+}
+
+public function actifUser($id)
+{
+    try {
+        $user = $this->userRepository->actifUser($id);
+
+        if ($user) {
+            return response()->json([
+                'success' => true,
+                'message' => 'Utilisateur activé avec succès'
+            ], 200);
+        }
+
+        return response()->json([
+            'success' => false,
+            'message' => 'Utilisateur introuvable'
+        ], 404);
+    } catch (\Exception $e) {
+        return response()->json([
+            'success' => false,
+            'message' => 'Une erreur est survenue: ' . $e->getMessage()
+        ], 500);
+    }
+}
 }
