@@ -35,5 +35,27 @@ class MessageRepository implements MessageRepositoryInterface
     public function getMessageById(string $id)
     {
         return Message::findOrFail($id);
+    } 
+    public function getAllMessagesBySenderId(string $senderId)
+    {
+        return Message::selectRaw(
+            'DISTINCT ON (LEAST(sender_id, receiver_id), GREATEST(sender_id, receiver_id)) 
+            messages.id,
+            sender_id,
+            sender.name AS sender_name,
+            sender.photo as sender_photo,
+            receiver_id,
+            receiver.name AS receiver_name,
+            content,
+            is_read,
+            receiver.photo as receiver_photo,
+            messages.created_at'
+        )
+        ->join('users as sender', 'sender.id', '=', 'messages.sender_id')
+        ->join('users as receiver', 'receiver.id', '=', 'messages.receiver_id')
+        ->where('sender_id', '=', $senderId)
+        ->orWhere('receiver_id', '=', $senderId)
+        ->orderByRaw('LEAST(sender_id, receiver_id), GREATEST(sender_id, receiver_id), messages.created_at DESC')
+        ->get();
     }
 }
