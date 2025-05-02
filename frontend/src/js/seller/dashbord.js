@@ -315,9 +315,10 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 async function getAllMyAnnonce() {
-    const cookies = document.cookie;
-    const token = cookies.split(';')[2].split('=')[1];
-    const id = cookies.split(';')[3].split('=')[1];
+
+    const cookies = document.cookie.split(';');
+    const id = cookies.find(cookie => cookie.trim().startsWith('user_id='))?.split('=')[1];
+    const token = cookies.find(cookie => cookie.trim().startsWith('token='))?.split('=')[1];
     // console.log("id = " + id);
 
     const url = "http://127.0.0.1:8000/api/annonces/seller/" + id;
@@ -380,9 +381,9 @@ function setAnnonce(annonces) {
  
 getMyDomendes();
 function getMyDomendes() {
-    const cookies = document.cookie;
-    const token = cookies.split(';')[2]?.split('=')[1];
-    const id = cookies.split(';')[3]?.split('=')[1];
+        const cookies = document.cookie.split(';');
+        const id = cookies.find(cookie => cookie.trim().startsWith('user_id='))?.split('=')[1];
+        const token = cookies.find(cookie => cookie.trim().startsWith('token='))?.split('=')[1];
 
     if (!token || !id) {
         console.error("Token ou ID manquant.");
@@ -505,8 +506,8 @@ async function acceptDomende(id) {
 async function rejectDomende(id){
     const url = `http://127.0.0.1:8000/api/domendes/${id}/reject`;
 
-    const cookies = document.cookie;
-    const token = cookies.split(';')[2]?.split('=')[1];
+    const cookies = document.cookie.split(';');
+    const token = cookies.find(cookie => cookie.trim().startsWith('token='))?.split('=')[1];
 
     if (!token) {
         alert("Vous devez être connecté pour effectuer cette action.");
@@ -562,9 +563,9 @@ document.getElementById('search-domende').addEventListener('input', function (ev
     populateDemandesTable(filteredDemandes);
 });
 function myProfile() {
-    const cookies = document.cookie;
-    const token = cookies.split(';')[2]?.split('=')[1];
-    const id = cookies.split(';')[3]?.split('=')[1];
+        const cookies = document.cookie.split(';');
+        const id = cookies.find(cookie => cookie.trim().startsWith('user_id='))?.split('=')[1];
+        const token = cookies.find(cookie => cookie.trim().startsWith('token='))?.split('=')[1];
 
     const url = `http://127.0.0.1:8000/api/users/${id}`;
     const profileContainer = document.getElementById('container-profile');
