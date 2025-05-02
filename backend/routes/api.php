@@ -39,6 +39,9 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::delete('categories', [CategoryController::class, 'destroy']);
     Route::get('categories/{categoryId}', [CategoryController::class, 'show']);
     Route::get('domendes', [DomendeController::class, 'index']);
+    Route::get('users', [UserController::class, 'index']);
+    Route::patch('users/{id}/actif', [UserController::class, 'actifUser']);
+    Route::patch('users/{id}/suspendre', [UserController::class, 'suspendreUser']);
 });
 Route::middleware(['auth:seller'])->group(function () {
 
@@ -50,7 +53,7 @@ Route::middleware(['auth:seller'])->group(function () {
     Route::PATCH('domendes/{id}/reject', [DomendeController::class, 'rejectDomende']);
     Route::get('users/{id}', [UserController::class, 'show']);
 });
-Route::get('statistic/seller/{id}',[AnnonceController::class,'statisticSeller']);
+Route::get('statistic/seller/{id}', [AnnonceController::class, 'statisticSeller']);
 Route::post('annonces', [AnnonceController::class, 'store']);
 Route::get('annonces', [AnnonceController::class, 'index']);
 Route::get('annonces/{annonceId}', [AnnonceController::class, 'show']);
@@ -61,7 +64,6 @@ Route::get('annonces/seller/{sellerId}', [AnnonceController::class, 'getAnnonceB
 Route::post('likes', [LikeController::class, 'store']);
 Route::delete('likes/{likeId}', [LikeController::class, 'destroy']);
 Route::get('annonces/{annonceId}/comments', [AnnonceController::class, 'getCommentsByAnnonceId']);
-Route::get('users', [UserController::class, 'index']);
 Route::post('messages/detaile', [MessageController::class, 'index']);
 Route::post('messages', [MessageController::class, 'store']);
 Route::get('messages/{id}', [MessageController::class, 'show']);

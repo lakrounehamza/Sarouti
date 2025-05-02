@@ -159,13 +159,13 @@ function setListeUsers(users) {
             <td class="py-3 px-6 text-center">
                 <div class="flex item-center justify-center">
                 ${
-                    user.ban == false
-                      ? `<button class="w-4 mr-2 transform hover:text-blue-500 hover:scale-110">
+                    user.ban == true
+                      ? `<button class="w-4 mr-2 transform hover:text-blue-500 hover:scale-110" onclick="actifUser(${user.id})">
                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                              <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM232 344l0-64-64 0c-13.3 0-24-10.7-24-24s10.7-24 24-24l64 0 0-64c0-13.3 10.7-24 24-24s24 10.7 24 24l0 64 64 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-64 0 0 64c0 13.3-10.7 24-24 24s-24-10.7-24-24z" />
                            </svg>
                          </button>`
-                      : `<button class="w-4 mr-2 transform text-red-500 hover:scale-110">
+                      : `<button class="w-4 mr-2 transform text-red-500 hover:scale-110" onclick="suspendreUser(${user.id})">
                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                              <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM184 232l144 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-144 0c-13.3 0-24-10.7-24-24s10.7-24 24-24z" />
                            </svg>
@@ -183,3 +183,78 @@ function setListeUsers(users) {
     }
 }
 getAllUsers();
+async function suspendreUser(id) {
+    const url = `http://127.0.0.1:8000/api/users/${id}/suspendre`; 
+    const cookies = document.cookie.split(';');
+    const token = cookies.find(cookie => cookie.trim().startsWith('token='))?.split('=')[1];
+
+    if (!token) {
+        console.error("Token not found. User is not authenticated.");
+        return;
+    }
+
+    try {
+        const response = await fetch(url, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const data = await response.json();
+
+        if (data.success) {
+            console.log(data.message);
+            alert("Utilisateur activé avec succès.");
+            getAllUsers();  
+        } else {
+            alert(data.message || "Une erreur est survenue.");
+        }
+    } catch (error) {
+        console.error("Erreur lors de l'activation de l'utilisateur:", error);
+        alert("Une erreur est survenue. Veuillez réessayer.");
+    }
+}
+function actifUser(id) {
+    const url = `http://127.0.0.1:8000/api/users/${id}/actif`;  
+    const cookies = document.cookie.split(';');
+    const token = cookies.find(cookie => cookie.trim().startsWith('token='))?.split('=')[1];
+
+    if (!token) {
+        console.error("Token not found. User is not authenticated.");
+        return;
+    }
+
+    fetch(url, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        }
+    })
+    .then(response => {
+        if (response.ok) {
+            return response.json();
+        } else {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+    })
+    .then(data => {
+        if (data.success) {
+            console.log(data.message);
+            alert("Utilisateur activé avec succès.");
+            getAllUsers(); 
+        } else {
+            alert(data.message || "Une erreur est survenue.");
+        }
+    })
+    .catch(error => {
+        console.error("Erreur lors de l'activation de l'utilisateur:", error);
+        alert("Une erreur est survenue. Veuillez réessayer.");
+    });
+}

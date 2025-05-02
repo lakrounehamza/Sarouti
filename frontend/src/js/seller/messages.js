@@ -1,4 +1,4 @@
-console.log('hi');
+// console.log('hi');
 myMessage();
 function myMessage() {
     const cookies = document.cookie.split(';');
@@ -208,6 +208,7 @@ function sendeMessage(id_user) {
             alert(`Erreur : ${error.message}`);
         });
 }
+
 document.getElementById('search-messages').addEventListener('input', function (e) {
     const searchTerm = e.target.value.toLowerCase();
     filterMessages(searchTerm);
@@ -225,3 +226,4 @@ function filterMessages(searchTerm) {
         }
     });
 }
+
