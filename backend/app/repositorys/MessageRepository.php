@@ -23,13 +23,23 @@ class MessageRepository implements MessageRepositoryInterface
 
     public function getAllMessagesByUsers(string $senderId, string $receiverId)
     {
-        return Message::where(function ($query) use ($senderId, $receiverId) {
-            $query->where('sender_id', $senderId)
-                ->where('receiver_id', $receiverId);
-        })->orWhere(function ($query) use ($senderId, $receiverId) {
-            $query->where('sender_id', $receiverId)
-                ->where('receiver_id', $senderId);
-        })->orderBy('created_at', 'asc')->get();
+        return Message::select(
+            'messages.*',
+            'sender.name as sender_name',
+            'receiver.name as receiver_name'
+        )
+        ->join('users as sender', 'sender.id', '=', 'messages.sender_id')
+        ->join('users as receiver', 'receiver.id', '=', 'messages.receiver_id')
+        ->where(function ($query) use ($senderId, $receiverId) {
+            $query->where('messages.sender_id', $senderId)
+                  ->where('messages.receiver_id', $receiverId);
+        })
+        ->orWhere(function ($query) use ($senderId, $receiverId) {
+            $query->where('messages.sender_id', $receiverId)
+                  ->where('messages.receiver_id', $senderId);
+        })
+        ->orderBy('messages.created_at', 'asc')
+        ->get();
     }
 
     public function getMessageById(string $id)

@@ -62,7 +62,7 @@ Route::post('likes', [LikeController::class, 'store']);
 Route::delete('likes/{likeId}', [LikeController::class, 'destroy']);
 Route::get('annonces/{annonceId}/comments', [AnnonceController::class, 'getCommentsByAnnonceId']);
 Route::get('users', [UserController::class, 'index']);
-Route::get('messages', [MessageController::class, 'index']);
+Route::post('messages/detaile', [MessageController::class, 'index']);
 Route::post('messages', [MessageController::class, 'store']);
 Route::get('messages/{id}', [MessageController::class, 'show']);
 Route::put('messages/{id}', [MessageController::class, 'update']);
