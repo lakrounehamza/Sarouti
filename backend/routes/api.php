@@ -62,8 +62,12 @@ Route::post('likes', [LikeController::class, 'store']);
 Route::delete('likes/{likeId}', [LikeController::class, 'destroy']);
 Route::get('annonces/{annonceId}/comments', [AnnonceController::class, 'getCommentsByAnnonceId']);
 Route::get('users', [UserController::class, 'index']);
-Route::post('messages', [MessageController::class, 'store']); 
-Route::post('comments', [CommentController::class, 'store']);
+Route::get('messages', [MessageController::class, 'index']);
+Route::post('messages', [MessageController::class, 'store']);
+Route::get('messages/{id}', [MessageController::class, 'show']);
+Route::put('messages/{id}', [MessageController::class, 'update']);
+Route::delete('messages/{id}', [MessageController::class, 'destroy']);
+Route::get('messages/user/{id}', [MessageController::class, 'getAllMessagesBySenderId']);  
 // Route::middleware(['auth:seller'])->controller(CategoryController::class)->group(function () {
 // Route::get('categories','index');
 // Route::get('categories/{category}','show');

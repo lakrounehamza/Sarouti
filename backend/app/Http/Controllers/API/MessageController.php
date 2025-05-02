@@ -22,8 +22,8 @@ class MessageController extends Controller
     public function index(Request $request)
     {
         $validated = $request->validate([
-            'sender_id' => 'required|exists:users,id',
-            'receiver_id' => 'required|exists:users,id',
+            'sender_id' => 'required',
+            'receiver_id' => 'required',
         ]);
     
         $messages = $this->messageRepository->getAllMessagesByUsers($validated['sender_id'], $validated['receiver_id']);
@@ -70,6 +70,15 @@ class MessageController extends Controller
             return response()->json(['message' => 'Message deleted successfully'], 200);
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
             return response()->json(['error' => 'Message not found'], 404);
+        }
+    }
+    public function getAllMessagesBySenderId(string $id)
+    {
+        try {
+            $messages = $this->messageRepository->getAllMessagesBySenderId($id);
+            return response()->json($messages, 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
         }
     }
 }
