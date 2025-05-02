@@ -258,3 +258,23 @@ function actifUser(id) {
         alert("Une erreur est survenue. Veuillez réessayer.");
     });
 }
+document.getElementById('filter_usersbyuser').addEventListener('input', function (event) {
+    const filterValue = event.target.value.toLowerCase();
+    const table_users = document.getElementById('table-users');
+    const rows = table_users.getElementsByTagName('tr');
+
+    for (let row of rows) {
+        const nameCell = row.querySelector('td:nth-child(1)');
+        const emailCell = row.querySelector('td:nth-child(2)'); 
+
+        if (nameCell && emailCell) {
+            const name = nameCell.textContent.toLowerCase();
+            const email = emailCell.textContent.toLowerCase();
+            if (name.includes(filterValue) || email.includes(filterValue)) {
+                row.style.display = ''; 
+            } else {
+                row.style.display = 'none';
+            }
+        }
+    }
+});
