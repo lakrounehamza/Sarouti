@@ -118,3 +118,68 @@ addCategory.addEventListener('click', () => {
 fermePopapCategory.addEventListener('click', () => {
     popapAddCategory.classList.toggle("hidden");
 });
+
+function  getAllUsers(){
+    const cookies = document.cookie.split(';');
+    const token = cookies.find(cookie => cookie.trim().startsWith('token='))?.split('=')[1]; 
+
+    const url = "http://127.0.0.1:8000/api/users"; 
+
+    const xhr = new XMLHttpRequest();
+    xhr.open("GET", url, true);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.setRequestHeader("Authorization", `Bearer ${token}`);
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+            if (xhr.status === 200) {
+                const data = JSON.parse(xhr.responseText);
+                console.log("Messages reçus :", data);
+                setListeUsers(data.users);
+            }
+        }
+    };
+
+    xhr.onerror = function () {
+        console.error("Erreur");
+    };
+    xhr.send();
+}
+function setListeUsers(users) {
+    const table_users = document.getElementById('table-users');
+    table_users.innerHTML = ''; 
+
+    for (let user of users) {
+        const temp = document.createElement('tr'); 
+        temp.classList.add('border-b', 'border-gray-200', 'hover:bg-gray-100');
+        temp.innerHTML = `
+            <td class="py-3 px-6 text-left">${user.name}</td>
+            <td class="py-3 px-6 text-left">${user.email}</td>
+            <td class="py-3 px-6 text-left">${user.role }</td>
+            <td class="py-3 px-6 text-left"> ${user.ban ===false ? 'actif' : 'suspendre'}</td>
+            <td class="py-3 px-6 text-center">
+                <div class="flex item-center justify-center">
+                ${
+                    user.ban == false
+                      ? `<button class="w-4 mr-2 transform hover:text-blue-500 hover:scale-110">
+                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                             <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM232 344l0-64-64 0c-13.3 0-24-10.7-24-24s10.7-24 24-24l64 0 0-64c0-13.3 10.7-24 24-24s24 10.7 24 24l0 64 64 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-64 0 0 64c0 13.3-10.7 24-24 24s-24-10.7-24-24z" />
+                           </svg>
+                         </button>`
+                      : `<button class="w-4 mr-2 transform text-red-500 hover:scale-110">
+                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                             <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM184 232l144 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-144 0c-13.3 0-24-10.7-24-24s10.7-24 24-24z" />
+                           </svg>
+                         </button>`
+                  }
+                    <button class="w-4 mr-2 transform text-red-500 hover:scale-110">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                            <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM216 336l24 0 0-64-24 0c-13.3 0-24-10.7-24-24s10.7-24 24-24l48 0c13.3 0 24 10.7 24 24l0 88 8 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-80 0c-13.3 0-24-10.7-24-24s10.7-24 24-24zm40-208a32 32 0 1 1 0 64 32 32 0 1 1 0-64z" />
+                        </svg>
+                    </button>
+                </div>
+            </td>
+        `;
+        table_users.appendChild(temp);  
+    }
+}
+getAllUsers();
