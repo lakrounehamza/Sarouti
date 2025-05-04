@@ -205,4 +205,34 @@ class AnnonceController extends Controller
             ]);
         }
     }
+    function  acceptAnnonce($id){
+        try {
+            $annonce = $this->annonceRepository->acceptAnnonce($id);
+            return  response()->json([
+                'succes' => true,
+                'message' => 'Annonce  accept  successfully',
+                'annonce' => $annonce
+            ]);
+        } catch (\Exception $e) {
+            return  response()->json([
+                'succes' => false,
+                'message' => $e->getMessage()
+            ]);
+        }
+    }
+    function  rejectAnnonce($id){
+        try {
+            $annonce = $this->annonceRepository->rejectAnnonce($id);
+            return  response()->json([
+                'succes' => true,
+                'message' => 'Annonce  reject  successfully',
+                'annonce' => $annonce
+            ]);
+        } catch (\Exception $e) {
+            return  response()->json([
+                'succes' => false,
+                'message' => $e->getMessage()
+            ]);
+        }
+    }
 }

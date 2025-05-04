@@ -328,13 +328,13 @@ function setLesdomendeAnnonces(annonces) {
                                 <td class="py-3 px-6 text-left">${annonce.status}</td>
                                 <td class="py-3 px-6 text-center">
                                     <div class="flex item-center justify-center">
-                                        <button class="w-4 mr-2 transform hover:text-blue-500 hover:scale-110">
+                                        <button class="w-4 mr-2 transform hover:text-blue-500 hover:scale-110" onclick="acceptAnnonce(${annonce.id})">
                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                                                 <path
                                                     d="M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-111 111-47-47c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l64 64c9.4 9.4 24.6 9.4 33.9 0L369 209z" />
                                             </svg>
                                         </button>
-                                        <button class="w-4 mr-2 transform hover:text-red-500 hover:scale-110">
+                                        <button class="w-4 mr-2 transform hover:text-red-500 hover:scale-110"  onclick="rejectAnnonce(${annonce.id})">
                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                                                 <path
                                                     d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM184 232l144 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-144 0c-13.3 0-24-10.7-24-24s10.7-24 24-24z" />
@@ -343,5 +343,42 @@ function setLesdomendeAnnonces(annonces) {
                                     </div>
                                 </td>
                             </tr>`;
+    }
+}
+async function acceptAnnonce(id) {
+    url = `http://127.0.0.1:8000/api/annonces/${id}/accept`;
+    const token = document.cookie.split(';').map(cookie => cookie.trim()).find(cookie => cookie.startsWith('token='))?.split('=')[1];
+    try {
+        const response = await fetch(url, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
+        });
+        const data = await response.json();
+        alert('annonce   accept');
+        getAllAnnonceForAdmin();
+    } catch (error) {
+        alert('Une erreur est survenue lors de la récupération des annonces.');
+    }
+}
+
+async function rejectAnnonce(id) {
+    url = `http://127.0.0.1:8000/api/annonces/${id}/reject`;
+    const token = document.cookie.split(';').map(cookie => cookie.trim()).find(cookie => cookie.startsWith('token='))?.split('=')[1];
+    try {
+        const response = await fetch(url, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
+        });
+        const data = await response.json();
+        alert('annonce   reject');
+        getAllAnnonceForAdmin();
+    } catch (error) {
+        alert('Une erreur est survenue lors de la récupération des annonces.');
     }
 }

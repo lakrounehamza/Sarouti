@@ -144,4 +144,14 @@ class AnnonceRepository
     {
         return Annonce::where('status', 'waiting')->join('users', 'users.id', 'annonces.seller_id')->select('annonces.*', 'users.email', 'users.name', 'users.photo as vender_photo')->get();
     }
+    function acceptAnnonce($id){
+        $annonce = Annonce::find($id);
+        $annonce->update(['status' => 'accepted']);
+        return $annonce;
+    }
+    function rejectAnnonce($id){
+        $annonce = Annonce::find($id);
+        $annonce->update(['status' => 'rejected']);
+        return $annonce;
+    }
 }
