@@ -382,3 +382,23 @@ async function rejectAnnonce(id) {
         alert('Une erreur est survenue lors de la récupération des annonces.');
     }
 }
+document.getElementById('filter_annonces').addEventListener('input', function (event) {
+    const filterValue = event.target.value.toLowerCase(); 
+    const table_domendes = document.getElementById('tableDomende-annonces');
+    const rows = table_domendes.getElementsByTagName('tr'); 
+
+    for (let row of rows) {
+        const titleCell = row.querySelector('td:nth-child(2)');  
+        const statusCell = row.querySelector('td:nth-child(4)');  
+
+        if (titleCell && statusCell) {
+            const title = titleCell.textContent.toLowerCase();
+            const status = statusCell.textContent.toLowerCase(); 
+            if (title.includes(filterValue) || status.includes(filterValue)) {
+                row.style.display = '';  
+            } else {
+                row.style.display = 'none';  
+            }
+        }
+    }
+});
