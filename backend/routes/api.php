@@ -42,6 +42,8 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::get('users', [UserController::class, 'index']);
     Route::patch('users/{id}/actif', [UserController::class, 'actifUser']);
     Route::patch('users/{id}/suspendre', [UserController::class, 'suspendreUser']);
+    Route::get('annonces/admin/domendes', [AnnonceController::class, 'annoncesForAdmin']);
+
 });
 Route::middleware(['auth:seller'])->group(function () {
 

@@ -190,4 +190,19 @@ class AnnonceController extends Controller
             ]);
         }
     }
+    function  annoncesForAdmin(){
+        try {
+            $annonce = $this->annonceRepository->annoncesForAdmin();
+            return  response()->json([
+                'succes' => true,
+                'message' => 'Annonce  get  successfully',
+                'annonce' => $annonce
+            ]);
+        } catch (\Exception $e) {
+            return  response()->json([
+                'succes' => false,
+                'message' => $e->getMessage()
+            ]);
+        }
+    }
 }

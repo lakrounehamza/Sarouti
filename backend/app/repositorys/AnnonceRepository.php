@@ -9,6 +9,7 @@ use App\Models\Images_annonce;
 use App\Models\Feature;
 use Illuminate\Support\Str;
 use App\Models\Domende;
+
 class AnnonceRepository
 {
     public function getAllAnnonce()
@@ -116,20 +117,20 @@ class AnnonceRepository
     }
     public function statisticSeller($id)
     {
-         
+
         $anoncesCount = Annonce::where('seller_id', $id)
-        ->selectRaw('count(*) as numbre_annonces')
-        ->first();
+            ->selectRaw('count(*) as numbre_annonces')
+            ->first();
 
-    $domendesCount = Domende::join('annonces', 'annonces.id', '=', 'domendes.annonce_id')
-        ->where('annonces.seller_id', $id)
-        ->selectRaw('count(*) as numbre_domendes')
-        ->first();
+        $domendesCount = Domende::join('annonces', 'annonces.id', '=', 'domendes.annonce_id')
+            ->where('annonces.seller_id', $id)
+            ->selectRaw('count(*) as numbre_domendes')
+            ->first();
 
-    return [
-        'numbre_annonces' => $anoncesCount->numbre_annonces ?? 0,
-        'numbre_domendes' => $domendesCount->numbre_domendes ?? 0,
-    ]; 
+        return [
+            'numbre_annonces' => $anoncesCount->numbre_annonces ?? 0,
+            'numbre_domendes' => $domendesCount->numbre_domendes ?? 0,
+        ];
     }
     function getAnnonceBySedllerId($sellerId)
     {
@@ -138,5 +139,9 @@ class AnnonceRepository
             $annonce->image = Images_annonce::where('annonce_id', '=', $annonce->id)->select('path')->first();
         }
         return $annonces;
-    } 
+    }
+    function  annoncesForAdmin()
+    {
+        return Annonce::where('status', 'waiting')->join('users', 'users.id', 'annonces.seller_id')->select('annonces.*', 'users.email', 'users.name', 'users.photo as vender_photo')->get();
+    }
 }
