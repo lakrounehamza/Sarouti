@@ -6,13 +6,17 @@ use  App\Contracts\CategoryRepositoryInterface;
 use  App\Models\Category;
 use  App\Http\Requests\CreateCategoryRequest;
 use  App\Http\Requests\UpdateCategoryRequest;
-
+use Illuminate\Support\Facades\DB;
 class CategoryRepository implements CategoryRepositoryInterface
 {
 
     public function getAllCategories()
     {
-        return Category::all();
+        return DB::table('categories')
+        ->select('categories.id', 'categories.name', 'categories.description', DB::raw('COUNT(annonces.id) as numbre_annonces'))
+        ->join('annonces', 'categories.id', '=', 'annonces.category_id', 'full outer')  
+        ->groupBy('categories.id', 'categories.name', 'categories.description')
+        ->get();   
     }
 
 
