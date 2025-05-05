@@ -529,3 +529,23 @@ async function addNewCategory() {
         alert("Une erreur est survenue. Veuillez réessayer.");
     }
 }
+document.getElementById("category-search").addEventListener("input", function (event) {
+    const filterValue = event.target.value.toLowerCase();
+    const tableCategories = document.getElementById("table-categories");
+    const rows = tableCategories.getElementsByTagName("tr");
+
+    for (let row of rows) {
+        const titleCell = row.querySelector("td:nth-child(1)");
+        const descriptionCell = row.querySelector("td:nth-child(2)");
+
+        if (titleCell && descriptionCell) {
+            const title = titleCell.textContent.toLowerCase();
+            const description = descriptionCell.textContent.toLowerCase(); 
+            if (title.includes(filterValue) || description.includes(filterValue)) {
+                row.style.display = ""
+            } else {
+                row.style.display = "none";
+            }
+        }
+    }
+});
