@@ -47,6 +47,7 @@ Route::middleware(['auth:admin'])->group(function () {
     
     Route::PATCH('annonces/{id}/accept', [AnnonceController::class, 'acceptAnnonce']);
     Route::PATCH('annonces/{id}/reject', [AnnonceController::class, 'rejectAnnonce']);
+    Route::get('statistic/admin',[AnnonceController::class,'satatisticAdmin']);
 
 });
 Route::middleware(['auth:seller'])->group(function () {

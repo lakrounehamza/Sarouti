@@ -235,4 +235,19 @@ class AnnonceController extends Controller
             ]);
         }
     }
+    function  satatisticAdmin(){
+        try {
+            $satatistic = $this->annonceRepository->satatisticAdmin();
+            return  response()->json([
+                'succes' => true,
+                'message' => 'satatistic ',
+                'annonce' => $satatistic
+            ]);
+        } catch (\Exception $e) {
+            return  response()->json([
+                'succes' => false,
+                'message' => $e->getMessage()
+            ]);
+        }
+    } 
 }

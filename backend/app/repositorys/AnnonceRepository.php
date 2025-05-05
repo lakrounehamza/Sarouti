@@ -9,7 +9,8 @@ use App\Models\Images_annonce;
 use App\Models\Feature;
 use Illuminate\Support\Str;
 use App\Models\Domende;
-
+use App\Models\User;
+use App\Models\Category;
 class AnnonceRepository
 {
     public function getAllAnnonce()
@@ -153,5 +154,23 @@ class AnnonceRepository
         $annonce = Annonce::find($id);
         $annonce->update(['status' => 'rejected']);
         return $annonce;
+    }
+    function satatisticAdmin()
+    {
+        $usersCount = User::count(); 
+        $sellersCount = User::where('role', 'seller')->count(); 
+        $clientsCount = User::where('role', 'client')->count(); 
+        $annoncesCount = Annonce::count(); 
+        $domendesCount = Domende::count(); 
+        $categoriesCount = Category::count();
+    
+        return [
+            'numbre_users' => $usersCount,
+            'numbre_sellers' => $sellersCount,
+            'numbre_clients' => $clientsCount,
+            'numbre_annonces' => $annoncesCount,
+            'numbre_domendes' => $domendesCount,
+            'numbre_categories' => $categoriesCount,
+        ];
     }
 }
