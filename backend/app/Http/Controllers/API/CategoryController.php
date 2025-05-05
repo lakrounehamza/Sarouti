@@ -73,9 +73,9 @@ class CategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Category $category)
+    public function destroy(string $id)
     {
-        $this->categoryRepository->deleteCategory($category);
+        $this->categoryRepository->deleteCategory($id);
         return response()->json([
             'success' => true,
             'message' => 'Category deleted successfully'

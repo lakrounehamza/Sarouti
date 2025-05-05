@@ -36,7 +36,7 @@ Route::middleware(['auth:client'])->group(function () {
 Route::middleware(['auth:admin'])->group(function () {
     Route::get('categories', [CategoryController::class, 'index']);
     Route::post('categories', [CategoryController::class, 'store']);
-    Route::delete('categories', [CategoryController::class, 'destroy']);
+    Route::delete('categories/{id}', [CategoryController::class, 'destroy']);
     Route::get('categories/{categoryId}', [CategoryController::class, 'show']);
     Route::get('domendes', [DomendeController::class, 'index']);
     Route::get('users', [UserController::class, 'index']);

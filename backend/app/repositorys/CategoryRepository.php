@@ -47,6 +47,6 @@ class CategoryRepository implements CategoryRepositoryInterface
     {
         $category = Category::find($categoryId);
         if($category)
-            $category->annonces()->delete();
+            $category->delete();
     }
 }

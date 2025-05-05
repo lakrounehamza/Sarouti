@@ -447,7 +447,7 @@ function setCategories(categories){
                                                             fill="#818CF8"></path>
                                                     </svg>
                                                 </button>
-                                                <button onclick="deleteCategory(${category.id})
+                                                <button onclick="deleteCategory(${category.id})"
                                                     class="p-2 rounded-full  group transition-all duration-500  flex item-center">
                                                     <svg class="" width="20" height="20" viewBox="0 0 20 20" fill="none"
                                                         xmlns="http://www.w3.org/2000/svg">
@@ -459,4 +459,22 @@ function setCategories(categories){
                                             </div>
                                         </td>
                                     </tr>`;
+}
+async  function  deleteCategory(id){
+    url = `http://127.0.0.1:8000/api/categories/${id}`;
+    const token = document.cookie.split(';').map(cookie => cookie.trim()).find(cookie => cookie.startsWith('token='))?.split('=')[1];
+    try {
+        const response = await fetch(url, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
+        });
+        const data = await response.json();
+        alert('category supprimer');
+        await getAllcategories();
+    } catch (error) {
+        alert('Une erreur est survenue lors de la récupération des annonces.');
+    }
 }
