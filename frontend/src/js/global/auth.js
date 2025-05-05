@@ -12,7 +12,19 @@ if (token) {
         </div>`;
 
     var deconnexion_button = document.getElementById("deconnexion_buttonu");
+    var myProfile_button = document.getElementById("myProfile_button");
     setImageProfier();
+
+    myProfile_button.addEventListener("click", function () {
+        const role = localStorage.getItem("role");
+        console.log(role);
+        if (role == "cleint")
+            window.location.href = "dashbord.html";
+        else if (role === "admin")
+            window.location.href = "../admin/dashbord.html";
+        else if (role === "seller")
+            window.location.href = "../seller/dashbord.html";
+    });
 
 } else
     menu_div.innerHTML = `<div class="   absolute right-2 top-24 bg-black/50 backdrop-blur-md p-6 rounded-2xl shadow-lg flex flex-col items-center space-y-4" >
@@ -43,8 +55,9 @@ function connexion() {
                 console.log("dara" + data.data.user.id);
                 setTokenTimeCookie(data.data.token, date, data.data.user.id);;
                 console.log("Connexion réussie !");
-                console.log(data.data.token);
-
+                // console.log(data.data.token);
+                // lonsole.log(data.data);
+                localStorage.setItem("role", data.data.user.role);
             }
         })
 }
@@ -151,7 +164,7 @@ function setImageProfier() {
     const cookies = document.cookie.split('; ');
     console.log(cookies);
     const id = cookies[2];
-    console.log("id  user : "+id);
+    console.log("id  user : " + id);
     const url = "http://127.0.0.1:8000/api/users/" + id.split('=')[1];
     console.log(url);
     const porfile_image = document.getElementById("profile-image-client");
@@ -166,8 +179,8 @@ function setImageProfier() {
             console.log(data.user.photo);
             path = "../../../backend/public/" + data.user.photo;
             console.log(path);
-             porfile_image.src = path;
-             porfile_image.style.radius = "100px";
+            porfile_image.src = path;
+            porfile_image.style.radius = "100px";
             console.log(porfile_image);
             console.log("ddd4");
         }

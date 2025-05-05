@@ -158,8 +158,8 @@
                                 <th class="py-3 px-6 text-center">Actions</th>
                             </tr>
                         </thead>
-                        <tbody class="text-gray-600 text-sm"  id="table-users">
-                            
+                        <tbody class="text-gray-600 text-sm" id="table-users">
+
                         </tbody>
                     </table>
                 </div>
@@ -263,22 +263,23 @@
                             </svg>
                         </button>
                     </div>
-                    <label for="titre" class="block text-gray-700 font-medium mb-2">Titre</label>
-                    <input type="text" id="titre"
-                        class="w-full border border-gray-300 rounded-lg p-2 mb-5 outline-none focus:ring-2 focus:ring-blue-300"
-                        placeholder="Titre de la catégorie" />
-                    <label for="description" class="block text-gray-700 font-medium mb-2">Description</label>
-                    <textarea id="description"
-                        class="h-40 w-full px-3 py-2 text-sm border border-gray-300 rounded-lg resize-none outline-none placeholder:text-gray-400 focus:ring-2 focus:ring-blue-300"
-                        placeholder="Ajoutez une description ici..."></textarea>
-                    <div class="flex justify-between items-center mt-4">
-                        <p class="text-sm text-gray-500">Entrez au moins 15 caractères</p>
-                        <button
-                            class="h-12 w-[150px] bg-blue-500 hover:bg-blue-600 text-white text-sm font-medium rounded-lg transition-all">
-                            Ajouter
-                        </button>
-                    </div>
-
+                    <form id="form-add-category">
+                        <label for="titre" class="block text-gray-700 font-medium mb-2">Titre</label>
+                        <input type="text" id="category-name"
+                            class="w-full border border-gray-300 rounded-lg p-2 mb-5 outline-none focus:ring-2 focus:ring-blue-300"
+                            placeholder="Titre de la catégorie" />
+                        <label for="description" class="block text-gray-700 font-medium mb-2">Description</label>
+                        <textarea  id="category-description"
+                            class="h-40 w-full px-3 py-2 text-sm border border-gray-300 rounded-lg resize-none outline-none placeholder:text-gray-400 focus:ring-2 focus:ring-blue-300"
+                            placeholder="Ajoutez une description ici..."></textarea>
+                        <div class="flex justify-between items-center mt-4">
+                            <p class="text-sm text-gray-500">Entrez au moins 15 caractères</p>
+                            <button  id="add-category-button" type="button"
+                                class="h-12 w-[150px] bg-blue-500 hover:bg-blue-600 text-white text-sm font-medium rounded-lg transition-all">
+                                Ajouter
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
             <div class="flex px-4 flex-col container relative " id="categorys-container">
@@ -330,7 +331,7 @@
                                     </tr>
                                 </thead>
                                 <tbody class="divide-y divide-gray-300 " id="table-categories">
-                                   
+
                                 </tbody>
                             </table>
                         </div>

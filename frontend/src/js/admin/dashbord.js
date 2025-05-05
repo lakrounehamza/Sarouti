@@ -14,7 +14,7 @@ const categorysContainer = document.getElementById("categorys-container");
 const demandesContainer = document.getElementById("demandes-container");
 const notificationsContainer = document.getElementById("notifications-container");
 const fermePopapCategory = document.getElementById("fermePopapCategory");
-const addCategory = document.getElementById("addCategory");
+const New = document.getElementById("New");
 const popapAddCategory = document.getElementById("popap-addCategory");
 function switchSection(section) {
     if (section === 'usersContainer') {
@@ -383,21 +383,21 @@ async function rejectAnnonce(id) {
     }
 }
 document.getElementById('filter_annonces').addEventListener('input', function (event) {
-    const filterValue = event.target.value.toLowerCase(); 
+    const filterValue = event.target.value.toLowerCase();
     const table_domendes = document.getElementById('tableDomende-annonces');
-    const rows = table_domendes.getElementsByTagName('tr'); 
+    const rows = table_domendes.getElementsByTagName('tr');
 
     for (let row of rows) {
-        const titleCell = row.querySelector('td:nth-child(2)');  
-        const statusCell = row.querySelector('td:nth-child(4)');  
+        const titleCell = row.querySelector('td:nth-child(2)');
+        const statusCell = row.querySelector('td:nth-child(4)');
 
         if (titleCell && statusCell) {
             const title = titleCell.textContent.toLowerCase();
-            const status = statusCell.textContent.toLowerCase(); 
+            const status = statusCell.textContent.toLowerCase();
             if (title.includes(filterValue) || status.includes(filterValue)) {
-                row.style.display = '';  
+                row.style.display = '';
             } else {
-                row.style.display = 'none';  
+                row.style.display = 'none';
             }
         }
     }
@@ -424,10 +424,10 @@ async function getAllcategories() {
         alert('Une erreur est survenue lors de la récupération des categories.');
     }
 }
-function setCategories(categories){
+function setCategories(categories) {
     const table_categories = document.getElementById('table-categories');
     table_categories.innerHTML = '';
-    for(let category of  categories)
+    for (let category of categories)
         table_categories.innerHTML += ` <tr class="bg-white transition-all duration-500 hover:bg-gray-50">
                                         <td class="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900 ">
                                             ${category.name}</td>
@@ -460,7 +460,7 @@ function setCategories(categories){
                                         </td>
                                     </tr>`;
 }
-async  function  deleteCategory(id){
+async function deleteCategory(id) {
     url = `http://127.0.0.1:8000/api/categories/${id}`;
     const token = document.cookie.split(';').map(cookie => cookie.trim()).find(cookie => cookie.startsWith('token='))?.split('=')[1];
     try {
@@ -476,5 +476,56 @@ async  function  deleteCategory(id){
         await getAllcategories();
     } catch (error) {
         alert('Une erreur est survenue lors de la récupération des annonces.');
+    }
+}
+document.getElementById("add-category-button").addEventListener("click", addNewCategory);
+
+async function addNewCategory() {
+    console.log('hiii');
+
+    const categoryName = document.getElementById("category-name").value.trim();
+    const categoryDescription = document.getElementById("category-description").value.trim();
+    // console.log('hiii');
+    if (!categoryName || !categoryDescription) {
+        alert("Veuillez remplir tous les champs.");
+        return;
+    }
+
+    const url = "http://127.0.0.1:8000/api/categories";
+    const token = document.cookie.split(';').map(cookie => cookie.trim()).find(cookie => cookie.startsWith('token='))?.split('=')[1];
+
+    if (!token) {
+        alert("Vous devez être connecté pour ajouter une catégorie.");
+        return;
+    }
+
+    try {
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({
+                name: categoryName,
+                description: categoryDescription
+            })
+        });
+
+        const data = await response.json();
+
+        if (response.ok && data.success) {
+            alert("Catégorie ajoutée avec succès !");
+            document.getElementById("category-name").value = "";
+            document.getElementById("category-description").value = "";
+            await getAllcategories();
+
+            popapAddCategory.classList.toggle("hidden");
+        } else {
+            alert(data.message || "Une erreur est survenue.");
+        }
+    } catch (error) {
+        console.error("Erreur lors de l'ajout de la catégorie :", error);
+        alert("Une erreur est survenue. Veuillez réessayer.");
     }
 }
