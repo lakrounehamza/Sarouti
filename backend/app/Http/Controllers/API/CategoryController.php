@@ -45,7 +45,7 @@ class CategoryController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Category $category)
+    public function show(string $category)
     {
         $category = $this->categoryRepository->getCategoryById($category);
         return response()->json([
@@ -59,9 +59,9 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateCategoryRequest $request, Category $category)
+    public function update(UpdateCategoryRequest $request, string $categoryId)
     {
-        $category = $this->categoryRepository->updateCategory($category, $request);
+        $category = $this->categoryRepository->updateCategory($categoryId, $request);
         return response()->json([
             'success' => true,
             'message' => 'Category updated successfully',

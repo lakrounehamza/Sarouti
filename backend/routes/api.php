@@ -38,6 +38,7 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::post('categories', [CategoryController::class, 'store']);
     Route::delete('categories/{id}', [CategoryController::class, 'destroy']);
     Route::get('categories/{categoryId}', [CategoryController::class, 'show']);
+    Route::put('categories/{categoryId}', [CategoryController::class, 'update']);
     Route::get('domendes', [DomendeController::class, 'index']);
     Route::get('users', [UserController::class, 'index']);
     Route::patch('users/{id}/actif', [UserController::class, 'actifUser']);

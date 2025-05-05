@@ -437,7 +437,7 @@ function setCategories(categories) {
                                             ${category.numbre_annonces}</td>
                                         <td class=" p-5 ">
                                             <div class="flex items-center gap-1">
-                                                <button
+                                                <button onclick="modifyCategory(${category.id})"
                                                     class="p-2  rounded-full  group transition-all duration-500  flex item-center">
                                                     <svg class="cursor-pointer" width="20" height="20"
                                                         viewBox="0 0 20 20" fill="none"
@@ -548,4 +548,66 @@ document.getElementById("category-search").addEventListener("input", function (e
             }
         }
     }
+});
+async function modifyCategory(id) {
+    const url = `http://127.0.0.1:8000/api/categories/${id}`;
+    const token = document.cookie.split(';').map(cookie => cookie.trim()).find(cookie => cookie.startsWith('token='))?.split('=')[1];
+
+    if (!token) {
+        alert("Vous devez être connecté pour modifier une catégorie.");
+        return;
+    }
+
+    try { 
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
+        });
+        const data = await response.json(); 
+        document.getElementById("category--modifyname").value = data.category.name;
+        document.getElementById("category--modifydescription").value = data.category.description;
+        document.getElementById("category--modifyname").dataset.id = id;
+        document.getElementById("popap-modifyCategory").classList.remove("hidden");
+    } catch (error) {
+        alert("Une erreur est survenue. Veuillez réessayer.");
+    }
+}
+document.getElementById("modify-category-button").addEventListener("click", async function () {
+    const categoryId = document.getElementById("category--modifyname").dataset.id;
+    const categoryName = document.getElementById("category--modifyname").value.trim();
+    const categoryDescription = document.getElementById("category--modifydescription").value.trim();
+    const url = `http://127.0.0.1:8000/api/categories/${categoryId}`;
+    const token = document.cookie.split(';').map(cookie => cookie.trim()).find(cookie => cookie.startsWith('token='))?.split('=')[1];
+    try {
+        const response = await fetch(url, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({
+                name: categoryName,
+                description: categoryDescription
+            })
+        });
+
+        const data = await response.json();
+
+        if (response.ok && data.success) {
+            alert("Catégorie modifiée avec succès !");
+            document.getElementById("popap-modifyCategory").classList.add("hidden");
+            await getAllcategories(); 
+        } else {
+            alert(data.message || "Une erreur est survenue.");
+        }
+    } catch (error) {
+        alert("Une erreur est survenue. Veuillez réessayer.");
+    }
+});
+
+document.getElementById("closeModifyCategoryPopup").addEventListener("click", function () {
+    document.getElementById("popap-modifyCategory").classList.add("hidden");
 });
