@@ -16,6 +16,8 @@ const notificationsContainer = document.getElementById("notifications-container"
 const fermePopapCategory = document.getElementById("fermePopapCategory");
 const New = document.getElementById("New");
 const popapAddCategory = document.getElementById("popap-addCategory");
+const container_statistic_admin = document.getElementById('container-statistic-admin');
+const statistiques_button_admin =document.getElementById('statistiques-button-admin');
 function switchSection(section) {
     if (section === 'usersContainer') {
         localStorage.setItem('dashboardSection', 'users');
@@ -25,6 +27,7 @@ function switchSection(section) {
         categorysContainer.classList.add("hidden");
         demandesContainer.classList.add("hidden");
         notificationsContainer.classList.add("hidden");
+        container_statistic_admin.classList.add("hidden");
     } else if (section === 'rolesContainer') {
         localStorage.setItem('dashboardSection', 'roles');
         usersContainer.classList.add("hidden");
@@ -33,6 +36,7 @@ function switchSection(section) {
         categorysContainer.classList.add("hidden");
         demandesContainer.classList.add("hidden");
         notificationsContainer.classList.add("hidden");
+        container_statistic_admin.classList.add("hidden");
     } else if (section === 'signalementsContainer') {
         localStorage.setItem('dashboardSection', 'signalements');
         usersContainer.classList.add("hidden");
@@ -41,6 +45,7 @@ function switchSection(section) {
         categorysContainer.classList.add("hidden");
         demandesContainer.classList.add("hidden");
         notificationsContainer.classList.add("hidden");
+        container_statistic_admin.classList.add("hidden");
     } else if (section === 'categorysContainer') {
         localStorage.setItem('dashboardSection', 'categorys');
         usersContainer.classList.add("hidden");
@@ -49,6 +54,7 @@ function switchSection(section) {
         categorysContainer.classList.remove("hidden");
         demandesContainer.classList.add("hidden");
         notificationsContainer.classList.add("hidden");
+        container_statistic_admin.classList.add("hidden");
     } else if (section === 'demandesContainer') {
         localStorage.setItem('dashboardSection', 'demandes');
         usersContainer.classList.add("hidden");
@@ -57,6 +63,7 @@ function switchSection(section) {
         categorysContainer.classList.add("hidden");
         demandesContainer.classList.remove("hidden");
         notificationsContainer.classList.add("hidden");
+        container_statistic_admin.classList.add("hidden");
     } else if (section === 'notificationsContainer') {
         localStorage.setItem('dashboardSection', 'notifications');
         usersContainer.classList.add("hidden");
@@ -65,6 +72,16 @@ function switchSection(section) {
         categorysContainer.classList.add("hidden");
         demandesContainer.classList.add("hidden");
         notificationsContainer.classList.remove("hidden");
+        container_statistic_admin.classList.add("hidden");
+    } else if (section === 'container_statistic_admin') {
+        localStorage.setItem('dashboardSection', 'notifications');
+        usersContainer.classList.add("hidden");
+        rolesContainer.classList.add("hidden");
+        signalementsContainer.classList.add("hidden");
+        categorysContainer.classList.add("hidden");
+        demandesContainer.classList.add("hidden");
+        notificationsContainer.classList.add("hidden");
+        container_statistic_admin.classList.remove("hidden");
     }
 }
 
@@ -85,6 +102,9 @@ demandesButton.addEventListener('click', () => {
 });
 notificationsButton.addEventListener('click', () => {
     switchSection('notificationsContainer');
+});
+statistiques_button_admin.addEventListener('click', () => {
+    switchSection('container_statistic_admin');
 });
 document.addEventListener('DOMContentLoaded', () => {
     const savedSection = localStorage.getItem('dashboardSection');
