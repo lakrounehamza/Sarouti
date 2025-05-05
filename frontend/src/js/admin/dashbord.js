@@ -631,3 +631,30 @@ document.getElementById("modify-category-button").addEventListener("click", asyn
 document.getElementById("closeModifyCategoryPopup").addEventListener("click", function () {
     document.getElementById("popap-modifyCategory").classList.add("hidden");
 });
+async function statistiqueAdmin() {
+    const url = `http://127.0.0.1:8000/api/statistic/admin`;
+    const token = document.cookie.split(';').map(cookie => cookie.trim()).find(cookie => cookie.startsWith('token='))?.split('=')[1];
+    try {
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
+        });
+        const data = await response.json();
+        setStatistics(data.annonce);
+    } catch (error) {
+        alert("Une erreur est survenue. Veuillez réessayer.");
+    }
+}
+function setStatistics(statistic) {
+    document.getElementById('annonces_statistique').innerText = statistic.numbre_annonces;
+    document.getElementById('domendes_statistique').innerText = statistic.numbre_domendes;
+    document.getElementById('numbre_categories').innerText = statistic.numbre_categories;
+    document.getElementById('numbre_users').innerText = statistic.numbre_users;
+    document.getElementById('numbre_sellers').innerText = statistic.numbre_sellers;
+    document.getElementById('numbre_clients').innerText = statistic.numbre_clients;
+    
+}
+statistiqueAdmin();
